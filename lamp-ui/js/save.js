@@ -12,12 +12,14 @@ const db = getFirestore(app);
 
 export async function saveDiagnosis(scoreData, topType) {
   try {
-    await addDoc(collection(db, "diagnosisResults"), {
+    const docRef = await addDoc(collection(db, "diagnosisResults"), {
       score: scoreData,
       topType: topType,
       createdAt: serverTimestamp()
     });
-    window.location.href = "./result.html";
+
+    window.location.href = `./result.html?id=${docRef.id}`;
+
   } catch (error) {
     alert("保存に失敗しました");
     console.error("Firestore error:", error);
