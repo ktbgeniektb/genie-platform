@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>furigana_test</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="../../css/style_validationtest.css" />
+  </head>
+  <body>
+    <table id="test-result-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>入力</th>
+          <th>期待値</th>
+          <th>実行結果</th>
+          <th>判定</th>
+          <th>理由</th>
+        </tr>
+      </thead>
+      <tbody id="result-body">
+        <!-- jQueryでここに追加される -->
+      </tbody>
+    </table>
+    <script>
+      testCases = [
+        { input: "ヤマダタロウ", expected: "OK", reason: "正常な全角カタカナ" },
+        { input: "ﾔﾏﾀﾞﾀﾛｳ", expected: "NG", reason: "半角カタカナ" },
+        { input: "やまだたろう", expected: "NG", reason: "ひらがな" },
+        { input: "山田太郎", expected: "NG", reason: "漢字" },
+        { input: "YAMADA", expected: "NG", reason: "半角英字" },
+        { input: "ＹＡＭＡＤＡ", expected: "NG", reason: "全角英字" },
+        { input: "ヤマダ太郎", expected: "NG", reason: "カタカナ＋漢字混合" },
+        {
+          input: "ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆ",
+          expected: "NG",
+          reason: "半角カナ（見た目はそれっぽいけどNG）",
+        },
+        { input: "ヤマダタロウ@", expected: "NG", reason: "記号混入" },
+        {
+          input: "ヤマダ　タロウ",
+          expected: "OK",
+          reason: "全角スペースOK（フリガナでは使わない）",
+        },
+        {
+          input: "ヤマダタロウタカハシ",
+          expected: "OK",
+          reason: "複数名でもOK",
+        },
+        { input: "タ", expected: "OK", reason: "1文字も許容（仕様上）" },
+        {
+          input: "タカハシカズヒロキトウキョウ",
+          expected: "OK",
+          reason: "19文字OK",
+        },
+        {
+          input:
+            "タカハシカズヒロキトウキョウサイタマタカハシカズヒロキトウキョウサイタマ",
+          expected: "NG",
+          reason: "30文字以上",
+        },
+        { input: "", expected: "NG", reason: "空欄" },
+        {
+          input: "'; DROP TABLE users;--",
+          expected: "NG",
+          reason: "SQLインジェクション文字列",
+        },
+        {
+          input: "whoami",
+          expected: "NG",
+          reason: "コマンドインジェクション文字列",
+        },
+      ];
+      // バリデーションルール（例：全角文字＋全角スペース1つまで）
+      function validateFurigana(furigana) {
+        const pattern = /^[ァ-ヴー　]{1,30}$/;
+        const zenkakuSpaces = (name.match(/　/g) || []).length;
+        return pattern.test(furigana) && zenkakuSpaces <= 1;
+      }
+
+      $(function () {
+        testCases.forEach((tc, i) => {
+          const result = validateFurigana(tc.input) ? "OK" : "NG";
+          const passed = result === tc.expected;
+          const row = `
+            <tr class="${passed ? "pass" : "fail"}">
+                <td>${i + 1}</td>
+                <td>${tc.input}</td>
+                <td>${tc.expected}</td>
+                <td>${result}</td>
+                <td>${passed ? "✅" : "❌"}</td>
+                <td>${tc.reason}</td>
+            </tr>
+            `;
+          $("#result-body").append(row);
+        });
+      });
+    </script>
+  </body>
+</html>

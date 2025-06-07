@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="./../css/diagnosis.css" />
+
+    <title>診断</title>
+  </head>
+  <body>
+    <section
+      class="bg layer1"
+      data-bg="./../img/layer1.jpg"
+      data-bg-sp="./../img/layer1_sp.jpg"
+    >
+      <div class="question" data-index="0" data-category="共鳴型">
+        <p>1. 自分は、誰かの言葉や行動に強く心を動かされることがある</p>
+        <div class="choices"></div>
+        <div
+          id="error-q0"
+          class="error"
+          style="color: red; display: none"
+        ></div>
+      </div>
+
+      <div class="question" data-index="1" data-category="探究型">
+        <p>2. 「なぜそうなるのか」を知りたくなることが多い</p>
+        <div class="choices"></div>
+        <div
+          id="error-q1"
+          class="error"
+          style="color: red; display: none"
+        ></div>
+      </div>
+
+      <div class="question" data-index="2" data-category="表現型">
+        <p>3. 自分のアイデアや想いを言葉や形にして誰かに伝えるのが好きだ</p>
+        <div class="choices"></div>
+        <div
+          id="error-q2"
+          class="error"
+          style="color: red; display: none"
+        ></div>
+      </div>
+
+      <div class="question" data-index="3" data-category="体験型">
+        <p>
+          4.周りが盛り上がっていると、自分もつい手を挙げたり声を出したりしてしまう
+        </p>
+        <div class="choices"></div>
+        <div
+          id="error-q3"
+          class="error"
+          style="color: red; display: none"
+        ></div>
+      </div>
+
+      <div class="question" data-index="4" data-category="挑戦型">
+        <p>
+          5.
+          未知のことに出会うと、失敗より「まずやってみたい」という気持ちが先にくる
+        </p>
+        <div class="choices"></div>
+        <div
+          id="error-q4"
+          class="error"
+          style="color: red; display: none"
+        ></div>
+      </div>
+
+      <div class="question" data-index="5" data-category="共鳴型">
+        <p>6. ひとの「想い」や「こだわり」を知ると、応援したくなる</p>
+        <div class="choices"></div>
+        <div
+          id="error-q5"
+          class="error"
+          style="color: red; display: none"
+        ></div>
+      </div>
+
+      <div class="question" data-index="6" data-category="体験型">
+        <p>
+          7.自分は、ネットで見た情報よりも「実物を見て感じたこと」を信じるタイプだ
+        </p>
+        <div class="choices"></div>
+        <div
+          id="error-q6"
+          class="error"
+          style="color: red; display: none"
+        ></div>
+      </div>
+    </section>
+    <section
+      class="bg layer2"
+      data-bg="./../img/layer2.jpg"
+      data-bg-sp="./../img/layer2_sp.jpg"
+    >
+      <div class="question" data-index="7" data-category="共鳴型">
+        <p>
+          8.
+          人の「空気感」や「感情」にすぐ気づくことがある（例：声のトーン、顔色、間）
+        </p>
+        <div class="choices"></div>
+        <div
+          id="error-q7"
+          class="error"
+          style="color: red; display: none"
+        ></div>
+      </div>
+
+      <div class="question" data-index="8" data-category="探究型">
+        <p>9. 分からない言葉や仕組みに出会ったとき、自分で調べたくなる</p>
+        <div class="choices"></div>
+        <div
+          id="error-q8"
+          class="error"
+          style="color: red; display: none"
+        ></div>
+      </div>
+
+      <div class="question" data-index="9" data-category="挑戦型">
+        <p>10. 思いついたら、すぐに行動して試したくなることが多い</p>
+        <div class="choices"></div>
+        <div
+          id="error-q9"
+          class="error"
+          style="color: red; display: none"
+        ></div>
+      </div>
+
+      <div class="question" data-index="10" data-category="共鳴型">
+        <p>11. 誰かの熱い想いを聞くと、自分も心を動かされる</p>
+        <div class="choices"></div>
+        <div
+          id="error-q10"
+          class="error"
+          style="color: red; display: none"
+        ></div>
+      </div>
+
+      <div class="question" data-index="11" data-category="表現型">
+        <p>12. 自分の伝えたいことを「どう伝えたら伝わるか」考えるのが好きだ</p>
+        <div class="choices"></div>
+        <div
+          id="error-q11"
+          class="error"
+          style="color: red; display: none"
+        ></div>
+      </div>
+
+      <div class="question" data-index="12" data-category="挑戦型">
+        <p>13. 誰もやっていないことに、真っ先に飛び込みたくなる</p>
+        <div class="choices"></div>
+        <div
+          id="error-q12"
+          class="error"
+          style="color: red; display: none"
+        ></div>
+      </div>
+
+      <div class="question" data-index="13" data-category="挑戦型">
+        <p>
+          14. 目標に対して「それは無理だよ」と言われると、逆にやってみたくなる
+        </p>
+        <div class="choices"></div>
+        <div
+          id="error-q13"
+          class="error"
+          style="color: red; display: none"
+        ></div>
+      </div>
+
+      <div class="question" data-index="14" data-category="探究型">
+        <p>15. とことん調べたり、知識を深めることが好き</p>
+        <div class="choices"></div>
+        <div
+          id="error-q14"
+          class="error"
+          style="color: red; display: none"
+        ></div>
+      </div>
+    </section>
+    <section
+      class="bg layer3"
+      data-bg="./../img/layer3.jpg"
+      data-bg-sp="./../img/layer3_sp.jpg"
+    >
+      <div class="question" data-index="15" data-category="探究型">
+        <p>16. 自分だけが知ってる“深い世界”がある</p>
+        <div class="choices"></div>
+        <div
+          id="error-q15"
+          class="error"
+          style="color: red; display: none"
+        ></div>
+      </div>
+
+      <div class="question" data-index="16" data-category="表現型">
+        <p>17. 想いや考えを、自分の言葉や形で届けることにワクワクする</p>
+        <div class="choices"></div>
+        <div
+          id="error-q16"
+          class="error"
+          style="color: red; display: none"
+        ></div>
+      </div>
+
+      <div class="question" data-index="17" data-category="表現型">
+        <p>18. 感情が乗った表現を見ると、なぜか涙が出たり鳥肌が立つ</p>
+        <div class="choices"></div>
+        <div
+          id="error-q17"
+          class="error"
+          style="color: red; display: none"
+        ></div>
+      </div>
+
+      <div class="question" data-index="18" data-category="体験型">
+        <p>19. ライブや舞台、イベントの空気感で心が揺さぶられることがある</p>
+        <div class="choices"></div>
+        <div
+          id="error-q18"
+          class="error"
+          style="color: red; display: none"
+        ></div>
+      </div>
+
+      <div class="question" data-index="19" data-category="体験型">
+        <p>20. 実際に“やってみて”初めて分かることが多い</p>
+        <div class="choices"></div>
+        <div
+          id="error-q19"
+          class="error"
+          style="color: red; display: none"
+        ></div>
+      </div>
+
+      <div class="question" data-index="20" data-category="共鳴型">
+        <p>21. 共感した相手のために、自分も動きたくなることがある</p>
+        <div class="choices"></div>
+        <div
+          id="error-q20"
+          class="error"
+          style="color: red; display: none"
+        ></div>
+      </div>
+
+      <div class="question" data-index="21" data-category="体験型">
+        <p>22. 初めての場所や体験にワクワクすることが多い</p>
+        <div class="choices"></div>
+        <div
+          id="error-q21"
+          class="error"
+          style="color: red; display: none"
+        ></div>
+      </div>
+    </section>
+    <section
+      class="bg layer4"
+      data-bg="./../img/layer4.jpg"
+      data-bg-sp="./../img/layer4_sp.jpg"
+    >
+      <div class="question" data-index="22" data-category="挑戦型">
+        <p>23. 自分が関わったことで何かが動くと、もっと挑戦してみたくなる</p>
+        <div class="choices"></div>
+        <div
+          id="error-q22"
+          class="error"
+          style="color: red; display: none"
+        ></div>
+      </div>
+
+      <div class="question" data-index="23" data-category="探究型">
+        <p>24. わからないことをそのままにしておくのが気持ち悪い</p>
+        <div class="choices"></div>
+        <div
+          id="error-q23"
+          class="error"
+          style="color: red; display: none"
+        ></div>
+      </div>
+
+      <div class="question" data-index="24" data-category="共鳴型">
+        <p>25. 誰かが本気で取り組んでいる姿を見ると、自分も影響を受ける</p>
+        <div class="choices"></div>
+        <div
+          id="error-q24"
+          class="error"
+          style="color: red; display: none"
+        ></div>
+      </div>
+
+      <div class="question" data-index="25" data-category="表現型">
+        <p>26. 感動したことを“自分の言葉”で誰かに伝えたくなることがある</p>
+        <div class="choices"></div>
+        <div
+          id="error-q25"
+          class="error"
+          style="color: red; display: none"
+        ></div>
+      </div>
+
+      <div class="question" data-index="26" data-category="挑戦型">
+        <p>
+          27. 完璧じゃなくても、まず動いてから考えた方がうまくいくと思っている
+        </p>
+        <div class="choices"></div>
+        <div
+          id="error-q26"
+          class="error"
+          style="color: red; display: none"
+        ></div>
+      </div>
+
+      <div class="question" data-index="27" data-category="探究型">
+        <p>28. 人の行動や選択の“背景”をつい考えてしまう</p>
+        <div class="choices"></div>
+        <div
+          id="error-q27"
+          class="error"
+          style="color: red; display: none"
+        ></div>
+      </div>
+
+      <div class="question" data-index="28" data-category="体験型">
+        <p>29. 体で感じたことをもとに考えたり判断したりする方が得意だ</p>
+        <div class="choices"></div>
+        <div
+          id="error-q28"
+          class="error"
+          style="color: red; display: none"
+        ></div>
+      </div>
+
+      <div class="question" data-index="29" data-category="表現型">
+        <p>30. 人の心に届くように表現方法を工夫したいと思うことがある</p>
+        <div class="choices"></div>
+        <div
+          id="error-q29"
+          class="error"
+          style="color: red; display: none"
+        ></div>
+      </div>
+
+      <button id="end-diagnosis" type="button">Lampを探しに行く</button>
+    </section>
+    <script>
+      const choices = [
+        "まったくそう思わない",
+        "あまりそう思わない",
+        "どちらでもない",
+        "ややそう思う",
+        "とてもそう思う",
+      ];
+
+      function showError(selector, message) {
+        $(selector).text(message).show();
+      }
+
+      function clearError(selector) {
+        $(selector).text("").hide();
+      }
+
+      $(".question").each(function () {
+        const index = $(this).data("index");
+        const $choices = $(this).find(".choices");
+
+        choices
+          .slice()
+          .reverse()
+          .forEach((label, i) => {
+            // <label><input type="radio" name="q0" value="1"> まったくそう思わない</label><br/>　の生成
+            const score = choices.length - i; // 最大が5になる
+            const $label = $(
+              `<label><input type="radio" name="q${index}" value="${score}"> ${label}</label><br/>`
+            );
+            $choices.append($label);
+          });
+      });
+
+      $("#end-diagnosis").on("click", function () {
+        let isValid = true;
+
+        $(".question").each(function () {
+          const index = $(this).data("index");
+          const selected = $(`input[name="q${index}"]:checked`);
+          const $error = $(`#error-q${index}`);
+
+          if (selected.length === 0) {
+            $error.text("この質問に回答してください").show();
+            if (isValid) {
+              // 最初の未回答エラーにスクロール
+              $("html, body").animate(
+                { scrollTop: $(this).offset().top - 100 },
+                500
+              );
+            }
+            isValid = false;
+          } else {
+            $error.hide();
+          }
+        });
+
+        if (isValid == true) {
+          const scores = {
+            共鳴型: 0,
+            探究型: 0,
+            表現型: 0,
+            体験型: 0,
+            挑戦型: 0,
+          };
+
+          $(".question").each(function () {
+            const index = $(this).data("index");
+            const category = $(this).data("category");
+            const value = parseInt($(`input[name="q${index}"]:checked`).val());
+            scores[category] += value;
+          });
+
+          const typeMap = {
+            共鳴型: "kyomei",
+            探究型: "tankyu",
+            表現型: "hyougen",
+            体験型: "taiken",
+            挑戦型: "chosen",
+          };
+
+          //ここはGPTに頼った、中身理解必要
+          const sorted = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+          const top1 = sorted[0][0];
+          const top2 = sorted[1][0];
+
+          localStorage.setItem("top1", typeMap[top1]);
+          localStorage.setItem("top2", typeMap[top2]);
+
+          Object.entries(scores).forEach(([label, score]) => {
+            const key = typeMap[label];
+            localStorage.setItem(key, score);
+          });
+
+          window.location.href = "result.html";
+        }
+      });
+    </script>
+  </body>
+</html>

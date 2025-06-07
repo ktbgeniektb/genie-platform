@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>email_test</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="../../css/style_validationtest.css" />
+  </head>
+  <body>
+    <table id="test-result-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>入力</th>
+          <th>期待値</th>
+          <th>実行結果</th>
+          <th>判定</th>
+          <th>理由</th>
+        </tr>
+      </thead>
+      <tbody id="result-body">
+        <!-- jQueryでここに追加される -->
+      </tbody>
+    </table>
+    <script>
+      const testCases = [
+        { input: "taro@example.com", expected: "OK", reason: "正常な形式" },
+        {
+          input: "taro.yamada@example.co.jp",
+          expected: "OK",
+          reason: "サブドメイン対応",
+        },
+        {
+          input: "ta_ro-yamada+1@example.com",
+          expected: "OK",
+          reason: "記号（_, -, +）許容",
+        },
+        {
+          input: "yamada@example",
+          expected: "NG",
+          reason: "ドメインに.がない",
+        },
+        { input: "yamadaexample.com", expected: "NG", reason: "@がない" },
+        { input: "@example.com", expected: "NG", reason: "@が先頭" },
+        { input: "yamada@", expected: "NG", reason: "@の後がない" },
+        { input: "yamada@com.", expected: "NG", reason: "ドメイン末尾が不正" },
+        { input: "yamada@@example.com", expected: "NG", reason: "@が2つ" },
+        {
+          input: "yamada..taro@example.com",
+          expected: "NG",
+          reason: "ドットが連続している",
+        },
+        {
+          input: "ya ma da@example.com",
+          expected: "NG",
+          reason: "スペース混入",
+        },
+        {
+          input: "ＴＡＲＯ＠example.com",
+          expected: "NG",
+          reason: "全角文字（Ｔ／＠）混入",
+        },
+        {
+          input: "taro@ex-ample.com",
+          expected: "OK",
+          reason: "ドメインにハイフンはOK",
+        },
+        {
+          input: "'; DROP TABLE users;--",
+          expected: "NG",
+          reason: "SQLインジェクション文字列",
+        },
+        {
+          input: "rm -rf /",
+          expected: "NG",
+          reason: "コマンドインジェクション文字列",
+        },
+        { input: "", expected: "NG", reason: "空欄" },
+        {
+          input: "test@example.com'; DROP TABLE users;--",
+          expected: "NG",
+          reason: "SQLインジェクション（;, ', --）混入",
+        },
+        {
+          input: "test@example.com\nBCC: attacker@example.com",
+          expected: "NG",
+          reason: "メールヘッダインジェクション（\\n, BCC:）",
+        },
+        {
+          input: "&lt;script&gt;alert(1)&lt;/script&gt;",
+          expected: "NG",
+          reason: "XSS／タグ挿入",
+        },
+        {
+          input: "test@example.com\trm -rf /",
+          expected: "NG",
+          reason: "コマンド付き文字列",
+        },
+        {
+          input: "test@example.com\r\nCc: bad@example.com",
+          expected: "NG",
+          reason: "改行によるヘッダインジェクション",
+        },
+        {
+          input: '"test"@example.com',
+          expected: "NG",
+          reason: "ダブルクオーテーション囲み",
+        },
+        {
+          input: "test@example.com; bcc:evil@x.com",
+          expected: "NG",
+          reason: "セミコロン＋命令文字列",
+        },
+        {
+          input: "test@example.com<scr+ipt>",
+          expected: "NG",
+          reason: "タグ断片混入",
+        },
+        {
+          input: "test@example.com--",
+          expected: "NG",
+          reason: "SQLコメント構文形成の可能性",
+        },
+      ];
+
+      // バリデーションルール（例：全角文字＋全角スペース1つまで）
+      function validateEmail(email) {
+        const pattern = /^[a-zA-Z0-9._+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        const suspicious = /[;<>'"`|\\]/;
+        return pattern.test(email) && suspicious;
+      }
+
+      $(function () {
+        testCases.forEach((tc, i) => {
+          const result = validateEmail(tc.input) ? "OK" : "NG";
+          const passed = result === tc.expected;
+          const row = `
+                  <tr class="${passed ? "pass" : "fail"}">
+                      <td>${i + 1}</td>
+                      <td>${tc.input}</td>
+                      <td>${tc.expected}</td>
+                      <td>${result}</td>
+                      <td>${passed ? "✅" : "❌"}</td>
+                      <td>${tc.reason}</td>
+                  </tr>
+                  `;
+          $("#result-body").append(row);
+        });
+      });
+    </script>
+  </body>
+</html>

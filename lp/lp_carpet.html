@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="jp">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carpet LP</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              rounded: ["'M PLUS Rounded 1c'", "sans-serif"],
+              aladdin: ["'Aladdin'", "cursive"],
+            },
+            keyframes: {
+              fadein: {
+                "0%": { opacity: "0", transform: "translateY(20px)" },
+                "100%": { opacity: "1", transform: "translateY(0)" },
+              },
+            },
+            animation: {
+              fadein: "fadein 1s ease-out forwards",
+              fadeinSlow: "fadein 3s ease-out forwards",
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      @font-face {
+        font-family: "Aladdin";
+        src: url("./fonts/Aladdin.ttf") format("truetype");
+      }
+    </style>
+  </head>
+  <body
+    class="m-0 flex flex-col max-w-[1200px] mx-auto text-yellow-300 font-rounded"
+  >
+    <header
+      class="sticky top-0 w-full flex justify-between items-center px-6 h-16 bg-[#1a1a40] text-xl z-50"
+    >
+      <nav class="flex flex-wrap gap-4 text-sm sm:text-base md:text-lg">
+        <a href="#TOP">TOP</a>
+        <a href="#features">Carpetとは？</a>
+        <a href="#target">こんな企業におすすめ</a>
+        <a href="#cta">診断</a>
+      </nav>
+    </header>
+
+    <section
+      id="TOP"
+      class="aspect-[3/2] bg-cover bg-center flex justify-center items-center"
+      style="background-image: url('./img/carpet_lp_hero.jpg')"
+    >
+      <h1
+        class="text-7xl sm:text-7xl md:text-9xl text-yellow-300 opacity-0 animate-fadeinSlow duration-3000"
+        style="font-family: 'Aladdin', cursive"
+      >
+        Carpet
+      </h1>
+    </section>
+
+    <section
+      id="features"
+      class="flex flex-col-reverse md:flex-row min-h-[500px] py-12 bg-[#2a2a4f]"
+    >
+      <div
+        class="md:w-1/2 h-64 md:h-auto bg-[url('./img/carpet_lp_features.jpg')] bg-cover bg-center"
+      ></div>
+      <div
+        class="md:w-1/2 flex flex-col justify-center items-center text-center px-6 py-8"
+      >
+        <h2 class="text-2xl sm:text-3xl md:text-4xl mb-4">
+          <span class="font-aladdin text-5xl sm:text-6xl md:text-7xl"
+            >Carpet</span
+          >とは？
+        </h2>
+        <p class="text-base sm:text-lg md:text-xl leading-relaxed">
+          「好き」や「得意」は、<br />
+          教科やスキルでは測れない。<br />
+          <span class="font-aladdin text-2xl sm:text-3xl">Carpet</span
+          >は、あなたの<br />
+          “まだ気づいていない才能”を見つけ出します。
+        </p>
+      </div>
+    </section>
+
+    <section id="target" class="bg-[#1a1a40] py-12 px-6">
+      <div>
+        <h2 class="text-2xl sm:text-3xl md:text-4xl text-center mb-8">
+          こんな教育機関におすすめ
+        </h2>
+      </div>
+      <div
+        class="grid grid-cols-1 md:grid-cols-2 gap-6 text-center text-yellow-100"
+      >
+        <div
+          class="bg-[#2a2a4f] p-6 md:p-8 rounded-lg shadow-lg text-base md:text-lg"
+        >
+          生徒の“好き”や“得意”を深く知りたい
+        </div>
+        <div
+          class="bg-[#2a2a4f] p-6 md:p-8 rounded-lg shadow-lg text-base md:text-lg"
+        >
+          自己分析に基づいたキャリア支援を行いたい
+        </div>
+        <div
+          class="bg-[#2a2a4f] p-6 md:p-8 rounded-lg shadow-lg text-base md:text-lg"
+        >
+          進路指導が形式的な対話に終わってしまっている
+        </div>
+        <div
+          class="bg-[#2a2a4f] p-6 md:p-8 rounded-lg shadow-lg text-base md:text-lg"
+        >
+          教職員間での情報共有や支援方針を可視化したい
+        </div>
+      </div>
+    </section>
+
+    <section
+      id="cta"
+      class="bg-yellow-300 text-[#1a1a40] text-center py-16 px-6"
+    >
+      <h2 class="text-xl sm:text-2xl md:text-3xl mb-6">
+        生徒一人ひとりの
+        <span class="font-aladdin text-3xl md:text-4xl">Carpet</span>
+        を、広げてみませんか？
+      </h2>
+      <p class="text-base sm:text-lg mb-8">
+        まだ気づけていない「得意」や「夢中になれる道」が、きっとあります。<br />
+        生徒の未来を、一緒に見つけましょう。
+      </p>
+      <a
+        href="#"
+        class="inline-block bg-[#1a1a40] text-yellow-300 px-6 py-3 rounded-full font-bold hover:bg-black transition"
+      >
+        今すぐ資料をダウンロード
+      </a>
+    </section>
+
+    <footer
+      class="flex justify-center items-center bg-[#1a1a40] text-yellow-300 py-8 px-4 text-xs"
+    >
+      &copy; 2025 Genie Inc. All rights reserved.
+    </footer>
+  </body>
+</html>

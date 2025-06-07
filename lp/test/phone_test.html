@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>phone_test</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="../../css/style_validationtest.css" />
+  </head>
+  <body>
+    <table id="test-result-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>入力</th>
+          <th>期待値</th>
+          <th>実行結果</th>
+          <th>判定</th>
+          <th>理由</th>
+        </tr>
+      </thead>
+      <tbody id="result-body">
+        <!-- jQueryでここに追加される -->
+      </tbody>
+    </table>
+    <script>
+      const testCases = [
+        { input: "090-1234-5678", expected: "OK", reason: "携帯番号（3-4-4）" },
+        { input: "080-0000-0000", expected: "OK", reason: "携帯番号" },
+        { input: "070-9876-5432", expected: "OK", reason: "携帯番号" },
+        { input: "03-1234-5678", expected: "OK", reason: "固定電話（2-4-4）" },
+        { input: "06-8765-4321", expected: "OK", reason: "固定電話（大阪）" },
+        { input: "0467-12-3456", expected: "OK", reason: "固定電話（3-2-4）" },
+        { input: "09969-7-1234", expected: "OK", reason: "固定電話（5-1-4）" },
+        { input: "09012345678", expected: "NG", reason: "ハイフンなし" },
+        { input: "090-12345678", expected: "NG", reason: "ハイフン1個" },
+        { input: "090--1234--5678", expected: "NG", reason: "ハイフン4個" },
+        { input: "090-1234-5678a", expected: "NG", reason: "末尾に文字混入" },
+        { input: "abc-defg-hijk", expected: "NG", reason: "英字含む" },
+        {
+          input: "090-1234-567",
+          expected: "OK",
+          reason: "桁不足（最後が3桁）",
+        },
+        {
+          input: "０９０−１２３４−５６７８",
+          expected: "NG",
+          reason: "全角数字＋全角ハイフン",
+        },
+        { input: "090 1234 5678", expected: "NG", reason: "スペース区切り" },
+        { input: "090-1234-5678-0000", expected: "NG", reason: "ハイフン3個" },
+        {
+          input: "; rm -rf /",
+          expected: "NG",
+          reason: "コマンドインジェクション",
+        },
+        { input: "' OR '1'='1", expected: "NG", reason: "SQLインジェクション" },
+        { input: "", expected: "NG", reason: "空欄" },
+        {
+          input: "0120-123-456",
+          expected: "OK",
+          reason: "フリーダイヤル形式もハイフン2つなら許可",
+        },
+      ];
+
+      // バリデーションルール（例：全角文字＋全角スペース1つまで）
+      function validatePhone(phone) {
+        const hyphenCount = (phone.match(/-/g) || []).length;
+        const mobilePattern = /^0[789]0-\d{4}-\d{4}$/;
+        const landlinePattern = /^0\d{1,4}-\d{1,4}-\d{3,4}$/;
+        return (
+          hyphenCount <= 2 &&
+          (mobilePattern.test(phone) || landlinePattern.test(phone))
+        );
+      }
+
+      $(function () {
+        testCases.forEach((tc, i) => {
+          const result = validatePhone(tc.input) ? "OK" : "NG";
+          const passed = result === tc.expected;
+          const row = `
+                  <tr class="${passed ? "pass" : "fail"}">
+                      <td>${i + 1}</td>
+                      <td>${tc.input}</td>
+                      <td>${tc.expected}</td>
+                      <td>${result}</td>
+                      <td>${passed ? "✅" : "❌"}</td>
+                      <td>${tc.reason}</td>
+                  </tr>
+                  `;
+          $("#result-body").append(row);
+        });
+      });
+    </script>
+  </body>
+</html>

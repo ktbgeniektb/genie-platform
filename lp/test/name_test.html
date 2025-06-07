@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>name_test</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="../../css/style_validationtest.css" />
+  </head>
+  <body>
+    <table id="test-result-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>入力</th>
+          <th>期待値</th>
+          <th>実行結果</th>
+          <th>判定</th>
+          <th>理由</th>
+        </tr>
+      </thead>
+      <tbody id="result-body">
+        <!-- jQueryでここに追加される -->
+      </tbody>
+    </table>
+    <script>
+      const testCases = [
+        { input: "山田太郎", expected: "OK", reason: "漢字のみ、文字数適正" },
+        { input: "たろう", expected: "OK", reason: "ひらがなも許容" },
+        { input: "ヤマダタロウ", expected: "OK", reason: "カタカナも許容" },
+        {
+          input: "山田　太郎",
+          expected: "OK",
+          reason: "全角スペース1個許容（姓と名の区切り）",
+        },
+        { input: "山", expected: "OK", reason: "1文字でも許容" },
+        {
+          input: "山田山田山田山田山田山田山田",
+          expected: "OK",
+          reason: "全角19文字",
+        },
+        {
+          input:
+            "山田山田山田山田山田山田山田山田山田山田山田山田山田山田山田山田山田山田",
+          expected: "NG",
+          reason: "20文字以上",
+        },
+        { input: "", expected: "NG", reason: "必須項目" },
+        {
+          input: "山田　　　太郎",
+          expected: "NG",
+          reason: "全角スペースは1個まで",
+        },
+        { input: "山田太郎  ", expected: "NG", reason: "半角スペースNG" },
+        { input: " 山田太郎", expected: "NG", reason: "同上" },
+        { input: "山田 太郎", expected: "NG", reason: "同上" },
+        { input: "TARO", expected: "NG", reason: "英字NG" },
+        { input: "ＴＡＲＯ", expected: "NG", reason: "全角英字もNG" },
+        { input: "@#$%^&*", expected: "NG", reason: "記号のみNG" },
+        { input: "山田@太郎", expected: "NG", reason: "記号混入NG" },
+        { input: "佐藤-花子", expected: "NG", reason: "ハイフンNG" },
+        { input: "渡辺（健）", expected: "NG", reason: "括弧記号NG" },
+        { input: "; rm -rf /", expected: "NG", reason: "コマンド注入文字NG" },
+        {
+          input: "' OR '1'='1",
+          expected: "NG",
+          reason: "SQLインジェクション文字列NG",
+        },
+      ];
+      // バリデーションルール（例：全角文字＋全角スペース1つまで）
+      function validateName(name) {
+        const pattern = /^[\u3040-\u30FF\u4E00-\u9FFF\u30FB　]{1,19}$/;
+        const zenkakuSpaces = (name.match(/　/g) || []).length;
+        return pattern.test(name) && zenkakuSpaces <= 1;
+      }
+
+      $(function () {
+        testCases.forEach((tc, i) => {
+          const result = validateName(tc.input) ? "OK" : "NG";
+          const passed = result === tc.expected;
+          const row = `
+            <tr class="${passed ? "pass" : "fail"}">
+                <td>${i + 1}</td>
+                <td>${tc.input}</td>
+                <td>${tc.expected}</td>
+                <td>${result}</td>
+                <td>${passed ? "✅" : "❌"}</td>
+                <td>${tc.reason}</td>
+            </tr>
+            `;
+          $("#result-body").append(row);
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400&family=Varela+Round&display=swap');
+
+body {
+    background-image: url(../img/cave.jpglayer1.jpg);
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+}
+
+section.bg {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: white;
+    padding: 100px 20px;
+    min-height: 100vh;
+}
+
+.layer1 {
+    background-attachment: fixed;
+    background-image: image-set(url('../img/layer1.jpg') 1x,
+            url('../img/highres/layer1@2x.jpg') 2x,
+            url('../img/highres/layer1@3x.jpg') 3x);
+}
+
+.layer2 {
+    background-attachment: fixed;
+    background-image: image-set(url('../img/layer2.jpg') 1x,
+            url('../img/highres/layer2@2x.jpg') 2x,
+            url('../img/highres/layer2@3x.jpg') 3x);
+}
+
+.layer3 {
+    background-attachment: fixed;
+    background-image: image-set(url('../img/layer3.jpg') 1x,
+            url('../img/highres/layer3@2x.jpg') 2x,
+            url('../img/highres/layer3@3x.jpg') 3x);
+}
+
+.layer4 {
+    background-attachment: fixed;
+    background-image: image-set(url('../img/layer4.jpg') 1x,
+            url('../img/highres/layer4@2x.jpg') 2x,
+            url('../img/highres/layer4@3x.jpg') 3x);
+}
+
+.question {
+    margin: 4rem auto;
+    padding: 2rem;
+    max-width: 720px;
+    background-color: rgba(26, 26, 64, 0.6);
+    backdrop-filter: blur(2px);
+    border-radius: 1rem;
+    color: rgba(250, 204, 21);
+    font-size: 1.1rem;
+    line-height: 1.7;
+}	
+
+.question p {
+    font-weight: 600;
+    font-size: 1.25rem;
+}
+
+#end-diagnosis {
+    background: linear-gradient(45deg, #fcd253, #f7b733);
+    color: #5e4406;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    margin: 2rem auto;
+    display: block;
+    transition: all 0.3s ease;
+}
+
+#end-diagnosis:hover {
+    background: linear-gradient(45deg, #ffe17f, #ffd14d);
+    transform: scale(1.05);
+}
+
+@media screen and (max-width: 768px) {
+    .layer1 {
+        background-image: url('../img/layer1_sp.jpg') !important;
+        background-size: auto 100% !important;
+        background-position: center top !important;
+        background-attachment: scroll !important;
+    }
+
+    .layer2 {
+        background-image: url('../img/layer2_sp.jpg') !important;
+        background-size: auto 100% !important;
+        background-position: center top !important;
+        background-attachment: scroll !important;
+    }
+
+    .layer3 {
+        background-image: url('../img/layer3_sp.jpg') !important;
+        background-size: auto 100% !important;
+        background-position: center top !important;
+        background-attachment: scroll !important;
+    }
+
+    .layer4 {
+        background-image: url('../img/layer4_sp.jpg') !important;
+        background-size: auto 100% !important;
+        background-position: center top !important;
+        background-attachment: scroll !important;
+    }
+}
