@@ -378,6 +378,10 @@
             $choices.append($label);
           });
       });
+    </script>
+
+    <script type="module">
+      import { saveDiagnosis } from "./../js/save.js";
 
       $("#end-diagnosis").on("click", function () {
         let isValid = true;
@@ -438,8 +442,16 @@
             const key = typeMap[label];
             localStorage.setItem(key, score);
           });
-
-          window.location.href = "result.html";
+          // Firestoreに保存（今回追加）
+          const scoreData = {
+            kyomei: scores["共鳴型"],
+            tankyu: scores["探究型"],
+            hyougen: scores["表現型"],
+            taiken: scores["体験型"],
+            chosen: scores["挑戦型"],
+          };
+          const topType = `${typeMap[top1]}_${typeMap[top2]}`;
+          saveDiagnosis(scoreData, topType);
         }
       });
     </script>
