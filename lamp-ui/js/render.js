@@ -2,7 +2,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebas
 import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
 
 export function renderFromFirestore(id, firebaseConfig, templates) {
-  console.log("▶️ Firestoreレンダー開始: id=", id);
+//   console.log("▶️ Firestoreレンダー開始: id=", id);
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
   const ref = doc(db, "diagnosisResults", id);
@@ -10,11 +10,11 @@ export function renderFromFirestore(id, firebaseConfig, templates) {
   getDoc(ref).then((docSnap) => {
     if (docSnap.exists()) {
       const data = docSnap.data();
-      console.log("✅ Firestore取得成功:", data);
+    //   console.log("✅ Firestore取得成功:", data);
 
       const [top1, top2] = data.topType.split("_");
       const template = templates.find((t) => t.main === data.topType);
-      console.log("🎯 テンプレート:", template);
+    //   console.log("🎯 テンプレート:", template);
 
       setDisplay(top1, top2, template, data.score);
     } else {
@@ -41,7 +41,7 @@ export function renderFromLocalStorage(templates) {
 }
 
 function setDisplay(top1, top2, template, scores) {
-  console.log("🛠 setDisplay呼び出し", { top1, top2, template, scores });
+//   console.log("🛠 setDisplay呼び出し", { top1, top2, template, scores });
 
   const key = `${top1}_${top2}`;
   $("#top-image").attr("src", `../img/results/${key}.jpg`);

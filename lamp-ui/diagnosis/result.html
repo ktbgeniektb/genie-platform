@@ -51,6 +51,11 @@
     <!-- <a class="ai" href="http://localhost:8000/interview" target="_blank">
       AI面談で深掘りする
     </a> -->
+    <section class="sns-share">
+      <h2>📢 結果をシェアしよう！</h2>
+      <a id="twitter-share" class="sns-btn" target="_blank">Twitterでシェア</a>
+      <a id="line-share" class="sns-btn" target="_blank">LINEで送る</a>
+    </section>
   </body>
   <script type="module">
     import { templates } from "../js/template.js";
@@ -67,5 +72,29 @@
     } else {
       renderFromLocalStorage(templates);
     }
+  </script>
+  <script>
+    $(function () {
+      const currentUrl = location.href;
+      const top1 = localStorage.getItem("top1");
+      const top2 = localStorage.getItem("top2");
+      const typeMap = {
+        kyomei: "共鳴型",
+        tankyu: "探求型",
+        hyougen: "表現型",
+        taiken: "体験型",
+        chosen: "挑戦型",
+      };
+      const text = `私のビジョンの源泉は「${typeMap[top1]} ×
+  ${typeMap[top2]}」！あなたも診断してみよう👇`;
+      const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
+        text
+      )}&url=${encodeURIComponent(currentUrl)}`;
+      const lineUrl = `https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(
+        currentUrl
+      )}`;
+      $("#twitter-share").attr("href", twitterUrl);
+      $("#line-share").attr("href", lineUrl);
+    });
   </script>
 </html>
