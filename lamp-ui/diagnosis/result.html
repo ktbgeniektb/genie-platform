@@ -55,6 +55,7 @@
       <h2>📢 結果をシェアしよう！</h2>
       <a id="twitter-share" class="sns-btn" target="_blank">Twitterでシェア</a>
       <a id="line-share" class="sns-btn" target="_blank">LINEで送る</a>
+      <a id="facebook-share" href="#" target="_blank"> Facebookでシェア </a>
     </section>
   </body>
   <script type="module">
@@ -93,8 +94,13 @@
       const lineUrl = `https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(
         currentUrl
       )}`;
+      const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+        currentUrl
+      )}`;
+
       $("#twitter-share").attr("href", twitterUrl);
       $("#line-share").attr("href", lineUrl);
+      $("#facebook-share").attr("href", facebookUrl);
     });
   </script>
 </html>
