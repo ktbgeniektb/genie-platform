@@ -84,7 +84,7 @@ function setDisplay(top1, top2, template, scores) {
   $("#features").html(template.features.map((f) => `<li>${f}</li>`).join(""));
   $("#moments").html(template.moments.map((f) => `<li>${f}</li>`).join(""));
   $("#tips").html(template.tips.map((f) => `<li>${f}</li>`).join(""));
-  $("#sub").text(template.sub);
+  $("#sub").html(template.sub);
 
   // チャート描画
   Chart.register(ChartDataLabels);
