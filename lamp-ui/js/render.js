@@ -70,7 +70,7 @@ function setDisplay(top1, top2, template, scores) {
   }
 
   $("#main-type").html(
-    `あなたの「ビジョンの源泉」は<br>
+    `あなたの<br>「ビジョンの源泉」は<br>
     <span style="color: ${typeColors[displayOrder[0]]}; font-weight: bold;">
       ${typeLabels[displayOrder[0]]}
     </span> × 
@@ -80,6 +80,7 @@ function setDisplay(top1, top2, template, scores) {
   );
 
   $("#description").html(template.description);
+  $("#catch").html(template.catch);
   $("#features").html(template.features.map((f) => `<li>${f}</li>`).join(""));
   $("#moments").html(template.moments.map((f) => `<li>${f}</li>`).join(""));
   $("#tips").html(template.tips.map((f) => `<li>${f}</li>`).join(""));

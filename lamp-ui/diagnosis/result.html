@@ -14,40 +14,46 @@
       <div class="header-image-container">
         <img id="top-image" src="" alt="診断結果画像" />
         <div class="result-overlay-text">
+          <!-- 画像上に表示する要素たち -->
+          <div class="catch-copy">
+            <p id="catch"></p>
+          </div>
           <div class="main-type-wrapper">
             <h1 id="main-type"></h1>
           </div>
-          <div class="description-wrapper">
-            <p id="description"></p>
-          </div>
         </div>
       </div>
-    </section>
 
-    <section class="chart">
-      <canvas id="result-chart"></canvas>
+      <!-- 画像の下に表示する説明文 -->
+      <div class="description-wrapper">
+        <p id="description"></p>
+      </div>
     </section>
+    <div class="content-body">
+      <section class="chart">
+        <canvas id="result-chart"></canvas>
+      </section>
 
-    <section class="result-section">
-      <h2>🔎 特徴</h2>
-      <ul id="features"></ul>
-    </section>
+      <section class="result-section">
+        <h2>🔎 特徴</h2>
+        <ul id="features"></ul>
+      </section>
 
-    <section class="result-section">
-      <h2>🌱 ワクワクしやすい瞬間</h2>
-      <ul id="moments"></ul>
-    </section>
+      <section class="result-section">
+        <h2>🌱 ワクワクしやすい瞬間</h2>
+        <ul id="moments"></ul>
+      </section>
 
-    <section class="result-section">
-      <h2>🎯 活かすヒント</h2>
-      <ul id="tips"></ul>
-    </section>
+      <section class="result-section">
+        <h2>🎯 活かすヒント</h2>
+        <ul id="tips"></ul>
+      </section>
 
-    <section class="result-section">
-      <h2>🔁 あなたの中に、こんな側面も…</h2>
-      <p id="sub"></p>
-    </section>
-
+      <section class="result-section">
+        <h2>🔁 あなたの中に、こんな側面も…</h2>
+        <p id="sub"></p>
+      </section>
+    </div>
     <!-- <a class="ai" href="http://localhost:8000/interview" target="_blank">
       AI面談で深掘りする
     </a> -->

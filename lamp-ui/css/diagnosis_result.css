@@ -72,25 +72,20 @@ body {
 /* ─────────────────────────────────── */
 /* ６. p を“h1 の少し下”に絶対配置する */
 .description-wrapper {
-    position: absolute;
-    /* ← これが絶対配置に必要 */
-    bottom: 5%;
-    /* 画像上から 30% の位置に表示 */
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 2;
-    width: 80%;
-    /* 横幅を画面幅の 80% に */
-    max-width: 90%;
-    text-align: center;
+    margin-top: -2rem;
+    margin-bottom: 2rem;
+    padding: 0 1rem;
 }
 
 /* ─────────────────────────────────── */
 /* ７. p 本体の見た目 */
 #description {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-size: 1.2rem;
     line-height: 1.6;
-    color: #fff;
+    color: #ffd14d;
     white-space: normal;
     word-break: break-word;
 }
@@ -98,6 +93,22 @@ body {
 /* ─────────────────────────────────── */
 /* 以下はそれ以降のセクション（chart や 他の result-section）に対するもの */
 /* 必要に応じてそのまま残してください */
+
+.catch-copy {
+    position: absolute;
+    bottom: 3%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    width: 70%;
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+}
 
 .result-section {
     margin-bottom: 2rem;
@@ -179,6 +190,18 @@ body {
 /* 追加：スマホ（タブレット以下）向けのレスポンシブ調整 */
 /* 画面幅が 768px 以下（タブレット横〜スマホぐらい）のとき */
 @media screen and (max-width: 768px) {
+    .result-overlay-text {
+            position: static;
+        }
+
+    .catch-copy,
+    .main-type-wrapper {
+        position: static !important;
+        transform: none !important;
+        width: 100%;
+        margin: 0 auto 1rem;
+        text-align: center;
+    }
 
     /* 画像コンテナの幅を画面幅いっぱいに、縦の高さは控えめに */
     .header-image-container {
@@ -195,37 +218,50 @@ body {
     }
 
     /* main-type（h1）の微調整 */
-    .main-type-wrapper {
-        top: 8%;
-        /* 少し下げて重なりすぎないように */
-        left: 50%;
-        transform: translateX(-50%);
-        width: 90%;
-        /* 余白を少し残す */
-        max-width: none;
-        /* 画面幅いっぱい使う */
-    }
 
     #main-type {
-        font-size: 1.4rem;
-        /* フォントサイズを小さく */
-        padding: 0.8rem 1.5rem;
+        font-size: 1.3rem;
+        padding: 0.6rem 1rem;
+        background: none;
     }
 
-    /* description（p）の微調整 */
+    .catch-copy {
+        position: static !important;
+        top: auto !important;
+        transform: none !important;
+        width: 70%;
+        margin: 0 auto 1rem;
+        text-align: center;
+        font-size: 0.95rem;
+    }
+
     .description-wrapper {
-        bottom: 5%;
-        /* 画像の下部寄りに表示 */
-        left: 50%;
-        transform: translateX(-50%);
-        width: 90%;
-        max-width: none;
+        margin-top: 50%;
+        margin-bottom: 2rem;
+        padding: 0 1rem;
+        width: 100%;
     }
 
     #description {
+        text-align: left;
+        font-size: 0.95rem;
+        margin-top: 2rem;
+    }
+
+    .content-body {
+        margin-top: 2rem;
+        padding: 0 1rem;
+    }
+    
+    .content-body .result-section {
+        margin-top: 1.5rem;
+    }
+    
+    .content-body #description {
         font-size: 1rem;
-        /* フォントサイズを小さく */
-        line-height: 1.5;
+        line-height: 1.6;
+        color: #ffd14d;
+        text-align: left;
     }
 
     /* chart 以下のセクションも左右に余白を少し取る */
@@ -255,113 +291,201 @@ body {
 /* ─────────────────────────────────── */
 /* 画面幅が 480px 以下（いわゆるスマホ縦向き）のとき */
 @media screen and (max-width: 480px) {
+        .result-overlay-text {
+            position: static;
+        }
 
-    /* 画像コンテナをさらに縮小 */
-    .header-image-container {
-        max-height: 30vh;
-        margin-bottom: 3rem;
-    }
+        .catch-copy,
+        .main-type-wrapper {
+            position: static !important;
+            transform: none !important;
+            width: 100%;
+            margin: 0 auto 1rem;
+            text-align: center;
+        }
 
-    .header-image-container img {
-        width: 100%;
-        height: auto;
-    }
+        /* 画像コンテナの幅を画面幅いっぱいに、縦の高さは控えめに */
+        .header-image-container {
+            max-height: 40vh;
+            /* 高さを控えめに */
+            margin-bottom: 4rem;
+            /* 少しマージンを大きくとって余白を確保 */
+        }
 
-    /* h1 の位置・サイズをさらに調整 */
-    .main-type-wrapper {
-        top: 10%;
-        /* もう少し下げる */
-        width: 95%;
-    }
+        .header-image-container img {
+            width: 100%;
+            /* 画面幅いっぱいに */
+            height: auto;
+        }
 
-    #main-type {
-        font-size: 1.2rem;
-        padding: 0.6rem 1rem;
-    }
+        /* main-type（h1）の微調整 */
 
-    /* description（p）を見やすく */
-    .description-wrapper {
-        bottom: 3%;
-        width: 95%;
-    }
+        #main-type {
+            font-size: 1.3rem;
+            padding: 0.6rem 1rem;
+            background: none;
+        }
 
-    #description {
-        font-size: 0.9rem;
-        line-height: 1.4;
-    }
+        .catch-copy {
+            position: static !important;
+            top: auto !important;
+            transform: none !important;
+            width: 90%;
+            margin: 0 auto 1rem;
+            text-align: center;
+            font-size: 0.95rem;
+        }
 
-    /* チャートを縦長に収める */
-    .chart {
-        padding-bottom: 2rem;
-    }
+        .description-wrapper {
+            margin-top: 50%;
+            margin-bottom: 2rem;
+            padding: 0 1rem;
+            width: 100%;
+        }
 
-    .chart canvas {
-        max-width: 100%;
-    }
+        #description {
+            text-align: left;
+            font-size: 0.95rem;
+            margin-top: 2rem;
+        }
 
-    .result-section {
-        padding: 0.6rem 0.8rem;
-    }
+        .content-body {
+            margin-top: 2rem;
+            padding: 0 1rem;
+        }
 
-    .result-section h2 {
-        font-size: 1rem;
-    }
+        .content-body .result-section {
+            margin-top: 1.5rem;
+        }
 
-    .result-section ul {
-        padding-left: 0.8rem;
+        .content-body #description {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #ffd14d;
+            text-align: left;
+        }
+
+        /* chart 以下のセクションも左右に余白を少し取る */
+        .chart {
+            padding-bottom: 3rem;
+        }
+
+        .chart canvas {
+            max-width: 90%;
+            /* レーダーチャートも画面幅に合わせて縮小 */
+        }
+
+        .result-section {
+            padding: 0.8rem 1rem;
+            /* 中身のパディングを少し小さく */
+        }
+
+        .result-section h2 {
+            font-size: 1rem;
+        }
+
+        .result-section ul {
+            padding-left: 1rem;
+        }
     }
-}
 
 /* ─────────────────────────────────── */
 /* 画面幅が 360px 以下（より小さいスマホ）のとき */
 @media screen and (max-width: 360px) {
-    .header-image-container {
-        max-height: 25vh;
-        margin-bottom: 2.5rem;
-    }
+        .result-overlay-text {
+            position: static;
+        }
 
-    .header-image-container img {
-        width: 100%;
-        height: auto;
-    }
+        .catch-copy,
+        .main-type-wrapper {
+            position: static !important;
+            transform: none !important;
+            width: 100%;
+            margin: 0 auto 1rem;
+            text-align: center;
+        }
 
-    .main-type-wrapper {
-        top: 12%;
-        width: 98%;
-    }
+        /* 画像コンテナの幅を画面幅いっぱいに、縦の高さは控えめに */
+        .header-image-container {
+            max-height: 40vh;
+            /* 高さを控えめに */
+            margin-bottom: 4rem;
+            /* 少しマージンを大きくとって余白を確保 */
+        }
 
-    #main-type {
-        font-size: 1rem;
-        padding: 0.5rem 0.8rem;
-    }
+        .header-image-container img {
+            width: 100%;
+            /* 画面幅いっぱいに */
+            height: auto;
+        }
 
-    .description-wrapper {
-        bottom: 2%;
-        width: 98%;
-    }
+        /* main-type（h1）の微調整 */
 
-    #description {
-        font-size: 0.8rem;
-        line-height: 1.3;
-    }
+        #main-type {
+            font-size: 1.3rem;
+            padding: 0.6rem 1rem;
+            background: none;
+        }
 
-    .chart {
-        padding-bottom: 1.5rem;
-    }
+        .catch-copy {
+            position: static !important;
+            top: auto !important;
+            transform: none !important;
+            width: 100%;
+            margin: 0 auto 1rem;
+            text-align: center;
+            font-size: 0.95rem;
+        }
 
-    .chart canvas {
-        max-width: 100%;
-    }
+        .description-wrapper {
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+            padding: 0 1rem;
+            width: 100%;
+        }
 
-    .result-section {
-        padding: 0.5rem 0.6rem;
-    }
+        #description {
+            text-align: left;
+            font-size: 0.95rem;
+            padding-top: 6rem;
+        }
 
-    .result-section h2 {
-        font-size: 0.9rem;
-    }
+        .content-body {
+            margin-top: 2rem;
+            padding: 0 1rem;
+        }
 
-    .result-section ul {
-        padding-left: 0.6rem;
+        .content-body .result-section {
+            margin-top: 1.5rem;
+        }
+
+        .content-body #description {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #ffd14d;
+            text-align: left;
+        }
+
+        /* chart 以下のセクションも左右に余白を少し取る */
+        .chart {
+            padding-bottom: 3rem;
+        }
+
+        .chart canvas {
+            max-width: 90%;
+            /* レーダーチャートも画面幅に合わせて縮小 */
+        }
+
+        .result-section {
+            padding: 0.8rem 1rem;
+            /* 中身のパディングを少し小さく */
+        }
+
+        .result-section h2 {
+            font-size: 1rem;
+        }
+
+        .result-section ul {
+            padding-left: 1rem;
+        }
     }
-}
