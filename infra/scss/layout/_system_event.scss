@@ -1,0 +1,449 @@
+@charset "utf-8";
+
+@use "../_colors";
+@use "../_text";
+
+
+.page-system.page-event {
+
+  .l-main {
+    @media print, screen and (min-width: 761px) {
+      background: colors.$detail-background;
+    }
+  }
+  &.page-system-index .l-main {
+    padding-bottom: 0;
+  }
+
+  /*  index
+  *----------------------------------- */
+  .list-page__main .ph_sys img {
+    @media print, screen and (min-width: 761px) {
+      aspect-ratio: 16/9;
+    }
+    @media print, screen and (max-width: 760px) {
+      // aspect-ratio: 1/1;
+      aspect-ratio: 16/9;
+    }
+  }
+
+  /*  index
+  *----------------------------------- */
+  &.page-system-index .list-page {
+    &__main {
+      width: auto;
+    }
+    &__container {
+      background: colors.$light-background;
+      padding: 60px 45px;
+      @media print, screen and (min-width: 761px) {
+        width: 1100px;
+        margin: 0 auto 80px;
+      }
+      @media print, screen and (max-width: 760px) {
+        width: 90%;
+        padding: 0;
+        margin: 0 auto 12vw;
+      }
+    }
+  }
+
+  /*  index list-page__latest
+  *----------------------------------- */
+  &.page-system-index .list-page__latest {
+    &__container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2%;
+    }
+  }
+  &.page-system-index .list-page__latest .p-item {
+    width: 49%;
+    @media print, screen and (max-width: 760px) {
+      width: auto;
+      margin-bottom: 12vw;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+    a {
+      display: block;
+    }
+    &__photo {
+      margin-bottom: 16px;
+    }
+    &__post-title {
+      margin-top: 6px;
+      font-size: 20px;
+      font-weight: bold;
+      line-height: 1.5;
+      @media print, screen and (max-width: 760px) {
+        font-size: 5.2vw;
+        line-height: 1.4;
+      }
+    }
+    &__post-date {
+      margin-top: 7px;
+      font-size: 15px;
+      @media print, screen and (max-width: 760px) {
+        font-size: 3.6vw;
+      }
+      span {
+        font-weight: bold;
+        font-size: 15px;
+        display: inline-block;
+        margin-right: 10px;
+      }
+    }
+    &__more {
+      margin-top: 20px;
+      text-align: right;
+      font-size: 18px;
+    }
+  }
+
+  /*  index list-page__no_exist
+  *----------------------------------- */
+  &.page-system-index .list-page__no_exist {
+    text-align: center;
+    @media print, screen and (max-width: 760px) {
+      color: colors.$dark-text;
+    }
+  }
+
+  /*  index l-list
+  *----------------------------------- */
+  &.page-system-index .list-page__list .l-list {
+    margin-top: 70px;
+    padding-top: 70px;
+    border-top: 1px solid colors.$dark-border;
+    grid-template-columns: repeat(1, 1fr);
+    @media print, screen and (max-width: 760px) {
+      padding-top: 15vw;
+      margin-top: 15vw;
+    }
+    &__container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 54px 2%;
+      @media print, screen and (max-width: 760px) {
+        gap: 10vw 4%;
+      }
+    }
+    .p-item {
+      border: none;
+      float: none;
+      width: 32%;
+      margin: 0;
+      @media print, screen and (max-width: 760px) {
+        width: 48%;
+        color: colors.$dark-text;
+      }
+      a {
+        padding: 0;
+      }
+      &__photo {
+        float: none;
+        width: auto;
+        margin-bottom: 14px;
+      }
+      &__inner {
+        float: none;
+        width: auto;
+      }
+      &__post-title {
+        margin-top: 6px;
+        font-size: 18px;
+        font-weight: bold;
+        @media print, screen and (max-width: 760px) {
+          font-size: 4.2vw;
+          line-height: 1.4;
+        }
+      }
+      &__post-date {
+        margin-top: 7px;
+        font-size: 14px;
+        position: relative;
+        @media print, screen and (min-width: 761px) {
+          padding-left: 50px;
+        }
+        @media print, screen and (max-width: 760px) {
+          font-size: 3.2vw;
+        }
+        span {
+          font-weight: bold;
+          font-size: 14px;
+          display: inline-block;
+          margin-right: 8px;
+          @media print, screen and (min-width: 761px) {
+            position: absolute;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+          }
+        }
+      }
+      &__more {
+        margin-top: 10px;
+        text-align: right;
+        font-size: 16px;
+        @media print, screen and (max-width: 760px) {
+          font-size: 3.6vw;
+        }
+      }
+    }
+  }
+
+  /*  index list-page__past
+  *----------------------------------- */
+  &.page-system-index .list-page__list .list-page__past {
+    .p-cmn-header {
+      margin-bottom: 30px;
+    }
+    &__container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0;
+    }
+    .p-item {
+      position: relative;
+      border: none;
+      float: none;
+      margin: 0;
+      width: 33.33%;
+      a {
+        padding: 0;
+        &:hover {
+          opacity: 1;
+          img {
+            opacity: 1;
+          }
+          .p-item__inner {
+            opacity: 1;
+          }
+        }
+      }
+      &__inner {
+        opacity: 0;
+        transition: 0.2s;
+        float: none;
+        width: 100%;
+        height: 18.75vw;
+        position: absolute;
+        z-index: 1000;
+        top: 0;
+        left: 0;
+        background: rgba(colors.$dark-background, 0.7);
+        color: colors.$light-text;
+        font-weight: 700;
+        padding: 3.4vw 2vw;
+      }
+      &__post-title {
+        font-size: 18px;
+        width: 100%;
+        line-height: 1.6;
+        margin-top: 8px;
+      }
+    }
+  }
+
+
+  /*  detail
+  *----------------------------------- */
+  &.page-system-detail .l-main .list-page__main {
+    @media print, screen and (min-width: 761px) {
+      padding: 90px;
+      background: colors.$light-background;
+    }
+    & > .l-list {
+      border-bottom: none;
+      margin-bottom: 30px;
+      .p-item {
+        margin-bottom: 60px;
+        &__photo {
+          margin-bottom: 40px;
+          @media print, screen and (max-width: 760px) {
+            margin-bottom: 8vw;
+          }
+        }
+        &__post-title {
+          font-size:26px;
+          font-weight: 700;
+          @media print, screen and (max-width: 760px) {
+            font-size:5.2vw;
+          }
+        }
+      }
+    }
+  }
+
+  /*  detail l-data
+  *----------------------------------- */
+  &.page-system-detail .l-data {
+    &__container {
+      // background: colors.$dim-background;
+      padding: 8px 0 2px;
+    }
+    &__title {
+      display: flex;
+      background: colors.$gray-background;
+      font-size: 15px;
+      text-align: center;
+      color: colors.$light-text;
+      font-weight: bold;
+      border-left: 1px solid colors.$light-gray-border;
+      border-top: 1px solid colors.$light-gray-border;
+      li {
+        border-right: 1px solid colors.$light-gray-border;
+        border-bottom: 1px solid colors.$light-gray-border;
+        padding: 10px 20px;
+      }
+      li.p-item__place {
+        text-align: center;
+      }
+    }
+    &__limit {
+      text-align: center;
+      margin-top: 14px;
+    }
+    &__text {
+      text-align: center;
+      padding: 8px 0 16px;
+      @media print, screen and (max-width: 760px) {
+        color: colors.$dark-text;
+      }
+    }
+  }
+  &.page-system-detail .l-data .p-item {
+    text-align: center;
+    margin-bottom: 10px;
+    padding: 10px 20px;
+    border-bottom: 1px dotted colors.$light-gray-border;
+    @media print, screen and (min-width: 761px) {
+      display: flex;
+      align-items: center;
+    }
+    @media print, screen and (max-width: 760px) {
+      color: colors.$dark-text;
+      margin-bottom: 2vw;
+      padding: 2vw 5vw 6vw;
+    }
+    &:last-child {
+      border-bottom: none;
+    }
+    &__date {
+      @media print, screen and (min-width: 761px) {
+        width: 21%;
+      }
+      @media print, screen and (max-width: 760px) {
+        display: inline-block;;
+      }
+    }
+    &__time {
+      @media print, screen and (min-width: 761px) {
+        width: 18%;
+      }
+      @media print, screen and (max-width: 760px) {
+        display: inline-block;;
+        margin-bottom: 2px;
+      }
+    }
+    &__place {
+      @media print, screen and (min-width: 761px) {
+        width: 29%;
+        text-align: center;
+      }
+    }
+    &__cv {
+      width: 30%;
+      @media print, screen and (min-width: 761px) {
+        text-align: right;
+      }
+      @media print, screen and (max-width: 760px) {
+        width: auto;
+        margin: 10px auto 0;
+      }
+    }
+    .cv {
+      font-size: 15px;
+      line-height: 1.1;
+      font-weight: bold;
+      width: 240px;
+      display: inline-block;
+      padding: 0;
+      margin: 0 0 0 auto;
+      height: auto;
+      background: colors.$accent;
+      border: none;
+      @media print, screen and (max-width: 760px) {
+        width: 90%;
+      }
+      &:hover {
+        color: colors.$light-text;
+        span::after {
+          border-color: transparent transparent transparent colors.$light-border;
+        }
+      }
+      a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 16px 22px 16px 20px;
+        line-height: inherit;
+      }
+      span {
+        display: inline-block;
+        line-height: 1.3;
+      }
+    }
+  }
+
+  /*  detail l-data 開催中でない時
+  *----------------------------------- */
+  &.page-system-detail .l-data .p-item.not_accepted {
+    .cv {
+      background: #9a9a9a;
+      pointer-events: none;
+      border: none;
+      // a {
+      //   pointer-events: none;
+      // }
+    }
+  }
+
+  /*  detail l-data 予約期限が過ぎている時
+  *----------------------------------- */
+  &.page-system-detail .list-page.expired .l-data {
+    .p-item .cv {
+      background: #9a9a9a;
+      a {
+        pointer-events: none;
+      }
+    }
+    &__limit {
+      font-weight: bold;
+      color: colors.$accent-text;
+    }
+  }
+
+
+  /*  detail l-contents
+  *----------------------------------- */
+  .l-contents {
+    margin-top: 50px;
+  }
+
+
+  /*  detail l-contents
+  *----------------------------------- */
+  .l-detail-button {
+    margin-top: 40px;
+    @media print, screen and (max-width: 760px) {
+      margin-top: 10%
+    }
+  }
+
+
+}/* end -- .l-system.l-event */
+
+

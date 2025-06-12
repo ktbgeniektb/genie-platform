@@ -1,0 +1,24 @@
+{
+  "name": "demo_recruit_2022",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "config": {
+    "documentroot": "demo_recruit_2022/"
+  },
+  "scripts": {
+    "sass:once": "sass    scss:demo_recruit_2022/css",
+    "sass": "sass --watch scss:demo_recruit_2022/css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://bitbucket.org/team_qh/demo_recruit_2022.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/team_qh/demo_recruit_2022",
+  "devDependencies": {
+    "sass": "^1.32.8"
+  }
+}

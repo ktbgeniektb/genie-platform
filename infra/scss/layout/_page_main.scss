@@ -1,0 +1,1753 @@
+@charset "utf-8";
+
+@use "../_colors";
+@use "../_text";
+
+
+/* ------------------------------------
+
+中面個別 (TOP以外)
+
+------------------------------------ */
+
+
+/*  〇〇ページ
+*----------------------------------- */
+
+.page-〇〇 {
+  @media print, screen and (min-width: 761px) {
+
+  }
+  @media print, screen and (max-width: 760px) {
+
+  }
+}
+
+/*  会社概要 profile
+*----------------------------------- */
+
+.page-profile .l-profile {
+  .l-table {
+    margin-bottom: 50px;
+    @media print, screen and (max-width: 760px) {
+      margin-bottom: 6vw;
+    }
+  }
+  &__map {
+    iframe {
+      width: 100%;
+      @media print, screen and (min-width: 761px) {
+        height: 360px;
+      }
+    }
+  }
+}
+.page-profile .l-history {
+  padding-top: 120px;
+  @media print, screen and (max-width: 760px) {
+    padding-top: 70px;
+  }
+  &__list {
+    position: relative;
+    padding: 100px;
+    border: 1px solid colors.$sub01;
+    @media print, screen and (max-width: 760px) {
+      padding: 10vw 5vw;
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: 5;
+      top: 0;
+      left: 0;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      position: relative;
+      z-index: 6;
+      th {
+        padding-right: 36px;
+        padding-bottom: 1.2em;
+        border-right: 1px solid colors.$sub01;
+        width: 14%;
+        font-size: 20px;
+        font-weight: text.$font-base-weight-medium;
+        @media print, screen and (max-width: 760px) {
+          padding-right: 5vw;
+          font-size: 4vw;
+          width: auto;
+          white-space: nowrap;
+        }
+      }
+      td {
+        padding-left: 36px;
+        padding-bottom: 1.2em;
+        @media print, screen and (max-width: 760px) {
+          padding-left: 5vw;
+        }
+        .p-title {
+          font-size: 20px;
+          font-weight: text.$font-base-weight-medium;
+          line-height: 1.4;
+          @media print, screen and (max-width: 760px) {
+            font-size: 4vw;
+          }
+        }
+        .p-text{
+          font-size: 15px;
+          margin-top: 3px;
+          font-weight: text.$font-base-weight-regular;
+          @media print, screen and (max-width: 760px) {
+            font-size: 3.4vw;
+            margin-top: 1vw;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+/*  企業理念 philosophy
+*----------------------------------- */
+
+.page-philosophy .l-philosophy {
+  &__title {
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 3.6rem;
+    font-weight: text.$font-base-weight-bold;
+    letter-spacing: -0.02em;
+    line-height: 1.36;
+    color: colors.$accent-text;
+    @media print, screen and (max-width: 760px) {
+      font-size: 7.2vw;
+      line-height: 1.2;
+      margin-bottom: 3vw;
+    }
+  }
+  &__text {
+    text-align: center;
+    letter-spacing: -0.02em;
+    font-size: 1.8rem;
+    line-height: 1.7777;
+    @media print, screen and (max-width: 760px) {
+      font-size: 4vw;
+      text-align: left;
+    }
+  }
+}
+
+
+/*  3分で分かる feature
+*----------------------------------- */
+
+.page-feature .list-page__anc {
+  margin-bottom: 85px;
+  @media print, screen and (max-width: 760px) {
+    margin-bottom: 20vw;
+  }
+  ul.l-anc-list {
+    display: flex;
+    flex-flow: wrap;
+    gap: 20px;
+    counter-reset: nav;
+    @media print, screen and (max-width: 760px) {
+      column-gap: 3.5vw;
+      row-gap: 6vw;
+    }
+    li {
+      width: calc((100% - 80px) / 4);
+      counter-increment: nav;
+      @media print, screen and (max-width: 760px) {
+        width: calc((100% - 3.5vw) / 2);
+      }
+      a {
+        display: block;
+        text-align: center;
+        font-weight: text.$font-base-weight-bold;
+        font-size: 1.8rem;
+        line-height: 1.375;
+        position: relative;
+        padding-top: 40px;
+        @media print, screen and (max-width: 760px) {
+          font-size: 3.5vw;
+          padding-top: 7vw;
+        }
+        &::before {
+          z-index: 1000;
+          position: absolute;
+          top: 15px;
+          left: 50%;
+          right: auto;
+          transform: translateX(-50%);
+          margin: auto;
+          content: counter(nav, decimal-leading-zero);
+          width: 52px;
+          height: 52px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: colors.$dark-background;
+          color: #fff;
+          font-family: text.$font01;
+          font-weight: text.$font01-weight-bold;
+          font-size: 2.4rem;
+          @media print, screen and (max-width: 760px) {
+            top: 2vw;
+            width: 10vw;
+            height: 10vw;
+            font-size: 4.5vw;
+          }
+        }
+        &:hover {
+          opacity: 1;
+          img {
+            opacity: 0.8;
+          }
+        }
+      }
+    }
+    .p-item__photo {
+      margin-bottom: 15px;
+      border: 2px solid colors.$accent-text;
+      @media print, screen and (max-width: 760px) {
+        margin-bottom: 3vw;
+      }
+    }
+  }
+}
+.page-feature .l-feature {
+  &__title {
+    font-size: 40px;
+    font-weight: text.$font-base-weight-bold;
+    text-align: center;
+    margin-bottom: 10px;
+    color: colors.$accent-text;
+    @media print, screen and (max-width: 760px) {
+      font-size: 8vw;
+      margin-bottom: 4vw;
+      line-height: 1.4;
+    }
+  }
+  &__subtitle {
+    font-size: 24px;
+    font-weight: text.$font-base-weight-bold;
+    text-align: center;
+    margin-bottom: 100px;
+    @media print, screen and (max-width: 760px) {
+      font-size: 5.2vw;
+      margin-bottom: 20vw;
+    }
+  }
+  counter-reset: number;
+  .p-item {
+    margin-bottom: 110px;
+    counter-increment: number;
+    @media print, screen and (max-width: 760px) {
+      margin-bottom: 20vw;
+    }
+    &:last-child {
+      margin-bottom: 0;
+    }
+    &__photo {
+      border: 3px solid colors.$accent-border;
+      position: relative;
+      margin-bottom: 55px;
+      @media print, screen and (max-width: 760px) {
+        margin-bottom: 10vw;
+      }
+      &::before {
+        z-index: 2;
+        position: absolute;
+        bottom: -42px;
+        left: 0;
+        right: 0;
+        margin: auto;
+        content: counter(number, decimal-leading-zero);
+        width: 84px;
+        height: 84px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: colors.$dark-background;
+        font-family: text.$font01;
+        font-weight: text.$font01-weight-bold;
+        font-size: 4.3rem;
+        color: colors.$light-text;
+        @media print, screen and (max-width: 760px) {
+          bottom: -8vw;
+          width: 16vw;
+          height: 16vw;
+          font-size: 8vw;
+        }
+      }
+    }
+    &__title {
+      margin-bottom: 15px;
+      text-align: center;
+      font-size: 3.6rem;
+      font-weight: text.$font-base-weight-bold;
+      letter-spacing: -0.02em;
+      line-height: 1.36;
+      color: colors.$accent-text;
+      @media print, screen and (max-width: 760px) {
+        font-size: 7.2vw;
+        line-height: 1.2;
+        margin-bottom: 3vw;
+      }
+    }
+    &__text {
+      text-align: center;
+      letter-spacing: -0.02em;
+      font-size: 1.8rem;
+      line-height: 1.7777;
+      @media print, screen and (max-width: 760px) {
+        font-size: 4vw;
+        text-align: left;
+      }
+    }
+  }
+}
+
+
+/*  代表メッセージ
+*----------------------------------- */
+
+.page-message {
+  .list-page__main {
+    width: 100%;
+  }
+}
+.page-message .l-profile {
+  &__container {
+    margin-bottom: 120px;
+    @media print, screen and (max-width: 760px) {
+      margin-bottom: 15vw;
+    }
+  }
+  &__mv {
+    max-width: 950px;
+    width: 90%;
+    margin: 0 auto;
+    margin-bottom: 36px;
+    @media print, screen and (max-width: 760px) {
+      width: 100%;
+      margin-bottom: 7vw;
+      max-width: none;
+    }
+  }
+  &__title {
+    font-size: 40px;
+    font-weight: 700;
+    text-align: center;
+    line-height: 1.37;
+    margin-bottom: 47px;
+    @media print, screen and (max-width: 760px) {
+      font-size: 7vw;
+      text-align: center;
+      line-height: 1.32;
+      margin-bottom: 8vw;
+    }
+    .accent {
+      color: colors.$accent;
+    }
+  }
+  &__info {
+    background: rgba(colors.$gray, 0.47);
+    padding: 30px 0;
+    @media print, screen and (min-width: 761px) {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    @media print, screen and (max-width: 760px) {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2vw 4vw;
+      align-items: center;
+      justify-content: center;
+      padding: 7vw 0;
+    }
+    .p-title {
+      font-size: 17px;
+      @media print, screen and (max-width: 760px) {
+        font-size: 4.3vw;
+        line-height: 1;
+        text-align: center;
+        width: 100%;
+      }
+    }
+    .p-text {
+      font-size: 25px;
+      font-weight: text.$font-base-weight-bold;
+      @media print, screen and (min-width: 761px) {
+        margin:0 20px;
+      }
+      @media print, screen and (max-width: 760px) {
+        font-size: 6vw;
+        line-height: 1;
+        text-align: center;
+      }
+      &__sub{
+        font-size: 14px;
+        @media print, screen and (max-width: 760px) {
+          font-size: 3.6vw;
+        }
+      }
+    }
+  }
+}
+.page-message .l-comment {
+  .p-item {
+    @media print, screen and (min-width: 761px) {
+      max-width: 1440px;
+      margin: 0 auto 120px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: stretch;
+      gap: 50px;
+    }
+    @media print, screen and (max-width: 760px) {
+      width: 90%;
+      margin: 0 auto 18vw;
+    }
+    &__photo {
+      @media print, screen and (min-width: 761px) {
+        flex: 1;
+        max-width: 45%;
+      }
+      @media print, screen and (max-width: 760px) {
+        margin-bottom: 6vw;
+      }
+    }
+    &__info {
+      @media print, screen and (min-width: 761px) {
+        max-width: 45%;
+      }
+      @media print, screen and (max-width: 760px) {
+
+      }
+    }
+    &__subtitle {
+      font-size: 54px;
+      margin-bottom: 25px;
+      color: colors.$accent;
+      @media print, screen and (max-width: 760px) {
+        font-size: 12vw;
+        margin-bottom: 2vw;
+      }
+    }
+    &__title {
+      font-size: 33px;
+      line-height: 1.45;
+      font-weight: text.$font-base-weight-medium;
+      margin-bottom: 20px;
+      @media print, screen and (max-width: 760px) {
+        font-size: 6.6vw;
+        line-height: 1.3;
+        margin-bottom: 4vw;
+      }
+      .accent {
+        color: colors.$accent;
+      }
+    }
+    &__text {
+      font-size: 16px;
+      line-height: 1.9;
+      @media print, screen and (max-width: 760px) {
+        font-size: 4.1vw;
+        line-height: 1.8;
+        margin-bottom: 6vw;
+      }
+    }
+    &:nth-child(2n) {
+      flex-direction: row-reverse;
+    }
+  }
+  
+}
+.page-message .l-future {
+  padding-top: 100px;
+  position: relative;
+  @media print, screen and (max-width: 760px) {
+    padding-top: 12vw;
+  }
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 450px;
+    background: colors.$sub01;
+    @media print, screen and (max-width: 760px) {
+      height: 40vw;
+    }
+  }
+  &__container {
+    width: 950px;
+    margin: 0 auto;
+    @media print, screen and (max-width: 760px) {
+      width: 90%;
+    }
+  }
+  &__photo {
+    margin-bottom: 40px;
+    @media print, screen and (max-width: 760px) {
+      margin-bottom: 6vw;
+    }
+  }
+  &__title {
+    font-size: 33px;
+    line-height: 1.45;
+    margin-bottom: 20px;
+    font-weight: text.$font-base-weight-medium;
+    text-align: center;
+    @media print, screen and (max-width: 760px) {
+      font-size: 6.6vw;
+      line-height: 1.3;
+      margin-bottom: 4vw;
+    }
+    .accent {
+      color: colors.$accent;
+    }
+  }
+  &__text {
+    font-size: 16px;
+    line-height: 1.9;
+    text-align: center;
+    @media print, screen and (max-width: 760px) {
+      font-size: 4.1vw;
+      line-height: 1.8;
+      text-align: justify;
+    }
+  }
+}
+
+
+/*  成長環境
+*----------------------------------- */
+
+.page-growth .l-growth {
+  width: 1200px;
+  margin: 0 auto;
+  @media print, screen and (max-width: 760px) {
+    width: 100%;
+  }
+  &__title {
+    font-size: 36px;
+    line-height: 1;
+    font-weight: text.$font-base-weight-bold;
+    text-align: center;
+    margin-bottom: 23px;
+    @media print, screen and (max-width: 760px) {
+      font-size: 6vw;
+    }
+    &.en {
+      font-size: 60px;
+      font-weight: 500;
+      @media print, screen and (max-width: 760px) {
+        font-size: 10vw;
+        margin-bottom: -2vw;
+      }
+    }
+    .accent {
+      color: colors.$accent;
+    }
+  }
+  &__text {
+    margin-bottom: 80px;
+    font-size: 15px;
+    font-weight: text.$font-base-weight-regular;
+    line-height: 1.7;
+    text-align: center;
+    @media print, screen and (max-width: 760px) {
+      margin-bottom: 6.7vw;
+      font-size: 4.3vw;
+      text-align: left;
+    }
+  }
+  &__movie {
+    width: 985px;
+    margin: 0 auto 120px;
+    iframe {
+      width: 100%;
+      aspect-ratio: 16/9;
+    }
+  }
+  &__container {
+    padding-top: 100px;
+    border-top: 2px solid colors.$dark-text;
+  }
+  .p-item {
+    position: relative;
+    padding-bottom: 77px;
+    margin-bottom: 77px;
+    @media print, screen and (min-width: 761px) {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: start;
+      gap: 5%;
+    }
+    @media print, screen and (max-width: 760px) {
+      padding-bottom: 13vw;
+      margin-bottom: 15vw;
+    }
+    &::after {
+      content: "";
+      background-color: colors.$dark-text;
+      width: 100%;
+      height: 2px;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX( -50% );
+    }
+    &__image {
+      width: 42%;
+      @media print, screen and (max-width: 760px) {
+        width: 100%;
+        margin-bottom: 6vw;
+      }
+    }
+    &__info {
+      width: calc( 100% - 42% - 5% );
+      margin-top: 10px;
+      @media print, screen and (max-width: 760px) {
+        width: 100%;
+      }
+    }
+    &__title {
+      font-size: 30px;
+      font-weight: text.$font-base-weight-bold;
+      margin-bottom: 10px;
+      color: colors.$accent;
+      line-height: 1.4;
+      @media print, screen and (max-width: 760px) {
+        font-size: 6.8vw;
+        margin-bottom: 3vw;
+      }
+      small {
+        font-size: 18px;
+        margin-left: 15px;
+        @media print, screen and (max-width: 760px) {
+          font-size: 5vw;
+          margin-left: 0;
+          margin-top: 1vw;
+          display: block;
+        }
+      }
+    }
+    &__text {
+      font-size: 15px;
+      font-weight: text.$font-base-weight-regular;
+      line-height: 2;
+      letter-spacing: .2px;
+      @media print, screen and (max-width: 760px) {
+
+      }
+      span {
+        font-size: 18px;
+        line-height: 1.6;
+      }
+    }
+    &:nth-child( 2n ) {
+      @media print, screen and (min-width: 761px) {
+        flex-direction: row-reverse;
+      }
+    }
+    &:last-child {
+      padding-bottom: 0;
+      margin-bottom: 0;
+      &::after {
+        display: none;
+      }
+    }
+  }
+}
+
+
+/*  インタビューページ
+*----------------------------------- */
+
+.page-interview-index {
+  .l-interview {
+    margin-bottom: 0;
+    .simple.c-button,
+    .p-header {
+      display: none;
+    }
+    &__container {
+      display: block;
+    }
+  }
+  .l-interview__list {
+    max-width: 100%;
+    width: 1130px;
+    margin: 0 auto;
+    justify-content: flex-start;
+    gap: 80px 85px;
+    @media print, screen and (max-width: 760px) {
+      width: 86%;
+      gap: 15vw;
+    }
+    .p-item {
+      width: calc(33.33% - 57px);
+      margin: 0;
+      @media print, screen and (max-width: 760px) {
+        width: 100%!important;
+      }
+      &:nth-child(3n) {
+        @media print, screen and (min-width: 761px) {
+          margin-right: 0;
+        }
+      }
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+    &::before {
+      display: none;
+    }
+  }
+}
+
+
+/*  インタビュー詳細ページ
+*----------------------------------- */
+
+.page-interview-detail {
+  .list-page__header {
+    margin-bottom: 50px;
+    @media print, screen and (max-width: 760px) {
+      margin-bottom: 8vw;
+    }
+    &__mv {
+      max-width: 1000px;
+      width: 90%;
+      margin: 0 auto;
+      margin-bottom: 50px;
+      @media print, screen and (max-width: 760px) {
+        width: 90%;
+        margin-bottom: 7vw;
+        max-width: none;
+      }
+    }
+    &__container {
+      display: block;
+    }
+    &__title {
+      font-size: 40px;
+      font-weight: 700;
+      text-align: center;
+      line-height: 1.37;
+      margin-bottom: 30px;
+      @media print, screen and (max-width: 760px) {
+        font-size: 7vw;
+        text-align: center;
+        line-height: 1.32;
+        margin-bottom: 6vw;
+      }
+      .accent {
+        color: colors.$accent;
+      }
+    }
+    &__subtitle {
+      margin-bottom: 14px;
+      text-align: center;
+      font-size: 20px;
+      letter-spacing: -0.02em;
+      font-weight: text.$font-base-weight-medium;
+      line-height: 1;
+      font-family: text.$font-base;
+      @media print, screen and (max-width: 760px) {
+
+      }
+      small {
+        margin-top: 15px;
+        display: block;
+        font-family: text.$font01;
+        color: colors.$sub01;
+        font-size: 1.4rem;
+        letter-spacing: 1px;
+        @media print, screen and (max-width: 760px) {
+
+        }
+      }
+    }
+  }
+  .list-page__main {
+    width: 100%;
+  }
+}
+.page-interview-detail .l-profile {
+  background: rgba(colors.$gray, 0.47);
+  padding: 40px 0;
+  margin-bottom: 120px;
+  @media print, screen and (max-width: 760px) {
+    padding: 7vw 0;
+    margin-bottom: 15vw;
+  }
+  &__container {
+    width: 100%;
+    @media print, screen and (min-width: 761px) {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    @media print, screen and (max-width: 760px) {
+      padding: 0 5vw;
+    }
+  }
+  &__title {
+    font-size: 40px;
+    @media print, screen and (max-width: 760px) {
+      font-size: 10vw;
+      text-align: center;
+      margin-bottom: 3vw;
+    }
+  }
+  &__text {
+    line-height: 1.8;
+    font-weight: 600;
+    @media print, screen and (min-width: 761px) {
+      margin-left: 40px;
+      padding: 5px 0;
+      padding-left: 39px;
+      border-left: 1px solid colors.$dark-text;
+    }
+    @media print, screen and (max-width: 760px) {
+      font-size: 4vw;
+      text-align: center;
+    }
+  }
+}
+.page-interview-detail .l-comment {
+  .p-item {
+    @media print, screen and (min-width: 761px) {
+      max-width: 1440px;
+      margin: 0 auto 120px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: stretch;
+      gap: 54px;
+    }
+    @media print, screen and (max-width: 760px) {
+      width: 90%;
+      margin: 0 auto 18vw;
+    }
+    &__photo {
+      @media print, screen and (min-width: 761px) {
+        flex: 1;
+        max-width: 568px;
+      }
+      @media print, screen and (max-width: 760px) {
+        margin-bottom: 6vw;
+      }
+    }
+    &__info {
+      @media print, screen and (min-width: 761px) {
+        max-width: 576px;
+      }
+      @media print, screen and (max-width: 760px) {
+
+      }
+    }
+    &__subtitle {
+      font-size: 54px;
+      margin-bottom: 25px;
+      color: colors.$accent;
+      @media print, screen and (max-width: 760px) {
+        font-size: 12vw;
+        margin-bottom: 2vw;
+      }
+    }
+    &__title {
+      font-size: 33px;
+      line-height: 1.45;
+      font-weight: text.$font-base-weight-medium;
+      margin-bottom: 20px;
+      @media print, screen and (max-width: 760px) {
+        font-size: 6.6vw;
+        line-height: 1.3;
+        margin-bottom: 4vw;
+      }
+      .accent {
+        color: colors.$accent;
+      }
+    }
+    &__text {
+      font-size: 16px;
+      line-height: 1.9;
+      @media print, screen and (max-width: 760px) {
+        font-size: 4.1vw;
+        line-height: 1.8;
+        margin-bottom: 6vw;
+      }
+    }
+    &:nth-child(2n) {
+      flex-direction: row-reverse;
+    }
+  }
+  .p-item02 {
+    display: block;
+    text-align: center;
+    padding-top: 80px;
+    position: relative;
+    max-width: 100%;
+    margin-bottom: 60px;
+    @media print, screen and (max-width: 760px) {
+      margin-top: 0;
+      width: 100%;
+      padding-top: 8%;
+      margin-bottom: 9vw;
+    }
+    &::before {
+      position: absolute;
+      content: "";
+      width: 100%;
+      height: 457px;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      background: colors.$sub01;
+      z-index: -1;
+      @media print, screen and (max-width: 760px) {
+        height: 45vw;
+      }
+    }
+    .p-item {
+      &__catch {
+        margin-bottom: 30px;
+        font-size: 60px;
+        letter-spacing: 2px;
+        font-weight: text.$font01-weight-bold;
+        color: colors.$light-text;
+        @media print, screen and (max-width: 760px) {
+          margin-bottom: 3%;
+        }
+      }
+      &__photo {
+        max-width: 920px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 50px;
+        @media print, screen and (max-width: 760px) {
+          width: 90%;
+          margin-bottom: 6vw;
+        }
+      }
+      &__info {
+        max-width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+        @media print, screen and (max-width: 760px) {
+          width: 90%;
+        }
+      }
+    }
+  }
+}
+
+
+/*  クロストークページ
+*----------------------------------- */
+
+.page-crosstalk-index {
+  .l-crosstalk__list {
+    .p-item {
+      width: 960px;
+      margin: 0 auto 60px;
+      border: 2px solid colors.$accent;
+      @media print, screen and (max-width: 760px) {
+        width: 100%;
+        margin: 0 0 12vw;
+      }
+      a {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        padding: 30px;
+        @media print, screen and (max-width: 760px) {
+          padding: 5%;
+        }
+      }
+      &__photo {
+        width: 50%;
+        @media print, screen and (max-width: 760px) {
+          width: 100%;
+        }
+      }
+      &__info {
+        width: 45%;
+        @media print, screen and (max-width: 760px) {
+          width: 100%;
+        }
+      }
+      &__sub_title {
+        font-size: 28px;
+        font-family: text.$font01;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 2px;
+        span {
+          padding: 2px 10px;
+          background: colors.$accent-text;
+          @media print, screen and (max-width: 760px) {
+            padding: 2px 5px;
+          }
+        }
+        @media print, screen and (max-width: 760px) {
+          font-size: 5vw;
+        }
+      }
+      &__title {
+        font-size: 36px;
+        font-weight: 700;
+        @media print, screen and (max-width: 760px) {
+          font-size: 7vw;
+        }
+      }
+      &:nth-of-type(odd) {
+        border: 2px solid colors.$sub01;
+        a {
+          @media print, screen and (min-width: 761px) {
+            flex-direction: row-reverse;
+          }
+        }
+        .p-item__sub_title span {
+          background: colors.$sub01;
+        }
+      }
+    }
+  }
+}
+
+
+/*  クロストーク詳細ページ
+*----------------------------------- */
+
+.page-crosstalk-detail {
+  .list-page__header {
+    &__mv {
+      max-width: 1000px;
+      width: 90%;
+      margin: 0 auto;
+      margin-bottom: 50px;
+      @media print, screen and (max-width: 760px) {
+        width: 90%;
+        margin-bottom: 7vw;
+        max-width: none;
+      }
+    }
+    &__container {
+      display: block;
+    }
+    &__subtitle {
+      font-size: 28px;
+      font-family: text.$font01;
+      font-weight: 700;
+      text-align: center;
+      color: #fff;
+      margin-bottom: 15px;
+      @media print, screen and (max-width: 760px) {
+        font-size: 5vw;
+        margin-bottom: 4vw;
+      }
+      span {
+        padding: 2px 10px;
+        background: colors.$accent-text;
+        @media print, screen and (max-width: 760px) {
+          padding: 2px 5px;
+        }
+      }
+    }
+    &__title {
+      font-size: 48px;
+      font-weight: 700;
+      text-align: center;
+      line-height: 1.37;
+      margin-bottom: 30px;
+      @media print, screen and (max-width: 760px) {
+        font-size: 7vw;
+        text-align: center;
+        line-height: 1.32;
+        margin-bottom: 6vw;
+      }
+      .accent {
+        color: colors.$accent;
+      }
+    }
+  }
+}
+.page-crosstalk-detail .l-members {
+  margin-bottom: 100px;
+  @media print, screen and (max-width: 760px) {
+    margin-bottom: 15vw;
+  }
+  &> h2 {
+    text-align: center;
+    font-size: 56px;
+    font-weight: 700;
+    margin-bottom: 90px;
+    position: relative;
+    @media print, screen and (max-width: 760px) {
+      font-size: 8vw;
+      margin-bottom: 10vw;
+    }
+    &::after {
+      content: "";
+      width: 60px;
+      height: 2px;
+      background: colors.$accent-text;
+      position: absolute;
+      left: 0;
+      right: 0;
+      margin: auto;
+      bottom: -30px;
+      @media print, screen and (max-width: 760px) {
+        width: 10vw;
+        bottom: -4vw;
+      }
+    }
+  }
+  &__title {
+    text-align: center;
+    font-family: text.$font01;
+    font-weight: 700;
+    font-size: 60px;
+    color: colors.$sub01;
+    line-height: 1;
+    margin-bottom: 40px;
+    @media print, screen and (max-width: 760px) {
+      font-size: 10vw;
+      margin-bottom: 7vw;
+    }
+  }
+  &__info {
+    display: flex;
+    justify-content: center;
+    @media print, screen and (max-width: 760px) {
+      justify-content: center;
+    }
+    .p-item {
+      width: 200px;
+      margin: 0 40px;
+      text-align: center;
+      @media print, screen and (max-width: 760px) {
+        width: 30%;
+        margin: 0 4vw;
+      }
+      &__photo {
+        margin-bottom: 20px;
+        border-radius: 50%;
+        overflow: hidden;
+        @media print, screen and (max-width: 760px) {
+          margin-bottom: 3vw;
+        }
+      }
+      &__title {
+        font-size: 28px;
+        font-weight: 700;
+        margin-bottom: 12px;
+        @media print, screen and (max-width: 760px) {
+          font-size: 5vw;
+          margin-bottom: 3vw;
+        }
+        small {
+          display: block;
+          font-family: bilo, sans-serif;
+          color: #cbcbcb;
+          font-size: 1.4rem;
+          letter-spacing: 0;
+          @media print, screen and (max-width: 760px) {
+
+          }
+        }
+      }
+      &__text {
+        font-size: 18px;
+        line-height: 1.3;
+        font-weight: 600;
+        @media print, screen and (max-width: 760px) {
+          font-size: 3.4vw;
+        }
+      }
+    }
+  }
+ }
+.page-crosstalk-detail .l-movie {
+  width: 985px;
+  margin: 0 auto 100px;
+  @media print, screen and (max-width: 760px) {
+    width: 100%;
+    margin-bottom: 15vw;
+  }
+  iframe {
+    width: 100%;
+    aspect-ratio: 16/9;
+  }
+}
+.page-crosstalk-detail .l-comment {
+.p-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 80px;
+  @media print, screen and (max-width: 760px) {
+    margin-bottom: 12vw;
+    flex-wrap: wrap;
+  }
+  &:last-child {
+    margin-bottom: 0;
+  }
+  &__photo {
+    width: 47.5%;
+    @media print, screen and (max-width: 760px) {
+      width: 100%;
+      margin-bottom: 5vw;
+    }
+  }
+  &__wrap {
+    width: 47.5%;
+    @media print, screen and (max-width: 760px) {
+      width: 100%;
+    }
+  }
+  &__title {
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 25px;
+    @media print, screen and (max-width: 760px) {
+      font-size: 6vw;
+      margin-bottom: 3vw;
+    }
+  }
+  &__subtitle {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    line-height: 1.3;
+    margin-bottom: 30px;
+    @media print, screen and (max-width: 760px) {
+      font-size: 4vw;
+      margin-bottom: 4vw;
+    }
+  }
+  &__info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    @media print, screen and (max-width: 760px) {
+      margin-bottom: 5vw;
+    }
+  }
+  &__name {
+    width: 74px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 3px;
+    line-height: 1.3;
+    @media print, screen and (max-width: 760px) {
+      font-size: 3.8vw;
+    }
+    &.num02 {
+      background: colors.$sub02;
+    }
+    &.num03 {
+      background: #484848;
+    }
+  }
+  &__text {
+    width: calc(100% - 90px);
+    font-size: 15px;
+    @media print, screen and (max-width: 760px) {
+      width: calc(100% - 85px);
+      font-size: 3.8vw;
+    }
+  }
+  &:nth-child(2n) {
+    @media print, screen and (min-width: 761px) {
+      flex-direction: row-reverse;
+    }
+  }
+}
+}
+.page-crosstalk-detail .l-other-talk {
+  margin-top: 150px;
+  @media print, screen and (max-width: 760px) {
+    width: 90%;
+    margin: 20vw auto 0;
+  }
+  ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    li {
+      width: 330px;
+      margin: 0 22px;
+      @media print, screen and (max-width: 760px) {
+        width: 100%;
+        margin: 0 0 8%;
+      }
+    }
+    .p-item {
+      &__photo {
+        margin-bottom: 22px;
+        @media print, screen and (max-width: 760px) {
+          margin-bottom: 3vw;
+        }
+      }
+      &__sub_title {
+        font-size: 18px;
+        font-family: text.$font01;
+        font-weight: 700;
+        color: #fff;
+        text-align: center;
+        margin-bottom: 2px;
+        @media print, screen and (max-width: 760px) {
+          font-size: 4vw;
+        }
+        span {
+          padding: 2px 10px;
+          background: colors.$accent-text;
+          @media print, screen and (max-width: 760px) {
+            padding: 2px 5px;
+          }
+        }
+      }
+      &__title {
+        text-align: center;
+        font-size: 22px;
+        font-weight: 700;
+        @media print, screen and (max-width: 760px) {
+          font-size: 5vw;
+        }
+      }
+      &.current {
+        display: none;
+      }
+    }
+  }
+}
+
+
+/*  仕事を知る
+*----------------------------------- */
+
+.page-business .l-business {
+  width: 1200px;
+  margin: 0 auto;
+  @media print, screen and (max-width: 760px) {
+    width: 100%;
+  }
+  &__title {
+    font-size: 36px;
+    line-height: 1;
+    font-weight: text.$font-base-weight-bold;
+    text-align: center;
+    margin-bottom: 23px;
+    @media print, screen and (max-width: 760px) {
+      font-size: 6vw;
+    }
+    &.en {
+      font-size: 60px;
+      font-weight: 500;
+      @media print, screen and (max-width: 760px) {
+        font-size: 10vw;
+        margin-bottom: -2vw;
+      }
+    }
+    .accent {
+      color: colors.$accent;
+    }
+  }
+  &__text {
+    margin-bottom: 80px;
+    font-size: 15px;
+    font-weight: text.$font-base-weight-regular;
+    line-height: 1.7;
+    text-align: center;
+    @media print, screen and (max-width: 760px) {
+      margin-bottom: 6.7vw;
+      font-size: 4.3vw;
+      text-align: left;
+    }
+  }
+  &__movie {
+    width: 985px;
+    margin: 0 auto 120px;
+    iframe {
+      width: 100%;
+      aspect-ratio: 16/9;
+    }
+  }
+  &__container {
+    padding-top: 100px;
+    border-top: 2px solid colors.$dark-text;
+  }
+  .p-item {
+    position: relative;
+    padding-bottom: 77px;
+    margin-bottom: 77px;
+    @media print, screen and (min-width: 761px) {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: start;
+      gap: 5%;
+    }
+    @media print, screen and (max-width: 760px) {
+      padding-bottom: 13vw;
+      margin-bottom: 15vw;
+    }
+    &::after {
+      content: "";
+      background-color: colors.$dark-text;
+      width: 100%;
+      height: 2px;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX( -50% );
+    }
+    &__image {
+      width: 42%;
+      @media print, screen and (max-width: 760px) {
+        width: 100%;
+        margin-bottom: 6vw;
+      }
+    }
+    &__info {
+      width: calc( 100% - 42% - 5% );
+      margin-top: 10px;
+      @media print, screen and (max-width: 760px) {
+        width: 100%;
+      }
+    }
+    &__title {
+      font-size: 30px;
+      font-weight: text.$font-base-weight-bold;
+      margin-bottom: 10px;
+      color: colors.$accent;
+      line-height: 1.4;
+      @media print, screen and (max-width: 760px) {
+        font-size: 6.8vw;
+        margin-bottom: 3vw;
+      }
+      small {
+        font-size: 18px;
+        margin-left: 15px;
+        @media print, screen and (max-width: 760px) {
+          font-size: 5vw;
+          margin-left: 0;
+          margin-top: 1vw;
+          display: block;
+        }
+      }
+    }
+    &__text {
+      font-size: 15px;
+      font-weight: text.$font-base-weight-regular;
+      line-height: 2;
+      letter-spacing: .2px;
+      @media print, screen and (max-width: 760px) {
+
+      }
+      span {
+        font-size: 18px;
+        line-height: 1.6;
+      }
+    }
+    &:nth-child( 2n ) {
+      @media print, screen and (min-width: 761px) {
+        flex-direction: row-reverse;
+      }
+    }
+    &:last-child {
+      padding-bottom: 0;
+      margin-bottom: 0;
+      &::after {
+        display: none;
+      }
+    }
+  }
+}
+
+
+/*  数字で見る
+*----------------------------------- */
+
+.page-number {
+  .list-page__main {
+    width: 100%;
+  }
+  /* 上からフェードイン */
+  .slide-top {
+    opacity: 0;
+    transform: translate(0, -40px);
+    transition: all 1s ease-out;
+  }
+
+  /* 下からフェードイン */
+  .slide-bottom {
+    opacity: 0;
+    transform: translate(0, 40px);
+    transition: all 1s ease-out;
+  }
+
+  /* 左からフェードイン */
+  .slide-left {
+    opacity: 0;
+    transform: translate(-40px, 0);
+    transition: all 1s ease-out;
+  }
+
+  /* 右からフェードイン */
+  .slide-right {
+    opacity: 0;
+    transform: translate(40px, 0);
+    transition: all 1s ease-out;
+  }
+}
+.page-number .l-number {
+  width: 1200px;
+  margin: 0 auto;
+  @media print, screen and (max-width: 760px) {
+    width: 100%;
+  }
+  ul {
+    display: flex;
+    @media print, screen and (max-width: 760px) {
+      display: block;
+    }
+  }
+}
+
+
+
+/*  ギャラリー
+*----------------------------------- */
+
+.page-gallery .list-page {
+  &__list__title {
+    text-align: center;
+    margin-bottom: 40px;
+    @media print, screen and (max-width: 760px) {
+      margin-bottom: 6.4vw;
+    }
+  }
+}
+.page-gallery .l-gallery .l-list{
+  margin-bottom: 70px;
+  @media print, screen and (max-width: 760px) {
+    margin-bottom: 12vw;
+  }
+  &:last-child {
+    margin-bottom: 0;
+  }
+   &__title {
+    text-align: center;
+    font-size: text.$fontsize-title;
+    font-weight: bold;
+    margin-bottom: 30px;
+    @media print, screen and (max-width: 760px) {
+      font-size: text.$fontsize-title-sp;
+      line-height: 1.5;
+      margin-bottom: 6vw;
+    }
+  }
+  &__container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 35px 2%;
+    @media print, screen and (max-width: 760px) {
+      gap: 25px 4%;
+    }
+    .p-item {
+      width: 32%;
+      @media print, screen and (max-width: 760px) {
+        width: 48%;
+      }
+      p {
+        text-align: center;
+        margin-top: 10px;
+      }
+    }
+  }
+}
+
+
+/*  募集要項
+*----------------------------------- */
+.page-job .l-job {
+  .p-item {
+    margin-bottom: 100px;
+    @media print, screen and (max-width: 760px) {
+      margin-bottom: 15vw;
+    }
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+
+
+/*  policyページ
+*----------------------------------- */
+
+.page-policy .list-page {
+  &__list {
+    @media print, screen and (min-width: 761px) {
+      width: 1080px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+  &__list__text {
+    margin-bottom: 40px;
+    line-height: 1.8;
+  }
+}
+.page-policy .l-policy {
+  &__container {
+    margin-bottom: 70px;
+    @media print, screen and (max-width: 760px) {
+      margin-bottom: 15vw;
+    }
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  &__text {
+    margin-bottom: 50px;
+    @media print, screen and (max-width: 760px) {
+      margin-bottom: 10vw;
+    }
+  }
+  .l-list__title {
+    font-size: 22px;
+    margin-bottom: 30px;
+    background: colors.$faq-background;
+    font-weight: bold;
+    padding: 10px 20px;
+    @media print, screen and (max-width: 760px) {
+      font-size: text.$fontsize-title-sp;
+    }
+  }
+}
+.page-policy .l-policy .p-item {
+  margin-bottom: 50px;
+  @media print, screen and (min-width: 761px) {
+    padding: 0 8px;
+  }
+  &__title {
+    font-size: 22px;
+    margin-bottom: 10px;
+    font-weight: 700;
+    @media print, screen and (max-width: 760px) {
+      font-size: 4.8vw;
+    }
+  }
+  &__text {
+    margin-bottom: 30px;
+    font-weight: 400;
+    a {
+      text-decoration: underline;
+    }
+  }
+  &__name {
+    text-align: right;
+  }
+  dl {
+    margin-bottom: 30px;
+    @media screen and (max-width:760px) {
+      width: auto;
+      margin: 0 auto 8vw;
+    }
+  }
+  dt {
+    font-size: 17px;
+    margin-bottom: 8px;
+    font-weight: bold;
+    @media screen and (max-width:760px) {
+      font-size: 4.2vw;
+      line-height: 1.5;
+    }
+  }
+  dd {
+    margin: 0 0 50px;
+    font-size: 15px;
+    line-height: 1.8;
+    font-weight: 400;
+    @media screen and (max-width:760px) {
+      margin: 0 0 10%;
+      font-size: 3.8vw;
+    }
+    &.right {
+      text-align: right;
+    }
+    &:last-child {
+      margin: 0;
+    }
+    a {
+      text-decoration: underline;
+    }
+  }
+}
+
+
+
+/*  404ページ
+*----------------------------------- */
+
+.page-404 .l-404 {
+  text-align: center;
+  margin-bottom: 100px;
+  @media print, screen and (max-width: 760px) {
+    padding: 0 5%;
+    margin-bottom: 20%;
+  }
+}
+.page-404 .l-404 .p-item {
+  &__title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 28px;
+    @media print, screen and (max-width: 760px) {
+      font-size: 5vw;
+      margin-bottom: 5%;
+    }
+  }
+  &__subtitle {
+    font-size: 16px;
+    margin-bottom: 30px;
+    @media print, screen and (max-width: 760px) {
+      font-size: 4vw;
+      margin-bottom: 10%;
+    }
+  }
+  &__text {
+    font-size: 16px;
+    @media print, screen and (max-width: 760px) {
+      font-size: 4vw;
+    }
+  }
+  &__button {
+    margin-top: 50px;
+  }
+}

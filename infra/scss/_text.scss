@@ -1,0 +1,62 @@
+@charset "UTF-8";
+
+@use "_colors";
+
+
+//font-family
+$font-base: source-han-sans-japanese, sans-serif;//400/500/700 日本語
+$font-sub: source-han-sans-japanese, sans-serif;//400/500/700 日本語
+$font-tit: source-han-sans-japanese, sans-serif;//400/500/700 日本語
+$font-form: "Yu Gothic", "游ゴシック", YuGothic, "游ゴシック体", "ヒラギノ角ゴ Pro W3", "メイリオ", sans-serif;//変更しない
+
+$font-yakuhan: "YakuHanJP", $font-base;
+
+$font01: din-2014, sans-serif;//400/700 英語
+$font02: din-2014, sans-serif;//400/700 英語
+
+
+//font-weight
+$font-body: 500;//bodyのfont-weight
+$font-base-weight-regular :400;
+$font-base-weight-medium: 500;
+$font-base-weight-bold: 700;
+$font01-weight-bold: 700;
+$font02-weight-bold: 700;
+
+
+//font-size
+$fontsize-base: 15px;
+$fontsize-title: 24px;
+$fontsize-sub: 14px;
+$fontheight-base: 1.8;
+
+$fontsize-base-sp: 3.74vw;
+$fontsize-title-sp: 4.8vw;
+
+
+//NEWアイコンのフォント
+$font-new: source-han-sans-japanese, sans-serif;
+
+//カレンダーのフォント
+$calender-font: source-han-sans-japanese, sans-serif;
+
+
+//英語フォント
+.en {
+  font-family: $font01;
+  font-weight: $font01-weight-bold;
+  letter-spacing: 0;
+  line-height: 1.0;
+}
+.en02 {
+  font-family: $font02;
+  font-weight: $font02-weight-bold;
+  letter-spacing: 0;
+  line-height: 1.0;
+}
+
+
+//約物フォント
+.yakuhan {
+  font-family: $font-yakuhan;
+}

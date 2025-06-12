@@ -1,0 +1,30 @@
+/* mobile */
+$mobile-width: 760px;
+@mixin sp {
+    @media (max-width: $mobile-width) {
+        @content;
+    }
+}
+@mixin ie{
+    @media screen and (min-width: 0\0) and (min-resolution: +72dpi) {
+        @content;
+    }
+}
+
+@mixin pc {
+    @media (min-width: $mobile-width + 1){
+        @content;
+    }
+}
+
+@mixin min-1050 {
+    @media (max-width:1299px) and (min-width: 1050px){
+        @content;
+    }
+}
+
+@mixin min-max($min,$max) {
+    @media (max-width:$max) and (min-width: $min){
+        @content;
+    }
+}

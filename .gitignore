@@ -1,1 +1,12 @@
 /lamp-ui/js/firebaseConfig.js
+## dotenv file
+infra/docker/.env
+!infra/docker/.env.default
+## PMA セッション
+infra/docker/phpmyadmin/sessions
+## MySQL 永続化データ
+infra/docker/mysql/data
+## MySQL 初期SQL
+infra/docker/mysql/initdb.d/*.sql
+infra/docker/mysql/production/*.sql
+#!docker/mysql/initdb.d/.gitkeep

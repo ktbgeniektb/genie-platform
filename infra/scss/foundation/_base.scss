@@ -1,0 +1,124 @@
+@charset "utf-8";
+
+@use "../_colors";
+@use "../_text";
+
+
+body {
+  overflow-x : hidden;
+  font-family: text.$font-base;
+  text-align: justify;
+  line-height: 1.6;
+  color: colors.$main-text;
+  font-weight: text.$font-body;
+  font-size: text.$fontsize-base;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+  background: colors.$main-bg;
+  &.fixed {
+    overflow : hidden;
+  }
+}
+
+html {
+  visibility: hidden;
+  font-size: 62.5%;
+}
+
+html.wf-active,
+html.loading-delay {
+  visibility: visible;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: opacity 0.3s;
+}
+
+a:hover,
+a:active,
+a:hover img {
+  opacity:0.8;
+}
+
+table,
+ul ul,
+ol ol {
+  font-size: 100%;
+}
+
+td ul,
+td p,
+td dt,
+td dd {
+  font-size: 100%;
+}
+
+select,
+input,
+textarea,
+button {
+  font-size: 99%;
+}
+
+strong,
+em {
+  font-weight: inherit;
+  font-style: inherit;
+}
+
+
+::selection,
+::-moz-selection {
+  background: colors.$selected-txt;
+}
+
+*:focus {
+  outline: none;
+}
+
+#topcontrol {
+  z-index:1000;
+}
+
+#MenuNavi {
+  display:none;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+
+input:not([type=checkbox]):not([type=radio]):not([type=submit]),
+textarea,
+select {
+  padding: .4em;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+select {
+  -webkit-appearance: auto;
+  appearance: auto;
+}
+
+.vertical_writing {
+  -ms-writing-mode: tb-rl;
+  writing-mode: vertical-rl;
+}
+
+
+
+/*  tetliタグ
+---------------------------------------------------------- */
+[id^="ttr"] [data-ttr~=container] {
+  z-index: 1000000!important;
+}
+
+

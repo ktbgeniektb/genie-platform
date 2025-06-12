@@ -1,0 +1,27 @@
+@charset "utf-8";
+
+@use "_colors";
+@use "_text";
+
+@use "layout/_wp_article";
+@use "layout/_system_common";
+
+@use "layout/_system_news";
+@use "layout/_system_people";
+@use "layout/_system_faq";
+@use "layout/_system_job";
+@use "layout/_system_job02";
+@use "layout/_system_job03";
+@use "layout/_system_event";
+@use "layout/_system_crosstalk";
+
+.ph_sys {
+  line-height: 0;
+  width: 100%;
+  height: auto;
+  img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+}

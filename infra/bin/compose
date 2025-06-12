@@ -1,0 +1,37 @@
+#!/bin/bash
+
+## dockerのdotenvを読み込む
+source ./docker/.env
+
+COMMAND=$1
+DOCKER_COMPOSE_FILE=$DOCKER_BASE/docker-compose.yml
+
+case $COMMAND in
+  "up" )
+    docker-compose -f ${DOCKER_COMPOSE_FILE} up -d ;;
+  "stop" )
+    docker-compose -f ${DOCKER_COMPOSE_FILE} stop ;;
+  "down" )
+    docker-compose -f ${DOCKER_COMPOSE_FILE} down ;;
+  "build" )
+    docker-compose -f ${DOCKER_COMPOSE_FILE} down
+    docker-compose -f ${DOCKER_COMPOSE_FILE} build --no-cache
+    docker-compose -f ${DOCKER_COMPOSE_FILE} up -d ;;
+  "rebuild" )
+    docker-compose -f ${DOCKER_COMPOSE_FILE} down
+    rm -rf ./docker/mysql/data
+    docker-compose -f ${DOCKER_COMPOSE_FILE} build --no-cache
+    docker-compose -f ${DOCKER_COMPOSE_FILE} up -d ;;
+  "bash" )
+    docker exec -it $2 bash ;;
+  "initialize" )
+    rm -rf $DOCKER_BASE/mysql/data
+    unlink $LOCALHOST_SQL_FILE
+    sed -e "s|$PRODUCTION_DOMAIN|$LOCALHOST_DOMAIN|g" $PRODUCTION_SQL_FILE > $LOCALHOST_SQL_FILE
+    docker-compose -f ${DOCKER_COMPOSE_FILE} down
+    docker-compose -f ${DOCKER_COMPOSE_FILE} build --no-cache
+    docker-compose -f ${DOCKER_COMPOSE_FILE} up -d ;;
+
+#  "restart" )
+#    docker-compose restart $2 ;;
+esac

@@ -1,0 +1,328 @@
+@charset "utf-8";
+
+@use "../_colors";
+@use "../_text";
+
+
+.page-system.page-people {
+
+  /*  cmn
+  *----------------------------------- */
+
+  &.page-system-index .l-main,
+  &.page-system-detail .l-main {
+    @media print, screen and (min-width: 761px) {
+      background: colors.$detail-background;
+    }
+  }
+
+
+
+  /*  page-system-index
+  *----------------------------------- */
+
+  &.page-system-index .list-page__main {
+    @media print, screen and (min-width: 761px) {
+      width: 1100px;
+      padding: 90px;
+      background: colors.$light-background;
+    }
+  }
+
+  &.page-system-index .list-page__list h3 {
+    font-size: 18px;
+    padding: 12px 20px;
+    color: colors.$title-text;
+    border-top: 1px solid colors.$title-border;
+    border-bottom: 1px solid colors.$title-border;
+    text-align: center;
+    margin-bottom: 30px;
+    @media print, screen and (max-width: 760px) {
+      margin-bottom: 6%;
+    }
+  }
+
+  &.page-system-index .list-page__list .l-list .p-item {
+    border: none;
+    a {
+      padding: 0;
+    }
+    &__inner {
+      @media print, screen and (min-width: 761px) {
+        margin-top: 18px;
+      }
+      @media print, screen and (max-width: 760px) {
+        margin-top: 3vw;
+      }
+    }
+    &__photo {
+      &.ph_sys img {
+        width: 100%;
+        aspect-ratio: 13/18;
+        object-fit: cover;
+      }
+    }
+    &__title {
+      font-size: 25px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      line-height: 1.2;
+      @media print, screen and (max-width: 760px) {
+        font-size: 5.5vw;
+        margin-bottom: 1.5vw;
+        -webkit-line-clamp: 2;
+      }
+    }
+    &__text {
+      font-size: 17px;
+      font-weight: 500;
+      margin-bottom: 12px;
+      @media print, screen and (max-width: 760px) {
+        font-size: 4.3vw;
+        margin-bottom: 2vw;
+        -webkit-line-clamp: 2;
+      }
+    }
+    &__icons-category {
+      border-top: 1px solid colors.$dark-text;
+      padding-top: 12px;
+      max-height: 40px;
+      overflow: hidden;
+      @media print, screen and (max-width: 760px) {
+        font-size: 3.6vw;
+        padding-top: 2vw;
+        margin-bottom: 0;
+        max-height: 14vw;
+      }
+      .icon {
+        background: none!important;
+        color: colors.$dark-text;
+        padding: 0;
+        margin-right: 10px;
+        font-size: 14px;
+        font-weight: 400;
+        text-align: left;
+        @media print, screen and (max-width: 760px) {
+          font-size: 3.6vw;
+        }
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+
+  //PC 3column（※SPは2カラムと同じ）
+  @media print, screen and (min-width: 761px) {
+    &.page-system-index .list-page__list .l-column_03 {
+      grid-template-columns: repeat(3,1fr);
+      gap: 50px 40px;
+      .p-item {
+        &__photo {
+          width: 100%;
+        }
+        &__inner {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+
+
+  /*  page-system-detail
+  *----------------------------------- */
+
+  &.page-system-detail .l-main {
+    .list-page__main {
+      @media print, screen and (min-width: 761px) {
+        padding: 90px;
+        background: colors.$light-background;
+      }
+    }
+    .l-list {
+      .p-item__photo {
+        @media print, screen and (min-width: 761px) {
+          max-width: 450px;
+          margin-left: auto;
+          margin-right: auto;
+        }
+        &.ph_sys img {
+          width: 100%;
+          aspect-ratio: 13/18;
+          object-fit: cover;
+        }
+      }
+      .p-item__inner {
+        text-align: center;
+      }
+      .p-item__post-text {
+        font-size: 18px;
+        line-height: 1.4;
+        @media print, screen and (max-width: 760px) {
+          font-size: 4.2vw;
+        }
+      }
+      .p-item__icons-category {
+        text-align: center;
+        @media print, screen and (max-width: 760px) {
+          font-size: 3.8vw;
+          margin-bottom: 2vw;
+        }
+        .icon {
+          background: none!important;
+          color: colors.$dark-text;
+          padding: 0;
+          margin-right: 10px;
+          font-size: 16px;
+          font-weight: 400;
+          @media print, screen and (max-width: 760px) {
+            font-size: 3.8vw;
+          }
+          &:last-child {
+            margin-right: 0;
+          }
+        }
+      }
+    }
+    .l-comment {
+      margin-top: 80px;
+      @media print, screen and (max-width: 760px) {
+        margin-top: 15vw;
+      }
+      .p-item {
+        @media print, screen and (min-width: 761px) {
+          max-width: 1440px;
+          margin: 0 auto 120px;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          align-items: stretch;
+          gap: 45px;
+        }
+        @media print, screen and (max-width: 760px) {
+          width: 100%;
+          // margin: 0 auto 18vw;
+          margin: 0 auto 15vw;
+          // &:last-child {
+          //   margin: 0 auto;
+          // }
+        }
+        &__photo {
+          @media print, screen and (min-width: 761px) {
+            flex: 1;
+            max-width: 568px;
+          }
+          @media print, screen and (max-width: 760px) {
+            margin-bottom: 6vw;
+          }
+        }
+        &__info {
+          @media print, screen and (min-width: 761px) {
+            max-width: 576px;
+          }
+          @media print, screen and (max-width: 760px) {
+
+          }
+        }
+        &__subtitle {
+          font-size: 54px;
+          margin-bottom: 25px;
+          color: colors.$accent;
+          @media print, screen and (max-width: 760px) {
+            font-size: 12vw;
+            margin-bottom: 2vw;
+          }
+        }
+        &__title {
+          font-size: 28px;
+          line-height: 1.45;
+          font-weight: text.$font-base-weight-medium;
+          margin: 10px 0;
+          @media print, screen and (max-width: 760px) {
+            font-size: 6vw;
+            line-height: 1.3;
+            margin: 3vw 0;
+          }
+          .accent {
+            color: colors.$accent;
+          }
+        }
+        &__text {
+          font-size: 16px;
+          line-height: 1.9;
+          @media print, screen and (max-width: 760px) {
+            font-size: 4.1vw;
+            line-height: 1.8;
+            // margin-bottom: 6vw;
+          }
+        }
+        &:nth-child(2n) {
+          flex-direction: row-reverse;
+        }
+      }
+      .p-item02 {
+        display: block;
+        text-align: center;
+        padding-top: 80px;
+        position: relative;
+        max-width: 100%;
+        margin-bottom: 60px;
+        @media print, screen and (max-width: 760px) {
+          margin-top: 0;
+          width: 100%;
+          padding-top: 8%;
+          margin-bottom: 9vw;
+        }
+        &::before {
+          position: absolute;
+          content: "";
+          width: 100%;
+          height: 457px;
+          top: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          background: colors.$sub01;
+          z-index: -1;
+          @media print, screen and (max-width: 760px) {
+            height: 45vw;
+          }
+        }
+        .p-item {
+          &__catch {
+            margin-bottom: 30px;
+            font-size: 60px;
+            letter-spacing: 2px;
+            font-weight: text.$font01-weight-bold;
+            color: colors.$light-text;
+            @media print, screen and (max-width: 760px) {
+              margin-bottom: 3%;
+            }
+          }
+          &__photo {
+            max-width: 920px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 50px;
+            @media print, screen and (max-width: 760px) {
+              width: 90%;
+              margin-bottom: 6vw;
+            }
+          }
+          &__info {
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            @media print, screen and (max-width: 760px) {
+              width: 90%;
+            }
+          }
+        }
+      }
+    }
+  }
+
+}/* end -- .page-system.l-voice */
+
+
+

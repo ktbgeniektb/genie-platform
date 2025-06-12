@@ -1,0 +1,192 @@
+@charset "utf-8";
+
+
+/* ------------------------------------
+
+colors setting
+
+------------------------------------ */
+
+//basic-color
+$black: #131313;//ベースの文字色
+$white: #fff;
+$red: #f74432;
+$light-pink: #f8e2e6;
+
+//cv-color
+$accent: #f58e23;
+$sub01:#2595d0;
+$sub02:#2595d0;
+$sub03:#2595d0;
+
+//gray
+$gray: #bababa;
+$light-gray: #e5e5e5;
+$dark-gray: #717171;
+$light-gray02: #dfdfdf;
+
+//other（必要な色は都度増やす）
+$orange: #f58e23;
+
+$blue:#006dbc;
+$light-blue: #2595d0;
+
+
+
+
+/* ------------------------------------
+
+colors setting の変数ではなく
+下記の左側の変数をcssで指定する
+
+×：$black
+◯：$dark-text
+
+------------------------------------ */
+
+
+/*  text-color
+*----------------------------------- */
+
+//text-base-color
+$main-text: $black;//サイト全体の背景色
+$dark-text: $black;
+$dim-text: $dark-gray;
+$light-text: $white;
+$accent-text: $accent;
+$title-text: $black;//その他の記事タイトル
+
+//text-alert-color
+$alert-text: $red;
+$alert-dark-background: $red;
+$alert-light-background: $light-pink;
+
+//text-selected-color
+$selected-txt: $light-blue;
+
+
+
+/*  background-color
+*----------------------------------- */
+
+$main-bg: $white;//サイト全体の背景色
+$dark-background: $black;
+$dim-background: $light-gray;
+$gray-background: $dark-gray;
+$light-background: $white;
+$accent-background: $accent;
+$accent02-background: $sub01;
+
+
+/*  border-color
+*----------------------------------- */
+
+$dark-border: $dark-gray;
+$gray-border: $gray;
+$light-gray-border: $light-gray;
+$light-border: $white;
+$rank-border: $black;//おすすめ枠線
+$title-border: $black;//その他の記事タイトル線
+$accent-border: $accent;
+
+
+
+/*  system-color
+*----------------------------------- */
+
+//カレンダー
+$color-sat: $blue;//カレンダー土曜日
+$color-sun: $red;//カレンダー日曜日
+
+//詳細ページ
+$detail-background: #cdecff;//詳細背景
+$detail-border: $light-blue;//詳細見出し下の下線
+$color-pager: $accent;//pager
+$color-a: $accent;//詳細テキスト内の<a>リンク
+$color-included: $light-gray;//含まれるもの
+$color-value: $light-gray;//特典
+$color-tb: $black;//会場名・期間
+$color-staff: $light-gray;//スタッフからのメッセージ
+$color-date: $light-gray;//テーブルデータ
+
+//新着・ブログ
+$color-next: $accent;//side背景
+
+//よくある質問
+$faq-background: $light-gray;//アコーディオン背景
+$color-q: $accent;//質問_Q アイコン
+$color-a: $black;//質問_A アイコン
+
+//募集要項
+$job-title: $sub01;
+$job-background: $sub01;
+$job-submit: $sub01;//検索ボタン背景
+$job-submit-text: $white;//検索ボタン文字
+$job-table-background: $sub01;//詳細 表背景
+
+
+//form
+$form-background: #dfdfdf;//PCフォーム背景
+$form-submit-background: $sub01;//検索ボタン背景
+$form-submit-font-color: $white;//検索ボタン文字
+$policy-font-color: $black;//プラポリ<a>リンク
+$policy-hover-color: $accent;//プラポリ<a>リンクhover
+$flow-current-background: $sub01;//ステップバー current背景
+$flow-other-background: $gray;//ステップバー その他背景
+$flow-font-color: $gray;//ステップバー 文字
+$flow-current-font-color: $white;//ステップバー current文字
+
+
+/*  cv
+*----------------------------------- */
+
+$color-cv: $accent;//ボタンメイン
+$color-cv-sub: $sub01;//ボタンサブ
+$color-cv-sub02: $sub02;//ボタンサブ
+$color-cv-tel: $accent;
+
+
+/*  footer
+*----------------------------------- */
+
+$footer-background: $white;
+
+
+
+/*  menu
+*----------------------------------- */
+$hamburger-background: $white;
+$menu-background: $white;//メニュー背景色
+$menu_btn-background: $sub01;//メニューボタン 背景
+$menu_btn-font-color: $white;//メニューボタン 文字
+$menu_btn-nav: $white;//メニューボタン ナビゲーション
+$menu_btn-hover: $accent;//メニューボタン オンマウス
+$menu_title-font-color: $accent;//メニュータイトル
+$menu_text-font-color: $black;//メニューテキスト
+$menu-border: $light-gray;//メニュー下線
+$menu_cv: $accent;//cvボタン
+
+
+
+/*  new icon
+*----------------------------------- */
+
+$new-background: $accent;//NEWアイコン背景色
+$new-font-color: $white;//NEWアイコン文字色
+
+
+/*  horizontal
+*----------------------------------- */
+
+$horizontal-background: $accent;//デフォルト背景
+$horizontal-text: $white;//デフォルト文字
+$horizontal_active-background: $accent;//active時の背景
+$horizontal_active-text: $white;//active時の文字
+$horizontal-border: $gray;//上下の線
+
+
+/*  slick-color
+*----------------------------------- */
+
+$slick-dots: $gray;
+$slick-dots-active: $light-blue;

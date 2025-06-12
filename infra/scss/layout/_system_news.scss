@@ -1,0 +1,152 @@
+@charset "utf-8";
+
+@use "../_colors";
+@use "../_text";
+
+
+.page-system.page-news,
+.page-system.page-blog,
+.page-system.page-story {
+
+  /*  cmn
+  *----------------------------------- */
+
+  &.page-system-index .l-main,
+  &.page-system-detail .l-main {
+    @media print, screen and (min-width: 761px) {
+      background: colors.$detail-background;
+    }
+  }
+
+
+
+  /*  page-system-index
+  *----------------------------------- */
+
+  &.page-system-index .list-page__main {
+    @media print, screen and (min-width: 761px) {
+      width: 1100px;
+      background: colors.$light-background;
+      padding: 45px;
+      display: flex;
+      justify-content: space-between;
+    }
+    @media print, screen and (max-width: 760px) {
+      margin: 10% auto 20%;
+    }
+  }
+
+  &.page-system-index .list-page__list {
+    @media print, screen and (min-width: 761px) {
+      width: 787px;
+    }
+    @media screen and (max-width: 979px) {
+      /* for sp iPad */
+      width: 100%;
+      float: none;
+    }
+  }
+
+  &.page-system-index aside.list-page__side {
+    @media print, screen and (min-width: 761px) {
+      width: 180px;
+    }
+    @media screen and (max-width: 979px) {
+      width: 100%;
+      float: none;
+      margin: 0 auto;
+      max-width: 100%;
+      justify-content: space-between;
+      display: flex;
+    }
+    @media screen and (max-width: 480px) {
+      width: 100%;
+      display: block;
+      margin-top: 16%;
+    }
+    .widget {
+      @media screen and (max-width: 979px) {
+        width: 49%;
+      }
+      @media screen and (max-width: 480px) {
+        width: 100%;
+      }
+    }
+  }
+
+  &.page-system-index .list-page__list h3 {
+    font-size: 18px;
+    padding: 12px 20px;
+    color: colors.$title-text;
+    border-top: 1px solid colors.$title-border;
+    border-bottom: 1px solid colors.$title-border;
+    text-align: center;
+    margin-bottom: 30px;
+    @media print, screen and (max-width: 760px) {
+      margin-bottom: 6%;
+    }
+  }
+
+  &.page-system-index .list-page__list .l-list .p-item {
+    border: none;
+    a {
+      padding: 0;
+    }
+    &__inner {
+      @media print, screen and (min-width: 761px) {
+        margin-top: 12px;
+      }
+    }
+  }
+
+  //PC 3column（※SPは2カラムと同じ）
+  @media print, screen and (min-width: 761px) {
+    &.page-system-index .list-page__list .l-column_03 {
+      grid-template-columns: repeat(3,1fr);
+      .p-item {
+        &__photo {
+          width: 100%;
+        }
+        &__inner {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+
+
+  /*  page-system-detail
+  *----------------------------------- */
+
+  &.page-system-detail .l-main {
+    .list-page__main {
+      @media print, screen and (min-width: 761px) {
+        padding: 90px;
+        background: colors.$light-background;
+      }
+    }
+  }
+
+
+}/* end -- .page-system.l-news */
+
+
+
+
+/*  詳細写真横並び
+*----------------------------------- */
+
+@media print, screen and (min-width: 761px) {
+  .page-blog.page-system-detail .l-list .p-item {
+    display: flex;
+    &__photo {
+      width: 47%;
+      margin: 0 3% 0 0;
+    }
+     &__inner {
+      width: 50%;
+      margin-top: 20px;
+    }
+  }
+}

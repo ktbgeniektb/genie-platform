@@ -1,0 +1,6 @@
+# ディレクトリのインデックスを無効にする
+Options -Indexes
+
+# 全てのファイルへのアクセスを拒否する
+Order Allow,Deny
+Deny from all

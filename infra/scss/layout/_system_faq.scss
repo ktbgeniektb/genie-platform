@@ -1,0 +1,205 @@
+@charset "utf-8";
+
+@use "../_colors";
+@use "../_text";
+
+
+
+.page-system.page-faq {
+
+  /*  list-page__anc
+  *----------------------------------- */
+
+  .list-page__anc {
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    z-index: 1000;
+    width: 1100px;
+    margin: 0 auto;
+    background: colors.$main-bg;
+    margin-bottom: 20px;
+    @media print, screen and (max-width: 760px) {
+      width: 100%;
+    }
+    .horizontal {
+      @media print, screen and (max-width: 760px) {
+        margin-bottom: 8vw;
+      }
+    }
+    &.fixed {
+      position: fixed;
+      top: 0;
+      padding-top: 85px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      z-index: 1001;
+      @media print, screen and (max-width: 760px) {
+        width: 90%;
+        padding-top: 60px;
+      }
+      .horizontal {
+        margin-bottom: 10px;
+      }
+    }
+  }
+
+
+
+  /*  list-page__list
+  *----------------------------------- */
+
+  .list-page__list {
+    width: 1100px;
+    margin: 0 auto 50px;
+    @media print, screen and (max-width: 760px) {
+      width: 100%;
+      margin: 0 auto 10vw;
+    }
+  }
+  .adjust .list-page__list {
+    padding-top: 140px;
+    @media print, screen and (max-width: 760px) {
+      padding-top: 30vw;
+    }
+  }
+
+  .list-page__list .l-faq {
+    margin-bottom: 55px;
+    margin-top: -150px;
+    padding-top: 150px;
+    display: block;
+    width: 100%;
+    @media print, screen and (max-width: 760px) {
+      margin-bottom: 13vw;
+      margin-top: -60vw;
+      padding-top: 60vw;
+    }
+    &__title {
+      position: relative;
+      margin-bottom: 30px;
+      font-size: 30px;
+      font-weight: 700;
+      line-height: 1;
+      text-align: center;
+      width: 100%;
+      @media print, screen and (max-width: 760px) {
+        margin-bottom: 5vw;
+        font-size: 4.8vw;
+      }
+    }
+    .p-item-faq {
+      width: 100%;
+      border: 1px solid colors.$dark-text;
+      margin-bottom: 22px;
+      @media print, screen and (max-width: 760px) {
+        margin: 0 auto;
+        margin-bottom: 3vw;
+      }
+    }
+    dt {
+      font-size: 18px;
+      position: relative;
+      padding: 20px 50px 20px 55px;
+      text-align: left;
+      // background: colors.$faq-background;
+      color: colors.$dark-text;
+      font-weight: inherit;
+      cursor: pointer;
+      font-weight: 700;
+      @media print, screen and (max-width: 760px) {
+        padding: 3vw 8.7vw 3vw 10vw;
+        font-size: text.$fontsize-base-sp;
+      }
+      &:first-of-type {
+        border-top: none;
+      }
+      &::after {
+        position: absolute;
+        z-index: 1000;
+        top: 50%;
+        right: 18px;
+        display: block;
+        width: 14px;
+        height: 14px;
+        margin-top: -7px;
+        content: "";
+        cursor: pointer;
+        background: url(../images/cmn/icon_faq01.svg) 0 0 no-repeat;
+        background-size: 14px auto;
+        transition: 0.3s;
+        transform: rotate(-90deg);
+        @media print, screen and (max-width: 760px) {
+          right: 10px;
+          background-size: 12px auto;
+          width: 12px;
+          height: 12px;
+          margin-top: -6px;
+        }
+      }
+      &::before {
+        position: absolute;
+        z-index: 1000;
+        top: 16px;
+        left: 22px;
+        font-size: 24px;
+        content: "Q.";
+        color: colors.$color-q;
+        font-family: text.$font01;
+        margin-right: 5px;
+        @media print, screen and (max-width: 760px) {
+          font-size: 4.8vw;
+          top: 2vw;
+          left: 3.5vw;
+        }
+      }
+    }
+    dt.active:after {
+      background: url(../images/cmn/icon_faq02.svg) 0 0 no-repeat;
+      background-size: 14px auto;
+      transform: rotate(0);
+      @media print, screen and (max-width: 760px) {
+        background-size: 12px auto;
+      }
+    }
+    dd {
+      position: relative;
+      display: none;
+      margin-bottom: 10px;
+      padding: 20px 50px 20px 60px;
+      text-align: left;
+      @media print, screen and (max-width: 760px) {
+        padding: 2vw 2vw 6vw 10vw;
+        font-size: text.$fontsize-base-sp;
+      }
+      &::before {
+        position: absolute;
+        z-index: 1000;
+        top: 20px;
+        left: 22px;
+        content: "A.";
+        color: colors.$color-a;
+        font-family: text.$font01;
+        font-size: 24px;
+        line-height: 1;
+        @media print, screen and (max-width: 760px) {
+          font-size: 4.8vw;
+          top: 3.5vw;
+          left: 3.5vw;
+        }
+      }
+      &:last-of-type {
+        margin-bottom: 0;
+        border-bottom: none;
+      }
+      a {
+        color: colors.$dark-text;
+        text-decoration: underline;
+      }
+    }
+  }
+
+}/* end -- .page-system.page-faq */
+
+

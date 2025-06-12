@@ -1,0 +1,546 @@
+@charset "utf-8";
+
+@use "../_colors";
+@use "../_text";
+
+
+/* ------------------------------------
+
+common（TOP含む全ページ）
+
+------------------------------------ */
+
+img {
+  width: 100%;
+}
+iframe {
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  @media print, screen and (max-width: 760px) {
+    width: 100%;
+  }
+}
+
+
+
+/*  l-wrapper
+*----------------------------------- */
+
+.l-wrapper {
+  position: relative;
+  overflow-x: hidden;
+}
+
+
+
+/*  l-main
+*----------------------------------- */
+
+.l-main {
+  padding-bottom: 120px;
+  @media print, screen and (max-width: 760px) {
+    padding-bottom: 16%;
+  }
+}
+
+
+
+/*  fadeInAnim
+*----------------------------------- */
+
+.fadeInAnim {
+  opacity: 0;
+}
+.fadeInAnim.visible {
+  @media screen and (min-width: 761px){
+    animation: fadeInUp .8s ease-out forwards;
+  }
+  @media screen and (max-width: 760px){
+    animation: fadeInUp_sp .8s ease-out forwards;
+  }
+}
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 50px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes fadeInUp_sp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 30px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+
+
+/*  tel
+*----------------------------------- */
+
+.p-tel a {
+  @media print, screen and (min-width: 761px) {
+    pointer-events: none;
+  }
+}
+
+
+
+/*  bg_movie
+*----------------------------------- */
+
+.bg_movie {
+  position: fixed;
+  z-index: -2;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+@media screen and (max-width: 760px) and (orientation: portrait) {
+  .modaal-inner-wrapper {
+    width: 92vw;
+  }
+}
+
+
+
+
+/*  slick-dots
+*----------------------------------- */
+
+.slick-dots li {
+  width: 10px;
+  height: 10px;
+  margin: 0 8px;
+  background: colors.$slick-dots;
+  &.slick-active {
+    background: colors.$slick-dots-active;
+  }
+}
+
+
+
+/*  horizontal
+*----------------------------------- */
+
+.horizontal {
+  margin-bottom: 50px;
+  opacity: 1.0;
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+  justify-content: center;
+  @media print, screen and (max-width: 760px) {
+    margin-bottom: 10vw;
+    gap: 1px;
+  }
+  li {
+    display:inline-block;
+    opacity: 1.0;
+    background: colors.$horizontal-background;
+    @media print, screen and (max-width: 760px) {
+      display: block;
+      float: left;
+      width: calc(50% - 1px);
+      margin: 0 7px;
+      opacity: 1.0;
+      margin: 0;
+      border-right: 1px solid colors.$light-border;
+      border-bottom: 1px solid colors.$light-border;
+      font-size: 12px;
+    }
+    a {
+      color: colors.$horizontal-text;
+      display: block;
+      padding: 7px 15px;
+      text-align:center;
+      @media print, screen and (max-width: 760px) {
+        padding: 10px 5px;
+        font-size: 12px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        line-height: 1.4;
+      }
+    }
+  }
+  li.active {
+    background: colors.$horizontal_active-background;
+    a {
+      color: colors.$horizontal_active-text;
+    }
+  }
+  li:nth-child(2n) {
+    @media print, screen and (max-width: 760px) {
+      border-right: none;
+    }
+  }
+  input {
+    display: none;
+    height: 100%;
+  }
+  label {
+    display: block;
+    height: 100%;
+    padding: 7px 10px;
+    text-align: center;
+  }
+  label:hover {
+    background: colors.$horizontal_active-background;
+    border-radius: 4px;
+    color: colors.$horizontal_active-text;
+  }
+  input[type=radio]:checked + label {
+    background: colors.$horizontal_active-background;
+    border-radius:4px;
+    color: colors.$horizontal_active-text;
+  }
+}
+
+.horizontal.border {
+  border-top: 1px solid colors.$horizontal-border;
+  border-bottom: 1px solid colors.$horizontal-border;
+  padding: 10px 0 3px;
+}
+
+
+
+/*  l-table
+*----------------------------------- */
+
+.l-table {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 0.3%;
+  dt {
+    background: colors.$accent02-background;
+    color: colors.$light-text;
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    margin-bottom: 6px;
+    @media print, screen and (max-width: 760px) {
+      width: 28%;
+      font-size: 3.6vw;
+      text-align: center;
+    }
+  }
+  dd {
+    background: colors.$dim-background;
+    width: 79.5%;
+    padding: 10px 16px;
+    font-weight: 400;
+    margin-bottom: 6px;
+    @media print, screen and (max-width: 760px) {
+      width: 70.5%;
+      font-size: 3.5vw;
+      line-height: 1.5;
+    }
+    a {
+      @media print, screen and (max-width: 760px) {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+
+
+/*  l-interview
+*----------------------------------- */
+.page-top .l-interview,
+.page-cmn .l-interview {
+  margin-bottom: 100px;
+  @media print, screen and (max-width: 760px) {
+    margin-bottom: 18vw;
+  }
+  &__container {
+    max-width: 90%;
+    margin: 0 auto;
+    @media print, screen and (min-width: 761px) {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+    @media print, screen and (max-width: 760px) {
+      max-width: 100%;
+    }
+  }
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px 30px;
+    width: calc(100% - 255px - 30px);
+    @media print, screen and (max-width: 760px) {
+      width: 100%;
+      margin-bottom: 10vw;
+    }
+    .slick-prev,
+    .slick-next {
+      top: 440px;
+      width: 46px;
+      height: 46px;
+    }
+    .slick-prev {
+      background: url(../images/cmn/prev.png);
+      background-size: 100%;
+      left: -290px;
+    }
+    .slick-next {
+      background: url(../images/cmn/next.png);
+      background-size: 100%;
+      left: -225px;
+    }
+  }
+  .p-header {
+    width: 260px;
+    margin-right: 25px;
+    margin-top: 90px;
+    text-align: left;
+    @media print, screen and (max-width: 760px) {
+      width: 100%;
+      margin: 0 auto;
+      text-align: center;
+    }
+    &__title {
+      font-size: 48px;
+      color: colors.$gray;
+      @media print, screen and (max-width: 760px) {
+        font-size: 13vw;
+        line-height: 1;
+      }
+    }
+    &__subtitle {
+      font-weight: 600;
+      margin-top: 10px;
+      @media print, screen and (max-width: 760px) {
+        margin-top: 1vw;
+      }
+    }
+    &__catch {
+      font-size: 35px;
+      font-weight: 600;
+      margin-top: 20px;
+      line-height: 1.4;
+      @media print, screen and (max-width: 760px) {
+        font-size: 9.2vw;
+        margin-top: 5vw;
+        text-align: center;
+      }
+    }
+    &__text {
+      margin-top: 15px;
+      margin-bottom: 35px;
+      @media print, screen and (max-width: 760px) {
+        margin-top: 3vw;
+        margin-bottom: 7vw;
+        text-align: center;
+      }
+    }
+  }
+  .p-item {
+    @media print, screen and (min-width: 761px) {
+      width: 23%;
+      margin-right: 36px;
+    }
+    @media print, screen and (max-width: 760px) {
+      margin: 0 3vw;
+    }
+    &__photo {
+      margin-bottom: 20px;
+      @media print, screen and (max-width: 760px) {
+        margin-bottom: 5vw;
+      }
+      &.ph_sys img {
+        width: 100%;
+        aspect-ratio: 13/18;
+        object-fit: cover;
+      }
+    }
+    &__title {
+      font-size: 25px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      line-height: 1.2;
+      @media print, screen and (max-width: 760px) {
+        font-size: 5.5vw;
+        margin-bottom: 2vw;
+      }
+    }
+    &__text {
+      font-size: 17px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      @media print, screen and (max-width: 760px) {
+        font-size: 4.3vw;
+        margin-bottom: 4vw;
+      }
+    }
+    &__info {
+      font-size: 14px;
+      padding-top: 12px;
+      border-top: 1px solid colors.$dark-text;
+      @media print, screen and (max-width: 760px) {
+        font-size: 3.6vw;
+        padding-top: 2vw;
+        margin-bottom: 4vw;
+        max-height: 12vw;
+      }
+    }
+    &__icons-category {
+      border-top: 1px solid colors.$dark-text;
+      padding-top: 12px;
+      max-height: 40px;
+      overflow: hidden;
+      @media print, screen and (max-width: 760px) {
+        font-size: 3.6vw;
+        padding-top: 2vw;
+        margin-bottom: 4vw;
+        max-height: 12vw;
+      }
+      .icon {
+        background: none!important;
+        color: colors.$dark-text;
+        padding: 0;
+        margin-right: 10px;
+        font-size: 14px;
+        font-weight: 400;
+        text-align: left;
+        @media print, screen and (max-width: 760px) {
+          font-size: 3.8vw;
+        }
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+  .c-button.simple {
+    @media print, screen and (max-width: 760px) {
+      margin: 0 auto;
+    }
+  }
+}
+
+.page-top .p-header{
+  &.interview {
+    display: none;
+  }
+}
+.page-interview-detail .p-header,
+.page-people-detail .p-header{
+  &.top {
+    display: none;
+  }
+}
+
+
+
+/*  l-other-contents
+*----------------------------------- */
+
+.l-other-contents {
+  background: colors.$dim-background;
+  padding: 60px 0 70px;
+  margin: 0;
+  @media print, screen and (max-width: 760px) {
+    padding: 14vw 0 17vw;
+  }
+  &__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    @media print, screen and (max-width: 760px) {
+      width: 85%;
+    }
+  }
+  .p-header {
+    text-align: center;
+    max-width: 90%;
+    margin: 0 auto 25px;
+    @media print, screen and (max-width: 760px) {
+      margin-bottom: 5vw;
+    }
+  }
+  .p-header__title {
+    font-size: 60px;
+    color: inherit;
+    @media print, screen and (max-width: 760px) {
+      font-size: 10vw;
+      color: inherit;
+    }
+  }
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    @media print, screen and (max-width: 760px) {
+      gap: 4vw;
+    }
+  }
+  li {
+    width: 320px;
+    @media print, screen and (max-width: 760px) {
+      width: 100%;
+    }
+    a {
+      display: block;
+      font-size: 20px;
+      font-weight: text.$font-base-weight-medium;
+      padding: 22px 24px;
+      text-align: center;
+      background: colors.$light-background;
+      @media print, screen and (max-width: 760px) {
+        font-size: 5.1vw;
+        padding: 5.5vw 0;
+      }
+    }
+  }
+}
+
+.page-cmn{
+  .l-other-contents {
+    .p-item {
+      display: block;
+      &.crosstalk,
+      &.about,
+      &.recruit {
+        display: none;
+      }
+    }
+  }
+}
+// ↓ページに合わせて変える
+.page-profile{
+  .l-other-contents {
+    .p-item {
+      display: none;
+      &.crosstalk,
+      &.about,
+      &.recruit {
+        display: block;
+      }
+    }
+  }
+}

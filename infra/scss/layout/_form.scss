@@ -1,0 +1,170 @@
+@use "../_colors";
+@use "../_text";
+
+
+
+/*  form colors
+*----------------------------------- */
+
+.page-form {
+  --brick--color--black: colors.$black;
+  --brick--color--white: colors.$white;
+  --brick--color--lite-gray: colors.$light-gray;
+  --brick--color--gray: colors.$dark-gray;
+  --brick--color--red: colors.$red;
+  --brick--color--light-pink: colors.$light-pink;
+  --brick--color--button-submit-background: #FB7E51; /* ボタン色 */
+
+  --brick--color--dim-text: colors.$dim-text;
+  --brick--color--light-text: colors.$light-text;
+  --brick--color--light-border: colors.$gray-border;
+  --brick--color--dark-border: colors.$dark-border;
+  --brick--color--dark-background: colors.$flow-background;
+  --brick--color--dim-background: colors.$flow-other-background;
+  --brick--color--accent-background: colors.$flow-current-background;
+
+  /* ステップ表示 */
+  --brick--color--flow-current-text: colors.$flow-current-font-color;
+}
+
+
+/*  cmn
+*----------------------------------- */
+
+.page-form .l-form-container {
+  @media print, screen and (min-width: 761px) {
+    background-color: colors.$form-background;
+  }
+  &__inner {
+    font-family: text.$font-form;
+    font-weight: bold;
+  }
+  &__flow {
+    @media print, screen and (max-width: 760px) {
+      margin: 0 0 5vw;
+    }
+  }
+  .brick-form:not(:root) h4 {
+    font-weight: bold;
+  }
+  .brick-form__body-notice {
+    text-align: left;
+  }
+  .brick-form__options-name-grad {
+    width: 35%;
+    @media print, screen and (max-width: 760px) {
+      width: 60%;
+    }
+  }
+}
+
+
+/*  brick-flow
+*----------------------------------- */
+
+.page-form .l-form-container .brick-flow {
+  &__step--current:not(:root) {
+    color: colors.$flow-current-font-color;
+  }
+  &__step--current:not(:root)::before,
+  &__step--current:not(:root)::after {
+    background-color: colors.$flow-current-background;
+  }
+}
+@media print, screen and (max-width: 760px) {
+  .brick-flow__step:not(:root)::before,
+  .brick-flow__step:not(:root)::after {
+    background-color: colors.$dim-background;
+  }
+}
+
+
+
+/*  brick-buttons
+*----------------------------------- */
+
+.page-form .l-form-container .brick-buttons {
+  &__button-inner {
+    color: colors.$form-submit-font-color;
+  }
+}
+
+@media print, screen and (max-width: 760px) {
+  .brick-buttons__button-submit {
+    background-color: var(--brick--color--button-submit-background);
+  }
+  .brick-buttons__button-submit:disabled {
+    color: var(--brick--color--button-disabled-text);
+    background-color: var(--brick--color--button-disabled-background);
+    cursor: not-allowed;
+  }
+  .brick-buttons__button-back {
+    background-color: var(--brick--color--button-back-background);
+  }
+}
+
+
+
+
+/*  l-form-container__policy
+*----------------------------------- */
+
+.page-form .l-form-container .l-form-container__policy {
+  margin-top: 35px;
+  margin-bottom: 35px;
+  @media print, screen and (min-width: 761px) {
+    text-align: center;
+  }
+  @media print, screen and (max-width: 760px) {
+    font-size: 3.6vw;
+    line-height: 1.8;
+  }
+  a {
+    color: colors.$policy-font-color;
+    text-decoration: underline;
+    &:hover {
+      color: colors.$policy-hover-color;
+    }
+  }
+}
+
+
+/*  page-form-confirm
+*----------------------------------- */
+.page-form-confirm {
+  .brick-form-num-remaining {
+    display: none;
+  }
+}
+
+
+
+/*  page-form-thanks
+*----------------------------------- */
+
+.page-form-thanks .l-form-container__inner .p-item {
+  @media print, screen and (max-width: 760px) {
+    padding: 0 5%;
+  }
+  &__title {
+    text-align: center;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.2;
+    @media print, screen and (max-width: 760px) {
+      font-size: 24px;
+    }
+  }
+  &__text {
+    text-align: center;
+    &:not(:first-child) {
+      margin-top: 24px;
+    }
+  }
+  &__button {
+    margin-top: 35px;
+    @media print, screen and (max-width: 760px) {
+      margin-top: 9vw;
+    }
+  }
+}
