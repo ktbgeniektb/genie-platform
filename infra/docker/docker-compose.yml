@@ -69,9 +69,9 @@ services:
       args:
         - PHP_IMAGE=${PHP_IMAGE}
     ports:
-      - ${ATLAS_PORT}:90
+      - ${ATLAS_PORT}:80
     volumes:
-      - ${DOC_ROOT_ATLAS}:/var/www/html
+      - ../../atlas-backend:/var/www/html
 
   lamp-ui:
     image: ${LAMP_IMAGE}
