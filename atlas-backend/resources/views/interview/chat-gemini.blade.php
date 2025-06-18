@@ -40,7 +40,7 @@ document.getElementById('next-btn').addEventListener('click', () => {
     showQuestion();
   } else {
     // Laravel に送信する処理
-  fetch("/interview-gemini/submit", {
+    fetch("/interview/submit", {
     method: "POST",
     headers: {
         "Content-Type": "application/json",
