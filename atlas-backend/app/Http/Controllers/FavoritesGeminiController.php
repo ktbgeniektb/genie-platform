@@ -6,14 +6,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
 
-class FavoritesController extends Controller
+class FavoritesGeminiController extends Controller
 {
     public function submit(Request $request)
     {
         $answers = $request->input('answers');
 
         // プロンプト作成
-        $prompt = "あなたは、史上最高のキャリアアドバイザーです。目の前にいる相手が自分の価値観や原体験を通じて、深く自己理解できるよう、思いやりと鋭さの両方を兼ね備えた「問い」を届ける役割を担っています。以下は、ある人の「好きなこと」と「心が震えた原体験」に関する情報です。\n\n";
+        $prompt = "あなたは、自己理解を支援するプロのキャリアカウンセラーです。以下は、ある人の「好きなこと」と「心が震えた原体験」です。";
         foreach ($answers as $set) {
             $prompt .= "- 好きなこと: " . $set['q1'] . "\n";
             $prompt .= "- 心が震えた瞬間: " . $set['q2'] . "\n\n";
@@ -30,11 +30,14 @@ class FavoritesController extends Controller
 
 ---
 
-【質問の条件】  
-- 丁寧で寄り添う口調で問いかけてください  
-- 一般的ではなく、本人の文脈に沿った具体性のある問いにしてください  
-- 以下の5つの視点（感情／意味／他者／行動／未来の願い）をそれぞれ1問ずつ含めてください  
+【質問の条件】
+- 丁寧で寄り添う口調で問いかけてください
+- 一般的ではなく、本人の文脈に沿った具体性のある問いにしてください
+- 以下の5つの視点（感情／意味／他者／行動／未来の願い）をそれぞれ1問ずつ含めてください
 - 回答者が「これまで考えたことがなかった」と感じるほど、新鮮な切り口を目指してください
+- 抽象的すぎる質問（例：「それはどんな意味でしたか？」）や、ただの再確認の質問は避けてください。
+- 体験の背景や理由、「なぜそれが自分にとって大切なのか」を問い直すような構造にしてください。
+- 「表面的な感情」ではなく、「奥にある価値観」や「人生の方向性」に気づけるような質問にしてください。
 
 ---
 
@@ -55,7 +58,7 @@ EOT;
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
         ])->post(
-            'https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=' . config('services.gemini.key'),
+                'https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=' . config('services.gemini.key'),
             [
                 'contents' => [
                     [
@@ -73,7 +76,6 @@ EOT;
 
         // レスポンスのJSONを取得
         $text = $response->json()['candidates'][0]['content']['parts'][0]['text'] ?? '[]';
-
         // コードブロック削除
         $text = trim($text);
         if (str_starts_with($text, '```json')) {
@@ -90,6 +92,7 @@ EOT;
         }
                 
         // viewに渡す
-        return view('deepdive.generated', compact('questions'));
+        // return view('deepdive.generated', compact('questions'));
+        return view('favorites-gpt.result', compact('questions'));
     }
 }

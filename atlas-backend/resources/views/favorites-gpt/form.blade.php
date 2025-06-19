@@ -48,7 +48,7 @@
   });
 
   $("#submit-btn").on("click", function () {
-    fetch("/favorites/submit", {
+    fetch("/favorites-gpt/submit", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
