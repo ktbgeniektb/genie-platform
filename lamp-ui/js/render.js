@@ -10,11 +10,13 @@ export function renderFromFirestore(id, firebaseConfig, templates) {
   getDoc(ref).then((docSnap) => {
     if (docSnap.exists()) {
       const data = docSnap.data();
-    //   console.log("✅ Firestore取得成功:", data);
+      // console.log("✅ Firestore取得成功:", data);
 
-      const [top1, top2] = data.topType.split("_");
+      const [top1, top2] = data.topType.split("_"); 
+      // console.log(data.topType);
+
       const template = templates.find((t) => t.main === data.topType);
-    //   console.log("🎯 テンプレート:", template);
+      // console.log("🎯 テンプレート:", template);
 
       setDisplay(top1, top2, template, data.score);
     } else {
@@ -125,9 +127,9 @@ function setDisplay(top1, top2, template, scores) {
       scales: {
         r: {
           min: 0,
-          max: 30,
+          max: 75.5,
           ticks: {
-            stepSize: 5,
+            stepSize: 15,
             backdropColor: "transparent",
           },
           pointLabels: {
