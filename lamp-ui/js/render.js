@@ -1,5 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
 import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
+import { getDocs, collection } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
 
 export function renderFromFirestore(id, firebaseConfig, templates) {
 //   console.log("▶️ Firestoreレンダー開始: id=", id);
@@ -18,7 +19,7 @@ export function renderFromFirestore(id, firebaseConfig, templates) {
       const template = templates.find((t) => t.main === data.topType);
       // console.log("🎯 テンプレート:", template);
 
-      setDisplay(top1, top2, template, data.score);
+      setDisplay(top1, top2, template, data.score, db);
     } else {
       console.error("❌ Firestoreに診断結果が見つかりません");
     }
@@ -39,10 +40,10 @@ export function renderFromLocalStorage(templates) {
     chosen: Number(localStorage.getItem("chosen"))
   };
   const template = templates.find((t) => t.main === key);
-  setDisplay(top1, top2, template, scores);
+  setDisplay(top1, top2, template, data.score);
 }
 
-function setDisplay(top1, top2, template, scores) {
+function setDisplay(top1, top2, template, scores, db) {
 //   console.log("🛠 setDisplay呼び出し", { top1, top2, template, scores });
 
   const key = `${top1}_${top2}`;
@@ -88,6 +89,34 @@ function setDisplay(top1, top2, template, scores) {
   $("#tips").html(template.tips.map((f) => `<li>${f}</li>`).join(""));
   $("#sub").html(template.sub);
 
+    const normalizedScores = {
+    kyomei: Math.round((scores.kyomei / 75.5) * 100),
+    tankyu: Math.round((scores.tankyu / 75.5) * 100),
+    hyougen: Math.round((scores.hyougen / 75.5) * 100),
+    taiken: Math.round((scores.taiken / 75.5) * 100),
+    chosen: Math.round((scores.chosen / 75.5) * 100),
+  };
+
+  getDocs(collection(db, "diagnosisResults")).then((snapshot) => {
+  const typeCount = {};
+  snapshot.forEach((doc) => {
+    const data = doc.data();
+    const type = data.topType;
+    if (!type) return;
+    typeCount[type] = (typeCount[type] || 0) + 1;
+  });
+
+  const sorted = Object.entries(typeCount).sort((a, b) => b[1] - a[1]);
+  const myTypeKey = `${top1}_${top2}`;
+  const rank = sorted.findIndex(([type]) => type === myTypeKey) + 1;
+  const totalTypes = sorted.length;
+
+  $("#type-ranking").html(
+    `<h2>🥇 タイプランキング</h2>
+    <p>あなたのタイプ「${typeLabels[top1]} × ${typeLabels[top2]}」は <strong>${rank}位 / 全${totalTypes}タイプ</strong> 中でした！</p>`
+  );
+});
+
   // チャート描画
   Chart.register(ChartDataLabels);
 
@@ -98,11 +127,11 @@ function setDisplay(top1, top2, template, scores) {
       labels: ["共鳴型", "探求型", "表現型", "体験型", "挑戦型"],
       datasets: [{
         data: [
-          scores.kyomei,
-          scores.tankyu,
-          scores.hyougen,
-          scores.taiken,
-          scores.chosen,
+          normalizedScores.kyomei,
+          normalizedScores.tankyu,
+          normalizedScores.hyougen,
+          normalizedScores.taiken,
+          normalizedScores.chosen,
         ],
         backgroundColor: "rgba(255, 255, 255, 0.3)",
         borderColor: "#fff",
@@ -127,7 +156,7 @@ function setDisplay(top1, top2, template, scores) {
       scales: {
         r: {
           min: 0,
-          max: 75.5,
+          max: 100,
           ticks: {
             stepSize: 15,
             backdropColor: "transparent",
