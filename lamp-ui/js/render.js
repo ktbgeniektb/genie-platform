@@ -29,8 +29,9 @@ export function renderFromFirestore(id, firebaseConfig, templates) {
 }
 
 export function renderFromLocalStorage(templates) {
-  const top1 = localStorage.getItem("top1");
-  const top2 = localStorage.getItem("top2");
+  const urlParams = new URLSearchParams(window.location.search);
+  const top1 = urlParams.get("top1") || localStorage.getItem("top1");
+  const top2 = urlParams.get("top2") || localStorage.getItem("top2");
   const key = `${top1}_${top2}`;
   const scores = {
     kyomei: Number(localStorage.getItem("kyomei")),
@@ -39,6 +40,30 @@ export function renderFromLocalStorage(templates) {
     taiken: Number(localStorage.getItem("taiken")),
     chosen: Number(localStorage.getItem("chosen"))
   };
+  const template = templates.find((t) => t.main === key);
+  setDisplay(top1, top2, template, data.score);
+}
+
+export function renderFromURLParams(templates) {
+  const urlParams = new URLSearchParams(window.location.search);
+  const top1 = urlParams.get("top1");
+  const top2 = urlParams.get("top2");
+
+  if (!top1 || !top2) {
+    console.error("URLに top1 または top2 が含まれていません");
+    return;
+  }
+  const key = `${top1}_${top2}`;
+  const scores = {
+    kyomei: Number(localStorage.getItem("kyomei")),
+    tankyu: Number(localStorage.getItem("tankyu")),
+    hyougen: Number(localStorage.getItem("hyougen")),
+    taiken: Number(localStorage.getItem("taiken")),
+    chosen: Number(localStorage.getItem("chosen"))
+  };
+
+  const data = { score: scores };
+
   const template = templates.find((t) => t.main === key);
   setDisplay(top1, top2, template, data.score);
 }

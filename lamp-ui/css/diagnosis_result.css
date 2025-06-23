@@ -186,6 +186,22 @@ body {
     transform: scale(1.05);
 }
 
+.other-type-link {
+    display: inline-block;
+    background: #FFA94D;
+    color: white;
+    padding: 0.75rem 1.25rem;
+    border-radius: 8px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    margin-top: 1.5rem;
+}
+
+.other-type-link:hover {
+    background: #ffb866;
+}
+
 /* ─────────────────────────────────── */
 /* 追加：スマホ（タブレット以下）向けのレスポンシブ調整 */
 /* 画面幅が 768px 以下（タブレット横〜スマホぐらい）のとき */
