@@ -10,3 +10,4 @@ infra/docker/mysql/data
 infra/docker/mysql/initdb.d/*.sql
 infra/docker/mysql/production/*.sql
 #!docker/mysql/initdb.d/.gitkeep
+document
