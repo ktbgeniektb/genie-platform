@@ -134,7 +134,7 @@ function setDisplay(top1, top2, template, scores, db) {
   const sorted = Object.entries(typeCount).sort((a, b) => b[1] - a[1]);
   const myTypeKey = `${top1}_${top2}`;
   const rank = sorted.findIndex(([type]) => type === myTypeKey) + 1;
-  const totalTypes = sorted.length;
+  const totalTypes = sorted.length + 1;
 
   $("#type-ranking").html(
     `<h2>🥇 タイプランキング</h2>
