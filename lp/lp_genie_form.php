@@ -298,7 +298,12 @@
 
     <section id="Contact" style="background-image: url('./img/form.jpg')">
       <div class="form-container">
-        <form id="seminar-form" method="POST" action="/seminar/reserve">
+        <form
+          id="seminar-form"
+          method="POST"
+          action="javascript:void(0);"
+          novalidate
+        >
           <div>
             <!-- 氏名 -->
             <label for="name">氏名</label>
@@ -367,7 +372,7 @@
           </div>
 
           <!-- 送信 -->
-          <button type="submit">送信する</button>
+          <button type="submit" id="seminar-form-btn">送信する</button>
         </form>
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -435,7 +440,7 @@
           // 電話番号バリデーション（ハイフン2つ、携帯・固定両方対応）
           function validatePhone() {
             const phone = $("#phone").val().trim();
-            // const hyphenCount = (phone.match(/-/g) || []).length;
+            const hyphenCount = (phone.match(/-/g) || []).length;
             const mobilePattern = /^0[789]0-\d{4}-\d{4}$/;
             const landlinePattern = /^0\d{1,4}-\d{1,4}-\d{3,4}$/;
 
@@ -477,17 +482,6 @@
             }
 
             // フォーム送信前に値をE.164形式に変換
-            document
-              .querySelector("#seminar-form")
-              .addEventListener("submit", function (e) {
-                if (!validatePhoneIntl()) {
-                  e.preventDefault();
-                  phoneInput.focus();
-                  return;
-                }
-                // valueを書き換え
-                phoneInput.value = iti.getNumber();
-              });
           });
 
           // メールアドレスバリデーション（形式＋危険文字除外）
@@ -552,21 +546,25 @@
           }
 
           // 送信イベント（submit時）
-          $("#seminar-form").on("submit", function (e) {
-            if (!validateForm()) {
-              e.preventDefault();
-              return;
-            }
+          $("#seminar-form")
+            .off("submit")
+            .on("submit", function (e) {
+              // console.log("submit発火した"); // ← これを確認！
 
-            e.preventDefault(); // フォーム送信は一時停止
-            window.scrollTo({ top: 0, behavior: "auto" }); // 上にスクロール
+              if (!validateForm()) {
+                e.preventDefault();
+                return;
+              }
 
-            $("body > *")
-              .not("#genie-success")
-              .fadeOut(600, function () {
-                $("#genie-success").fadeIn(800).css({ display: "flex" }); // 必ず表示＋flexに
-              });
-          });
+              e.preventDefault(); // フォーム送信は一時停止
+              window.scrollTo({ top: 0, behavior: "auto" }); // 上にスクロール
+
+              $("body > *")
+                .not("#genie-success")
+                .fadeOut(600, function () {
+                  $("#genie-success").fadeIn(800).css({ display: "flex" }); // 必ず表示＋flexに
+                });
+            });
 
           // リアルタイムバリデーション（input時）
           $("#name").on("input", validateName);
@@ -627,7 +625,7 @@
       </div>
       <button
         id="start-diagnosis"
-        onclick="location.href='../diagnosis/index.html'"
+        onclick="location.href='../lamp-ui/diagnosis/index.html'"
       >
         診断してみる
       </button>
