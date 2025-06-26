@@ -8,15 +8,27 @@ export function renderFromFirestore(id, firebaseConfig, templates) {
   const ref = doc(db, "diagnosisResults", id);
 
   getDoc(ref).then((docSnap) => {
-    if (docSnap.exists()) {
-      const data = docSnap.data();
-    //   console.log("✅ Firestore取得成功:", data);
+if (docSnap.exists()) {
+  const data = docSnap.data();
+  const [top1, top2] = data.topType.split("_");
+  const template = templates.find((t) => t.main === data.topType);
+  const userName = localStorage.getItem("userName") || "あなた";
+  const scores = data.score; // ← ここで定義
 
-      const [top1, top2] = data.topType.split("_");
-      const template = templates.find((t) => t.main === data.topType);
-    //   console.log("🎯 テンプレート:", template);
+  console.log("🧪 userName = ", userName);
+  console.log("🧪 topType = ", data.topType);
 
-      setDisplay(top1, top2, template, data.score);
+  fetch(`/gs/genie-platform/lamp-ui/diagnosis/check_name.php?name=${encodeURIComponent(userName)}&topType=${encodeURIComponent(data.topType)}`)
+    .then(res => res.json())
+    .then(result => {
+      if (result.status === "success") {
+        console.log("✅ 名前一致:", result);
+      } else {
+        console.warn("⚠️ 名前一致なし:", result.message);
+      }
+      setDisplay(userName, top1, top2, template, scores);
+    });
+
     } else {
       console.error("❌ Firestoreに診断結果が見つかりません");
     }
@@ -37,12 +49,12 @@ export function renderFromLocalStorage(templates) {
     chosen: Number(localStorage.getItem("chosen"))
   };
   const template = templates.find((t) => t.main === key);
-  setDisplay(top1, top2, template, scores);
+  setDisplay(userName, top1, top2, template, scores);
 }
 
-function setDisplay(top1, top2, template, scores) {
-//   console.log("🛠 setDisplay呼び出し", { top1, top2, template, scores });
+let currentChart = null;
 
+function setDisplay(userName, top1, top2, template, scores) {
   const key = `${top1}_${top2}`;
   $("#top-image").attr("src", `../img/results/${key}.jpg`);
 
@@ -69,11 +81,13 @@ function setDisplay(top1, top2, template, scores) {
     return;
   }
 
+  const displayName = userName && userName.trim() !== "" ? `${userName}さん` : "あなた";
+
   $("#main-type").html(
-    `あなたの<br>「ビジョンの源泉」は<br>
+    `${displayName}の<br>「ビジョンの源泉」は<br>
     <span style="color: ${typeColors[displayOrder[0]]}; font-weight: bold;">
       ${typeLabels[displayOrder[0]]}
-    </span> × 
+    </span> ×
     <span style="color: ${typeColors[displayOrder[1]]}; font-weight: bold;">
       ${typeLabels[displayOrder[1]]}
     </span>`

@@ -1,12 +1,23 @@
 <?php
 header('Content-Type: application/json');
 
-// デバッグ用
-file_put_contents('debug.txt', print_r($_POST, true), FILE_APPEND);
+// JSONとして保存
+$entry = $_POST;
 
+$filename = 'entries.json';
+$existing = [];
+
+if (file_exists($filename)) {
+  $existing = json_decode(file_get_contents($filename), true) ?? [];
+}
+
+$existing[] = $entry;
+file_put_contents($filename, json_encode($existing, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+
+// クライアントに返すレスポンス
 echo json_encode([
   'status' => 'success',
-  'message' => 'データ受信OK',
-  'data' => $_POST
+  'message' => '保存完了',
+  'data' => $entry
 ]);
 exit;

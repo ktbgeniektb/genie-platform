@@ -82,6 +82,8 @@
   </script>
   <script>
     $(function () {
+      const userName = localStorage.getItem("userName");
+
       const currentUrl = location.href;
       const top1 = localStorage.getItem("top1");
       const top2 = localStorage.getItem("top2");

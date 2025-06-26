@@ -14,6 +14,14 @@
       data-bg="./../img/layer1.jpg"
       data-bg-sp="./../img/layer1_sp.jpg"
     >
+      <section class="name-input-section" style="padding: 40px">
+        <h2>あなたのお名前を教えてください</h2>
+        <input type="text" id="user-name-input" placeholder="例：山田 太郎" />
+        <div id="name-error" style="color: red; display: none">
+          ※名前を入力してください
+        </div>
+      </section>
+
       <div class="question" data-index="0" data-category="共鳴型">
         <p>1. 自分は、誰かの言葉や行動に強く心を動かされることがある</p>
         <div class="choices"></div>
@@ -384,6 +392,18 @@
       import { saveDiagnosis } from "./../js/save.js";
 
       $("#end-diagnosis").on("click", function () {
+        const userName = $("#user-name-input").val().trim();
+        if (!userName) {
+          $("#name-error").show();
+          $("html, body").animate(
+            { scrollTop: $("#user-name-input").offset().top - 100 },
+            500
+          );
+          return;
+        }
+        localStorage.setItem("userName", userName);
+        $("#name-error").hide();
+
         let isValid = true;
 
         $(".question").each(function () {
@@ -430,7 +450,6 @@
             挑戦型: "chosen",
           };
 
-          //ここはGPTに頼った、中身理解必要
           const sorted = Object.entries(scores).sort((a, b) => b[1] - a[1]);
           const top1 = sorted[0][0];
           const top2 = sorted[1][0];
