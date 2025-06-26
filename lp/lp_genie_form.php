@@ -298,13 +298,7 @@
 
     <section id="Contact" style="background-image: url('./img/form.jpg')">
       <div class="form-container">
-        <form
-          id="seminar-form"
-          method="POST"
-          action="javascript:void(0);"
-          novalidate
-        >
-          <div>
+<form id="seminar-form" method="POST" action="submit.php">          <div>
             <!-- 氏名 -->
             <label for="name">氏名</label>
             <input type="text" id="name" name="name" />
@@ -504,7 +498,7 @@
               return true;
             }
           }
-
+          
           // フォーム全体チェック（最初のエラー項目にフォーカス移動）
           function validateForm() {
             let valid = true;
@@ -546,25 +540,38 @@
           }
 
           // 送信イベント（submit時）
-          $("#seminar-form")
-            .off("submit")
-            .on("submit", function (e) {
-              // console.log("submit発火した"); // ← これを確認！
+          $("#seminar-form").on("submit", function (e) {
+            e.preventDefault();
 
-              if (!validateForm()) {
-                e.preventDefault();
-                return;
+            if (!validateForm()) return;
+
+            const formData = new FormData(this);
+            for (const [key, value] of formData.entries()) {
+              console.log(key, value); // ← JS 側で中身が入ってるか確認
+            }
+            window.scrollTo({ top: 0, behavior: "auto" });
+
+            $.ajax({
+              url: "submit.php",
+              method: "POST",
+              data: formData,
+              processData: false,  // jQuery にデータ加工させない（FormData をそのまま送る）
+              contentType: false,  // Content-Type ヘッダもブラウザ任せ（boundary込みで正しくつく）
+              success: function(res) {
+                // 送信成功後にジーニー画面へ
+                $("body > *")
+                  .not("#genie-success")
+                  .fadeOut(600, function() {
+                    $("#genie-success")
+                      .css({ display: "flex" })
+                      .fadeIn(800);
+                  });
+              },
+              error: function(xhr, status, err) {
+                alert("送信に失敗しました: " + err);
               }
-
-              e.preventDefault(); // フォーム送信は一時停止
-              window.scrollTo({ top: 0, behavior: "auto" }); // 上にスクロール
-
-              $("body > *")
-                .not("#genie-success")
-                .fadeOut(600, function () {
-                  $("#genie-success").fadeIn(800).css({ display: "flex" }); // 必ず表示＋flexに
-                });
             });
+          });
 
           // リアルタイムバリデーション（input時）
           $("#name").on("input", validateName);

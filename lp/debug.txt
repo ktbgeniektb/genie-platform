@@ -1,0 +1,14 @@
+Array
+(
+    [name] => 水野　敬太
+    [furigana] => ミズノ　ケイタ
+    [email] => k_mizuno@atsu-maru.co.jp
+    [phone] => 070-1816-0826
+    [grade] => 2
+    [graduate_year] => 2027
+    [date] => 2024-06-15
+    [agreed] => on
+)
+Array
+(
+)
