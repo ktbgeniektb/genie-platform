@@ -63,7 +63,7 @@ new Chart(document.getElementById("avgScoreRadar"), {
   },
   options: {
     scales: {
-      r: { min: 0, max: 75.5 }
+      r: { min: 0, max: 100 }
     }
   }
 });

@@ -115,11 +115,11 @@ function setDisplay(top1, top2, template, scores, db) {
   $("#sub").html(template.sub);
 
     const normalizedScores = {
-    kyomei: Math.round((scores.kyomei / 75.5) * 100),
-    tankyu: Math.round((scores.tankyu / 75.5) * 100),
-    hyougen: Math.round((scores.hyougen / 75.5) * 100),
-    taiken: Math.round((scores.taiken / 75.5) * 100),
-    chosen: Math.round((scores.chosen / 75.5) * 100),
+    kyomei: Math.round((scores.kyomei / 65.5) * 100),
+    tankyu: Math.round((scores.tankyu / 65.5) * 100),
+    hyougen: Math.round((scores.hyougen / 65.5) * 100),
+    taiken: Math.round((scores.taiken / 65.5) * 100),
+    chosen: Math.round((scores.chosen / 65.5) * 100),
   };
 
   getDocs(collection(db, "diagnosisResults")).then((snapshot) => {
@@ -183,7 +183,7 @@ function setDisplay(top1, top2, template, scores, db) {
           min: 0,
           max: 100,
           ticks: {
-            stepSize: 15,
+            stepSize: 20,
             backdropColor: "transparent",
           },
           pointLabels: {
