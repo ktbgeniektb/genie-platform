@@ -53,6 +53,16 @@
         <h2>🔁 あなたの中に、こんな側面も…</h2>
         <p id="sub"></p>
       </section>
+
+      <section class="result-section">
+        <div id="type-ranking"></div>
+      </section>
+
+      <section class="result-section">
+        <a href="type-list.html" class="other-type-link"
+          >他のタイプも見てみる</a
+        >
+      </section>
     </div>
     <!-- <a class="ai" href="http://localhost:8000/interview" target="_blank">
       AI面談で深掘りする
@@ -70,13 +80,23 @@
     import {
       renderFromFirestore,
       renderFromLocalStorage,
+      renderFromURLParams,
     } from "../js/render.js";
 
-    const id = new URLSearchParams(window.location.search).get("id");
+    // const id = new URLSearchParams(window.location.search).get("id");
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get("id");
+    const top1 = urlParams.get("top1");
+    const top2 = urlParams.get("top2");
 
     if (id) {
+      // Firestoreから取得
       renderFromFirestore(id, firebaseConfig, templates);
+    } else if (top1 && top2) {
+      // URLから取得
+      renderFromURLParams(templates);
     } else {
+      // localStorageから取得
       renderFromLocalStorage(templates);
     }
   </script>
@@ -87,6 +107,10 @@
       const currentUrl = location.href;
       const top1 = localStorage.getItem("top1");
       const top2 = localStorage.getItem("top2");
+
+      console.log("top1:", localStorage.getItem("top1")); // 共鳴型 など
+      console.log("top2:", localStorage.getItem("top2")); // 探究型 など
+
       const typeMap = {
         kyomei: "共鳴型",
         tankyu: "探求型",
