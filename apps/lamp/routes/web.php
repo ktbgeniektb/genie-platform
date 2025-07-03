@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\DiagnosisController;
 
-Route::post('/test-diagnosis', [DiagnosisController::class, 'store']);
+// Route::post('/test-diagnosis', [DiagnosisController::class, 'store']);
 
 Route::get('/', function () {
     return Inertia::render('welcome');

@@ -52,21 +52,25 @@ const handleSubmit = async () => {
   const result = calculateScore(answers);
   const payload = {
     name,
-    topType: result.topType,
+    top_type: result.topType,
     score: result.score,
   };
 
   console.log("📦 送信データ payload:", payload); // ←ここ！
 
   try {
-    const response = await fetch("http://localhost:8000/api/diagnosis", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify(payload),
-    });
+  const response = await fetch("http://localhost:8080/api/diagnosis", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    body: JSON.stringify({
+      name,
+      top_type: result.topType,
+      score: result.score,
+    }),
+  });
 
     const data = await response.json();
     console.log("✅ 送信成功:", data);
@@ -75,18 +79,6 @@ const handleSubmit = async () => {
     console.error("❌ 送信エラー:", error);
     alert("保存中にエラーが発生しました");
   }
-};
-
-
-  const result = calculateScore(answers);
-  const payload = {
-    name,
-    topType: result.topType,
-    score: result.score,
-  };
-
-  console.log("🧮 診断結果:", result);
-  // TODO: API送信やページ遷移処理
 };
 
   return (
