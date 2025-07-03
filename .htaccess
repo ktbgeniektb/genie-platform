@@ -1,0 +1,26 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /gs/genie-platform/
+
+  # 1) React のビルド済み資産 (js/css 等) はそのまま返す
+  RewriteCond %{REQUEST_URI} ^/gs/genie-platform/apps/lamp-ui/
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # 2) React SPAルート用：存在しないパスなら index.html にフォールバック
+  RewriteCond %{REQUEST_URI} ^/gs/genie-platform/apps/lamp-ui/
+  RewriteRule ^apps/lamp-ui/ /gs/genie-platform/apps/lamp-ui/index.html [L]
+
+  # 3) /api/** は Laravel に渡す
+  RewriteCond %{REQUEST_URI} ^/gs/genie-platform/api/
+  RewriteRule ^api/(.*)$ index.php [L,QSA]
+
+  # 4) 静的ファイルなら返す
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # 5) それ以外は Laravel に渡す
+  RewriteRule ^ index.php [L]
+</IfModule>

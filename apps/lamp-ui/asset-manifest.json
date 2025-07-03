@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/gs/genie-platform/apps/lamp-ui/static/css/main.e6c13ad2.css",
+    "main.js": "/gs/genie-platform/apps/lamp-ui/static/js/main.d6cc434c.js",
+    "static/js/453.ce4e9450.chunk.js": "/gs/genie-platform/apps/lamp-ui/static/js/453.ce4e9450.chunk.js",
+    "index.html": "/gs/genie-platform/apps/lamp-ui/index.html",
+    "main.e6c13ad2.css.map": "/gs/genie-platform/apps/lamp-ui/static/css/main.e6c13ad2.css.map",
+    "main.d6cc434c.js.map": "/gs/genie-platform/apps/lamp-ui/static/js/main.d6cc434c.js.map",
+    "453.ce4e9450.chunk.js.map": "/gs/genie-platform/apps/lamp-ui/static/js/453.ce4e9450.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.d6cc434c.js"
+  ]
+}

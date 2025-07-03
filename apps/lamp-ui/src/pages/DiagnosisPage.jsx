@@ -4,6 +4,8 @@ import questions from "../data/questions"; // 正しいパスに修正
 import QuestionComponent from "../components/QuestionComponent";
 import { useLocation } from "react-router-dom";
 
+const apiBaseUrl = process.env.REACT_APP_API_URL;
+
 const DiagnosisPage = () => {
   const location = useLocation();
   const query = new URLSearchParams(location.search);
@@ -56,10 +58,10 @@ const handleSubmit = async () => {
     score: result.score,
   };
 
-  console.log("📦 送信データ payload:", payload); // ←ここ！
+  console.log("📦 送信データ payload:", payload);
 
   try {
-  const response = await fetch("http://localhost:8080/api/diagnosis", {
+  const response = await fetch(`${apiBaseUrl}/diagnosis`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
