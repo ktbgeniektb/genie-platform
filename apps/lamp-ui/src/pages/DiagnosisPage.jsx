@@ -43,11 +43,40 @@ const DiagnosisPage = () => {
     return { score: scoreMap, topType };
   };
 
-const handleSubmit = () => {
+const handleSubmit = async () => {
   if (answers.includes(null)) {
     alert("全ての質問に回答してください");
     return;
   }
+
+  const result = calculateScore(answers);
+  const payload = {
+    name,
+    topType: result.topType,
+    score: result.score,
+  };
+
+  console.log("📦 送信データ payload:", payload); // ←ここ！
+
+  try {
+    const response = await fetch("http://localhost:8000/api/diagnosis", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+
+    const data = await response.json();
+    console.log("✅ 送信成功:", data);
+    alert("診断結果を保存しました！");
+  } catch (error) {
+    console.error("❌ 送信エラー:", error);
+    alert("保存中にエラーが発生しました");
+  }
+};
+
 
   const result = calculateScore(answers);
   const payload = {
