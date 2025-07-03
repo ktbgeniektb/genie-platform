@@ -2,8 +2,14 @@
 import React, { useState } from "react";
 import questions from "../data/questions"; // 正しいパスに修正
 import QuestionComponent from "../components/QuestionComponent";
+import { useLocation } from "react-router-dom";
 
 const DiagnosisPage = () => {
+  const location = useLocation();
+  const query = new URLSearchParams(location.search);
+  const name = query.get("name") || "匿名";
+
+
   const [answers, setAnswers] = useState(Array(questions.length).fill(null));
 
   const handleAnswer = (index, value) => {
@@ -37,16 +43,22 @@ const DiagnosisPage = () => {
     return { score: scoreMap, topType };
   };
 
-  const handleSubmit = () => {
-    if (answers.includes(null)) {
-      alert("全ての質問に回答してください");
-      return;
-    }
+const handleSubmit = () => {
+  if (answers.includes(null)) {
+    alert("全ての質問に回答してください");
+    return;
+  }
 
-    const result = calculateScore(answers);
-    console.log("🧮 診断結果:", result);
-    // TODO: API送信やページ遷移処理を追加
+  const result = calculateScore(answers);
+  const payload = {
+    name,
+    topType: result.topType,
+    score: result.score,
   };
+
+  console.log("🧮 診断結果:", result);
+  // TODO: API送信やページ遷移処理
+};
 
   return (
     <div className="max-w-3xl mx-auto p-4 space-y-6">

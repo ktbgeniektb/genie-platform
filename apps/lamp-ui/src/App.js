@@ -1,12 +1,17 @@
 // src/App.js
 import React from 'react';
-import DiagnosisPage from './pages/DiagnosisPage';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import NameInputPage from "./pages/NameInputPage";
+import DiagnosisPage from "./pages/DiagnosisPage";
 
 function App() {
   return (
-    <div className="App">
-      <DiagnosisPage />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<NameInputPage />} />
+        <Route path="/diagnosis" element={<DiagnosisPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
