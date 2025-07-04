@@ -3,6 +3,9 @@ import React, { useState } from "react";
 import questions from "../data/questions"; // 正しいパスに修正
 import QuestionComponent from "../components/QuestionComponent";
 import { useLocation } from "react-router-dom";
+import LinearProgress from "@mui/material/LinearProgress";
+import Button from '@mui/material/Button';
+import Snackbar from '@mui/material/Snackbar';
 
 const apiBaseUrl = process.env.REACT_APP_API_URL;
 
@@ -13,6 +16,11 @@ const DiagnosisPage = () => {
 
 
   const [answers, setAnswers] = useState(Array(questions.length).fill(null));
+
+  const answeredCount = answers.filter((v) => v !== null).length;
+  const totalQuestions = questions.length;
+  const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState("");
 
   const handleAnswer = (index, value) => {
     const newAnswers = [...answers];
@@ -74,12 +82,12 @@ const handleSubmit = async () => {
     }),
   });
 
-    const data = await response.json();
-    console.log("✅ 送信成功:", data);
-    alert("診断結果を保存しました！");
+    await response.json();
+    setSnackbarMessage("診断結果を保存しました！");
+    setOpenSnackbar(true);
   } catch (error) {
-    console.error("❌ 送信エラー:", error);
-    alert("保存中にエラーが発生しました");
+    setSnackbarMessage("保存中にエラーが発生しました");
+    setOpenSnackbar(true);
   }
 };
 
@@ -88,22 +96,31 @@ const handleSubmit = async () => {
       <h1 className="text-xl font-bold mb-6">診断テスト</h1>
 
       {questions.map((q, index) => (
-        <QuestionComponent
-          key={index}
-          index={index}
-          question={q.text}
-          choices={q.choices}
-          selectedValue={answers[index]}
-          onSelect={handleAnswer}
-        />
+      <QuestionComponent
+        key={index}
+        index={index}
+        question={q.text}
+        choices={q.choices}
+        selectedValue={answers[index]}
+        onSelect={handleAnswer}
+      />
       ))}
-
-      <button
+      <LinearProgress
+        variant="determinate"
+        value={(answeredCount / totalQuestions) * 100}
+      />
+      <Button
         onClick={handleSubmit}
-        className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700"
       >
         診断する
-      </button>
+      </Button>
+    <Snackbar
+      open={openSnackbar}
+      autoHideDuration={3000}
+      onClose={() => setOpenSnackbar(false)}
+      message={snackbarMessage}
+    />
+
     </div>
   );
 };

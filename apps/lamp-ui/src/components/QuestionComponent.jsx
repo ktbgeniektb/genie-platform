@@ -1,28 +1,39 @@
 import React from "react";
+import {
+  Radio,
+  RadioGroup,
+  FormControl,
+  FormLabel,
+  FormControlLabel,
+} from "@mui/material";
 
 const QuestionComponent = ({ index, question, choices, selectedValue, onSelect }) => {
+  const handleChange = (event) => {
+    const value = parseInt(event.target.value, 10); // 数値に変換
+    onSelect(index, value);
+  };
+
   return (
     <div className="space-y-2">
-      <p className="font-semibold">{index + 1}. {question}</p>
-      <div className="flex flex-wrap gap-2">
-        {choices.map((choice) => (
-        <button
-          key={choice.value}
-          onClick={() => {
-            onSelect(index, choice.value);
-            console.log(`Q${index + 1} 選択中:`, choice.value);
-          }}
-            className={`px-4 py-2 rounded border transition
-              ${
-                selectedValue === choice.value
-                  ? "bg-blue-600 text-white"
-                  : "bg-white text-gray-800 border-gray-300 hover:bg-gray-100"
-              }`}
-          >
-            {choice.label}
-          </button>
-        ))}
-      </div>
+      <FormControl component="fieldset" fullWidth>
+        <FormLabel component="legend" className="font-semibold mb-1">
+          {index + 1}. {question}
+        </FormLabel>
+        <RadioGroup
+          row
+          value={selectedValue ?? ""}
+          onChange={handleChange}
+        >
+          {choices.map((choice) => (
+            <FormControlLabel
+              key={choice.value}
+              value={choice.value}
+              control={<Radio />}
+              label={choice.label}
+            />
+          ))}
+        </RadioGroup>
+      </FormControl>
     </div>
   );
 };
