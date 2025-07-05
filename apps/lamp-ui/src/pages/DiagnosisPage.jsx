@@ -6,6 +6,7 @@ import { useLocation } from "react-router-dom";
 import LinearProgress from "@mui/material/LinearProgress";
 import Button from '@mui/material/Button';
 import Snackbar from '@mui/material/Snackbar';
+import '../styles/style.scss';
 
 const apiBaseUrl = process.env.REACT_APP_API_URL;
 
