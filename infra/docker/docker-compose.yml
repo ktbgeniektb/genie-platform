@@ -1,41 +1,46 @@
-# infra/docker-compose.yml
 services:
-  lamp-app:
+  php:
     build:
-      context: ../../apps/lamp # ← genie-platform/infra/docker から apps/lamp への相対パス
-      dockerfile: ../../infra/docker/php/Dockerfile
-    container_name: lamp-app
-    ports:
-      - 8080:80
+      context: ../../apps/lamp
     volumes:
       - ../../apps/lamp:/var/www/html
+    working_dir: /var/www/html
     depends_on:
-      - db
+      - mysql
 
-  db:
-    image: mysql:8.0
-    container_name: lamp-db
+  react:
+    build:
+      context: ../apps/lamp-ui
     ports:
-      - 3307:3306
+      - "3000:3000"
+    volumes:
+      - ../../apps/lamp-ui:/app
+    working_dir: /app
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    command: ["npm", "start"]
+
+  nginx:
+    image: nginx:stable
+    ports:
+      - "8080:80"
+    volumes:
+      - ../../apps/lamp/public:/var/www/html/public
+      - ../../apps/lamp-ui/build:/usr/share/nginx/html
+      - ./nginx:/etc/nginx/conf.d
+    depends_on:
+      - php
+      - react
+
+  mysql:
+    image: mysql:8
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: genie-platform
-      MYSQL_USER: genie-platform_user
-      MYSQL_PASSWORD: password
-    volumes:
-      - db-data:/var/lib/mysql
-
-  pma:
-    image: phpmyadmin/phpmyadmin
-    container_name: lamp-pma
+      MYSQL_DATABASE: genie
     ports:
-      - "8081:80" # ← ブラウザアクセスは http://localhost:8081
-    environment:
-      PMA_HOST: db
-      PMA_USER: root
-      PMA_PASSWORD: root
-    depends_on:
-      - db
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
 
 volumes:
-  db-data:
+  mysql_data:
