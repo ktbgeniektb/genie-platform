@@ -1,0 +1,31 @@
+.question {
+    margin: 4rem auto;
+    padding: 2rem;
+    max-width: 720px;
+    background-color: rgba(26, 26, 64, 0.6);
+    backdrop-filter: blur(2px);
+    border-radius: 1rem;
+    color: rgba(250, 204, 21);
+    font-size: 1.1rem;
+    line-height: 1.7;
+}
+
+.question-label {
+    color: rgba(250, 204, 21) !important;
+    font-weight: 600;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.choices-row {
+    display: flex; // ← これが必要！
+    flex-wrap: nowrap; // ← 折り返さない（1行に並べる）
+    white-space: nowrap; // ← テキストや要素が折り返さない
+    overflow-x: auto; // ← はみ出したらスクロール
+    gap: 1rem; // ← 要素の間に隙間
+
+    .MuiFormControlLabel-root {
+        margin-right: 0; // gapがあるからmarginは不要
+        flex-shrink: 0; // ← 要素が勝手に縮まないように（optional）
+    }
+}

@@ -7,20 +7,21 @@ import {
   FormControlLabel,
 } from "@mui/material";
 
-const QuestionComponent = ({ index, question, choices, selectedValue, onSelect }) => {
+const QuestionComponent = ({ index, question, choices, selectedValue, onSelect, className }) => {
   const handleChange = (event) => {
     const value = parseInt(event.target.value, 10); // 数値に変換
     onSelect(index, value);
   };
 
   return (
-    <div className="space-y-2">
+    <div className={className}>
       <FormControl component="fieldset" fullWidth>
-        <FormLabel component="legend" className="font-semibold mb-1">
+        <FormLabel component="legend" className="question-label">
           {index + 1}. {question}
         </FormLabel>
         <RadioGroup
           row
+          className="choices-row"
           value={selectedValue ?? ""}
           onChange={handleChange}
         >

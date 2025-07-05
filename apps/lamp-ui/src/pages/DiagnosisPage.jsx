@@ -93,37 +93,45 @@ const handleSubmit = async () => {
 };
 
   return (
-    <div className="max-w-3xl mx-auto p-4 space-y-6">
-      <h1 className="text-xl font-bold mb-6">診断テスト</h1>
+    <div>
+      {[0, 7, 15, 23].map((start, i) => {
+        const end = [7, 15, 23, 30][i] || 30;
+        const sectionQuestions = questions.slice(start, end);
 
-      {questions.map((q, index) => (
-      <QuestionComponent
-        key={index}
-        index={index}
-        question={q.text}
-        choices={q.choices}
-        selectedValue={answers[index]}
-        onSelect={handleAnswer}
-      />
-      ))}
+        return (
+          <div className={`section section${i + 1}`} key={i}>
+            {sectionQuestions.map((q, j) => {
+              const index = start + j;
+              return (
+                <QuestionComponent
+                  key={index}
+                  index={index}
+                  question={q.text}
+                  choices={q.choices}
+                  selectedValue={answers[index]}
+                  onSelect={handleAnswer}
+                  className={`question question-${index}`}
+                />
+              );
+            })}
+          </div>
+        );
+      })}
+
       <LinearProgress
         variant="determinate"
         value={(answeredCount / totalQuestions) * 100}
       />
-      <Button
-        onClick={handleSubmit}
-      >
-        診断する
-      </Button>
-    <Snackbar
-      open={openSnackbar}
-      autoHideDuration={3000}
-      onClose={() => setOpenSnackbar(false)}
-      message={snackbarMessage}
-    />
-
+      <Button onClick={handleSubmit}>診断する</Button>
+      <Snackbar
+        open={openSnackbar}
+        autoHideDuration={3000}
+        onClose={() => setOpenSnackbar(false)}
+        message={snackbarMessage}
+      />
     </div>
   );
+
 };
 
 export default DiagnosisPage;

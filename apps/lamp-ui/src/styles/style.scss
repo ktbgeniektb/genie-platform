@@ -1,5 +1,36 @@
-body {
-    background-image: url("../assets/images/layer1.jpg");
-    background-size: cover;
-    background-position: center;
+@import './questions';
+
+// src/styles/style.scss
+
+.section1 {
+  background-image: url("../assets/images/layer1.jpg");
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  padding: 2rem;
+  background-attachment: fixed;
+}
+.section2 {
+  background-image: url("../assets/images/layer2.jpg");
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  padding: 2rem;
+  background-attachment: fixed;
+}
+.section3 {
+  background-image: url("../assets/images/layer3.jpg");
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  padding: 2rem;
+  background-attachment: fixed;
+}
+.section4 {
+  background-image: url("../assets/images/layer4.jpg");
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  padding: 2rem;
+  background-attachment: fixed;
 }
