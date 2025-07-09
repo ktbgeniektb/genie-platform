@@ -1,43 +1,49 @@
 import React, { useEffect, useState } from "react";
+const API_URL = import.meta.env.VITE_API_URL;
+
 
 const StudentList = () => {
   const [students, setStudents] = useState([]);
   const [editStudent, setEditStudent] = useState(null);
   const [newStudent, setNewStudent] = useState({ name: "", email: "" });
 
-  useEffect(() => {
-    fetch("http://localhost:9090/api/students")
-      .then((res) => res.json())
-      .then(setStudents);
-  }, []);
+    useEffect(() => {
+    fetch(`${API_URL}/students`)
+        .then((res) => res.json())
+        .then(setStudents);
+    }, []);
 
   const handleDelete = async (id) => {
     if (!window.confirm("削除しますか？")) return;
-    await fetch(`http://localhost:9090/api/students/${id}`, { method: "DELETE" });
+    await fetch(`${API_URL}/students/${id}`, { method: "DELETE" });
     setStudents(students.filter((s) => s.id !== id));
   };
 
   const handleUpdate = async () => {
-    await fetch(`http://localhost:9090/api/students/${editStudent.id}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(editStudent),
+    await fetch(`${API_URL}/students/${editStudent.id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(editStudent),
     });
     setEditStudent(null);
     setStudents(students.map((s) => (s.id === editStudent.id ? editStudent : s)));
   };
+const API_URL = import.meta.env.VITE_API_URL;
 
-  const handleAdd = async () => {
-    if (!newStudent.name || !newStudent.email) return alert("全項目入力してね！");
-    const res = await fetch("http://localhost:9090/api/students", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(newStudent),
-    });
-    const created = await res.json();
-    setStudents([...students, created]);
-    setNewStudent({ name: "", email: "" });
-  };
+const handleAdd = async () => {
+  if (!newStudent.name || !newStudent.email) return alert("全項目入力してね！");
+
+  const res = await fetch(`${API_URL}/students`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(newStudent),
+  });
+
+  const created = await res.json();
+  setStudents([...students, created]);
+  setNewStudent({ name: "", email: "" });
+};
+
 
   return (
     <div className="p-6">
