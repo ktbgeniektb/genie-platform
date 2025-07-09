@@ -1,16 +1,37 @@
 services:
-  php:
+  atlas-app:
+    build:
+      context: ../../apps/atlas
+    container_name: genie-platform-atlas-app
+    ports:
+      - "9090:80"
+    volumes:
+      - ../../apps/atlas:/var/www/html
+    working_dir: /var/www/html
+    depends_on:
+      - mysql
+    environment:
+      DB_CONNECTION: mysql
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_DATABASE: atlas_db
+      DB_USERNAME: atlas_user
+      DB_PASSWORD: password
+
+  lamp-app:
     build:
       context: ../../apps/lamp
+    container_name: genie-platform-lamp-app
     volumes:
       - ../../apps/lamp:/var/www/html
     working_dir: /var/www/html
     depends_on:
       - mysql
 
-  react:
+  lamp-ui:
     build:
-      context: ../apps/lamp-ui
+      context: ../../apps/lamp-ui
+    container_name: genie-platform-lamp-ui
     ports:
       - "3000:3000"
     volumes:
@@ -22,18 +43,21 @@ services:
 
   nginx:
     image: nginx:stable
+    container_name: genie-platform-nginx
     ports:
       - "8080:80"
     volumes:
       - ../../apps/lamp/public:/var/www/html/public
       - ../../apps/lamp-ui/build:/usr/share/nginx/html
       - ./nginx:/etc/nginx/conf.d
+      - ./phpmyadmin/sessions:/sessions
     depends_on:
-      - php
-      - react
+      - lamp-app
+      - lamp-ui
 
   mysql:
     image: mysql:8
+    container_name: genie-platform-mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: genie
