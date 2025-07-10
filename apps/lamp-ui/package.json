@@ -1,6 +1,6 @@
 {
   "name": "lamp-ui",
-  "homepage": "/gs/genie-platform",
+  "homepage": "/gs/genie-platform/apps/lamp-ui",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

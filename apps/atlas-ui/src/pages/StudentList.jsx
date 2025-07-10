@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 const API_URL = import.meta.env.VITE_API_URL;
 
-
 const StudentList = () => {
   const [students, setStudents] = useState([]);
   const [editStudent, setEditStudent] = useState(null);

@@ -1,0 +1,11 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # ① ルート直打ちを public/index.php へ
+  RewriteRule ^$ public/index.php [L]
+
+  # ② 存在しないファイル・フォルダはすべて public/index.php へ投げる
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^(.*)$ public/index.php [L]
+</IfModule>

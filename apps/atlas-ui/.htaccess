@@ -1,7 +1,8 @@
 <IfModule mod_rewrite.c>
   RewriteEngine On
-  RewriteRule ^(.*)/$ /$1 [L,R=301]
+  RewriteBase /gs/genie-platform/apps/atlas-ui/
+  RewriteRule ^$ dist/index.html [L]
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule ^ index.php [L]
+  RewriteRule ^(.*)$ dist/$1 [L]
 </IfModule>
