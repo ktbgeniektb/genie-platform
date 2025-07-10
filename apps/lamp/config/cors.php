@@ -6,7 +6,10 @@ return [
 
     'allowed_methods'  => ['*'],
 
-    'allowed_origins' => ['https://ktbgenie.sakura.ne.jp'],
+    'allowed_origins' => [
+        'http://localhost:3000', // ←ローカルで動作確認時
+        'https://ktbgenie.sakura.ne.jp', // ←本番用
+    ],
 
     'allowed_origins_patterns' => [],
 
