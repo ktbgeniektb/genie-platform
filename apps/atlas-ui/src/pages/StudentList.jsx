@@ -49,69 +49,83 @@ const handleAdd = async () => {
       <h1 className="text-2xl font-bold mb-4">学生管理画面</h1>
 
       {/* 👇 追加フォーム */}
-      <div className="mb-6 border p-4">
-        <h2 className="text-lg font-semibold mb-2">新規登録</h2>
-        <input
-          type="text"
-          placeholder="名前"
-          value={newStudent.name}
-          onChange={(e) => setNewStudent({ ...newStudent, name: e.target.value })}
-          className="border px-2 py-1 mr-2"
-        />
-        <input
-          type="email"
-          placeholder="メール"
-          value={newStudent.email}
-          onChange={(e) => setNewStudent({ ...newStudent, email: e.target.value })}
-          className="border px-2 py-1 mr-2"
-        />
-        <button onClick={handleAdd} className="bg-blue-500 text-white px-3 py-1">追加</button>
-      </div>
+        <Card className="mb-6">
+        <CardHeader>
+            <CardTitle>新規登録</CardTitle>
+        </CardHeader>
+        <CardContent className="flex flex-wrap gap-4">
+            <Input
+            placeholder="名前"
+            value={newStudent.name}
+            onChange={(e) => setNewStudent({ ...newStudent, name: e.target.value })}
+            className="w-[200px]"
+            />
+            <Input
+            placeholder="メール"
+            type="email"
+            value={newStudent.email}
+            onChange={(e) => setNewStudent({ ...newStudent, email: e.target.value })}
+            className="w-[300px]"
+            />
+            <Button onClick={handleAdd}>追加</Button>
+        </CardContent>
+        </Card>
+
 
       {/* 👇 一覧表示（そのまま） */}
-      <table className="table-auto border w-full">
-        <thead>
-          <tr className="bg-gray-200">
-            <th className="border px-2 py-1">ID</th>
-            <th className="border px-2 py-1">名前</th>
-            <th className="border px-2 py-1">メール</th>
-            <th className="border px-2 py-1">操作</th>
-          </tr>
-        </thead>
-        <tbody>
-          {students.map((s) => (
-            <tr key={s.id}>
-              <td className="border px-2 py-1">{s.id}</td>
-              <td className="border px-2 py-1">{s.name}</td>
-              <td className="border px-2 py-1">{s.email}</td>
-              <td className="border px-2 py-1">
-                <button onClick={() => setEditStudent(s)} className="text-blue-600 mr-2">編集</button>
-                <button onClick={() => handleDelete(s.id)} className="text-red-600">削除</button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+        <Table>
+        <TableHeader>
+            <TableRow>
+            <TableHead>ID</TableHead>
+            <TableHead>名前</TableHead>
+            <TableHead>メール</TableHead>
+            <TableHead>操作</TableHead>
+            </TableRow>
+        </TableHeader>
+        <TableBody>
+            {students.map((s) => (
+            <TableRow key={s.id}>
+                <TableCell>{s.id}</TableCell>
+                <TableCell>{s.name}</TableCell>
+                <TableCell>{s.email}</TableCell>
+                <TableCell>
+                <Button variant="outline" size="sm" onClick={() => setEditStudent(s)} className="mr-2">
+                    編集
+                </Button>
+                <Button variant="destructive" size="sm" onClick={() => handleDelete(s.id)}>
+                    削除
+                </Button>
+                </TableCell>
+            </TableRow>
+            ))}
+        </TableBody>
+        </Table>
+
 
       {/* 👇 編集モード（そのまま） */}
-      {editStudent && (
-        <div className="mt-4 border-t pt-4">
-          <h2 className="text-xl mb-2">編集モード</h2>
-          <input
-            type="text"
-            value={editStudent.name}
-            onChange={(e) => setEditStudent({ ...editStudent, name: e.target.value })}
-            className="border px-2 py-1 mr-2"
-          />
-          <input
-            type="email"
-            value={editStudent.email}
-            onChange={(e) => setEditStudent({ ...editStudent, email: e.target.value })}
-            className="border px-2 py-1 mr-2"
-          />
-          <button onClick={handleUpdate} className="bg-green-500 text-white px-3 py-1">保存</button>
-        </div>
-      )}
+        {editStudent && (
+        <Card className="mt-6">
+            <CardHeader>
+            <CardTitle>編集モード</CardTitle>
+            </CardHeader>
+            <CardContent className="flex flex-wrap gap-4">
+            <Input
+                value={editStudent.name}
+                onChange={(e) => setEditStudent({ ...editStudent, name: e.target.value })}
+                className="w-[200px]"
+            />
+            <Input
+                value={editStudent.email}
+                type="email"
+                onChange={(e) => setEditStudent({ ...editStudent, email: e.target.value })}
+                className="w-[300px]"
+            />
+            <Button variant="success" onClick={handleUpdate}>
+                保存
+            </Button>
+            </CardContent>
+        </Card>
+        )}
     </div>
   );
 };
