@@ -28,8 +28,8 @@ class StudentController extends Controller
     }
 
     public function store(Request $request)
-{
-    $student = Student::create($request->only(['name', 'email']));
-    return response()->json($student);
-}
+    {
+        $student = Student::create($request->only(['name', 'email']));
+        return response()->json($student);
+    }
 }

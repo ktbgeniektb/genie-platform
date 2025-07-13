@@ -2,6 +2,8 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebas
 import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
 import { getDocs, collection } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
 
+let db = null;
+
 export function renderFromFirestore(id, firebaseConfig, templates) {
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
