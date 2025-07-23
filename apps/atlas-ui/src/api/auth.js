@@ -30,5 +30,7 @@ export const login = async (email, password) => {
 };
 
 export const getUser = () => {
-  return axios.get('/user');
+  return axios.get('/user', {
+    withCredentials: true,
+  });
 };
