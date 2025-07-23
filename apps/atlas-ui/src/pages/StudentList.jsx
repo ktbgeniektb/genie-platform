@@ -7,6 +7,7 @@ import AppPagination from "../components/Pagination";
 import AddStudentDialog from "../components/AddStudentDialog";
 import EditStudentDialog from "../components/EditStudentDialog";
 import NotificationSnackbar from "../components/NotificationSnackbar";
+import axios from "axios";
 
 export default function StudentsPage() {
   const API = import.meta.env.VITE_API_URL;
@@ -40,25 +41,48 @@ export default function StudentsPage() {
 
   // CRUD 関数
   const addStudent = async (data) => {
-    const res = await fetch(`${API}/students`,{ method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify(data)});
-    const created = await res.json();
+    await axios.get(`${import.meta.env.VITE_LARAVEL_ORIGIN}/sanctum/csrf-cookie`, {
+      withCredentials: true
+    });
+
+    const res = await axios.post(`${API}/students`, data, {
+      withCredentials: true
+    });
+
+    const created = res.data;
     setStudents([...students, created]);
     setOpenAdd(false);
-    setSnack({ open:true, message:"追加しました", severity:"success" });
-  };
-  const updateStudent = async (data) => {
-    await fetch(`${API}/students/${data.id}`,{ method:"PUT", headers:{"Content-Type":"application/json"}, body:JSON.stringify(data)});
-    setStudents(students.map(s=>s.id===data.id?data:s));
-    setEditTarget(null);
-    setSnack({ open:true, message:"更新しました", severity:"info" });
-  };
-  const deleteStudent = async (id) => {
-    if (!window.confirm("削除しますか？")) return;
-    await fetch(`${API}/students/${id}`,{ method:"DELETE" });
-    setStudents(students.filter(s=>s.id!==id));
-    setSnack({ open:true, message:"削除しました", severity:"warning" });
+    setSnack({ open: true, message: "追加しました", severity: "success" });
   };
 
+  const updateStudent = async (data) => {
+    await axios.get(`${import.meta.env.VITE_LARAVEL_ORIGIN}/sanctum/csrf-cookie`, {
+      withCredentials: true
+    });
+
+    await axios.put(`${API}/students/${data.id}`, data, {
+      withCredentials: true
+    });
+
+    setStudents(students.map(s => s.id === data.id ? data : s));
+    setEditTarget(null);
+    setSnack({ open: true, message: "更新しました", severity: "info" });
+  };
+
+  const deleteStudent = async (id) => {
+    if (!window.confirm("削除しますか？")) return;
+
+    await axios.get(`${import.meta.env.VITE_LARAVEL_ORIGIN}/sanctum/csrf-cookie`, {
+      withCredentials: true
+    });
+
+    await axios.delete(`${API}/students/${id}`, {
+      withCredentials: true
+    });
+
+    setStudents(students.filter(s => s.id !== id));
+    setSnack({ open: true, message: "削除しました", severity: "warning" });
+  };
   return (
     <>
       <AppHeader/>
