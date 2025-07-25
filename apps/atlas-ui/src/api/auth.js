@@ -3,6 +3,15 @@ import axios from 'axios';
 axios.defaults.baseURL = import.meta.env.VITE_API_URL;
 axios.defaults.withCredentials = true;
 
+axios.interceptors.request.use((config) => {
+  const match = document.cookie.match(/XSRF-TOKEN=([^;]+)/);
+  if (match) {
+    config.headers['X-XSRF-TOKEN'] = decodeURIComponent(match[1]);
+  }
+  return config;
+});
+
+
 const getCsrfToken = () => {
   const match = document.cookie.match(new RegExp('(^| )XSRF-TOKEN=([^;]+)'));
   if (match) {
@@ -12,16 +21,13 @@ const getCsrfToken = () => {
 };
 
 export const login = async (email, password) => {
-  await axios.get(`${import.meta.env.VITE_LARAVEL_ORIGIN}/sanctum/csrf-cookie`, {
+  const apiRoot = import.meta.env.VITE_LARAVEL_ORIGIN; // 例: http://localhost:9090
+
+  await axios.get(`${apiRoot}/sanctum/csrf-cookie`, {
     withCredentials: true,
   });
 
-  const token = getCsrfToken();
-  if (token) {
-    axios.defaults.headers.common['X-XSRF-TOKEN'] = token;
-  }
-
-  return axios.post(`${import.meta.env.VITE_LARAVEL_ORIGIN}/login`, {
+  return axios.post(`${apiRoot}/login`, {
     email,
     password,
   }, {
