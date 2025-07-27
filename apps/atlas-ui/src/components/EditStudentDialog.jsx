@@ -42,6 +42,13 @@ export default function EditStudentDialog({ open, onClose, onSave, student }) {
           value={form.email}
           onChange={(e) => setForm({ ...form, email: e.target.value })}
         />
+        <TextField
+          fullWidth
+          label="卒業年度"
+          margin="dense"
+          value={form.graduation_year}
+          onChange={(e) => setForm({ ...form, graduation_year: e.target.value })}
+        />
       </DialogContent>
       <DialogActions>
         <Button onClick={onClose}>キャンセル</Button>
