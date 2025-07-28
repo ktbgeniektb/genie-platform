@@ -7,10 +7,12 @@ import LinearProgress from "@mui/material/LinearProgress";
 import Button from '@mui/material/Button';
 import Snackbar from '@mui/material/Snackbar';
 import '../styles/style.scss';
+import { useNavigate } from 'react-router-dom';
 
 const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
 
 const DiagnosisPage = () => {
+  const navigate = useNavigate();
   const location = useLocation();
   const query = new URLSearchParams(location.search);
   const name = query.get("name") || "匿名";
@@ -82,6 +84,7 @@ const handleSubmit = async () => {
       score: result.score,
     }),
   });
+  navigate(`/result?id=${data.id}`);
 
     await response.json();
     setSnackbarMessage("診断結果を保存しました！");

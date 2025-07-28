@@ -7,7 +7,7 @@ return [
     'allowed_methods'  => ['*'],
 
     'allowed_origins' => [
-        'http://localhost:3000', // ←ローカルで動作確認時
+        'http://localhost:5173', // ←ローカルで動作確認時
         'https://ktbgenie.sakura.ne.jp', // ←本番用
     ],
 

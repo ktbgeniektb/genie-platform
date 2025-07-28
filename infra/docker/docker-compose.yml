@@ -40,6 +40,13 @@ services:
     working_dir: /var/www/html
     depends_on:
       - mysql
+    environment:
+      DB_CONNECTION: mysql
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_DATABASE: lamp_db
+      DB_USERNAME: lamp_user
+      DB_PASSWORD: password
 
   lamp-ui:
     build:
@@ -58,7 +65,7 @@ services:
     image: nginx:stable
     container_name: genie-platform-nginx
     ports:
-      - "8080:80"
+      - "8000:80"
     volumes:
       - ../../apps/lamp/public:/var/www/html/public
       - ../../apps/lamp-ui/build:/usr/share/nginx/html
@@ -74,10 +81,13 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: genie
+      MYSQL_USER: genie-platform_user
+      MYSQL_PASSWORD: password
     ports:
       - "3307:3306"
     volumes:
       - mysql_data:/var/lib/mysql
+      - ./mysql/initdb.d:/docker-entrypoint-initdb.d
 
   phpmyadmin:
     image: ${PMA_IMAGE}
