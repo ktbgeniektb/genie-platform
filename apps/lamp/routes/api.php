@@ -9,3 +9,4 @@ use App\Http\Controllers\DiagnosisController;
 // });
 
 Route::post('/diagnosis', [DiagnosisController::class, 'store']);
+Route::get('/diagnosis-results/{id}', [DiagnosisController::class, 'show']);

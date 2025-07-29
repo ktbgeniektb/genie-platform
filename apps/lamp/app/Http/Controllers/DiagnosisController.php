@@ -26,4 +26,10 @@ class DiagnosisController extends Controller
 
     }
 
+    public function show($id)
+    {
+        $result = DiagnosisResult::findOrFail($id);
+        return response()->json($result);
+    }
+
 }

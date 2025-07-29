@@ -84,7 +84,8 @@ const handleSubmit = async () => {
       score: result.score,
     }),
   });
-  navigate(`/result?id=${data.id}`);
+  const data = await response.json();
+  navigate(`/result/${data.id}`);
 
     await response.json();
     setSnackbarMessage("診断結果を保存しました！");

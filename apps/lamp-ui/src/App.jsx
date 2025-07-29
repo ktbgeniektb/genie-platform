@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NameInputPage from "./pages/NameInputPage";
 import DiagnosisPage from "./pages/DiagnosisPage";
+import ResultPage from "./pages/ResultPage";
 
 const basename = import.meta.env.VITE_ROUTER_BASENAME || '/';
 
@@ -10,6 +11,7 @@ function App() {
       <Routes>
         <Route path="/" element={<NameInputPage />} />
         <Route path="/diagnosis" element={<DiagnosisPage />} />
+        <Route path="/result/:id" element={<ResultPage />} />
       </Routes>
     </BrowserRouter>
   );
