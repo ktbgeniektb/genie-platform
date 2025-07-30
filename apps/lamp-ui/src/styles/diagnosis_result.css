@@ -504,4 +504,25 @@ body {
         .result-section ul {
             padding-left: 1rem;
         }
+                .nav-buttons {
+                    display: flex;
+                    justify-content: center;
+                    gap: 1rem;
+                    margin-top: 1.5rem;
+                }
+        
+                .nav-buttons button {
+                    padding: 0.7rem 1.5rem;
+                    font-size: 1rem;
+                    border: none;
+                    background-color: #333;
+                    color: white;
+                    border-radius: 6px;
+                    cursor: pointer;
+                    transition: background 0.2s;
+                }
+        
+                .nav-buttons button:hover {
+                    background-color: #555;
+                }
     }
