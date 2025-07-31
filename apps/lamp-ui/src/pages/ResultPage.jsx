@@ -86,12 +86,12 @@ const ResultPage = () => {
             <div className="main-type-wrapper">
             <h2>
               あなたの「ビジョンの源泉」は<br></br>
-              <span style={{ color: typeColors[top1], fontWeight: "bold" }}>
-                {typeLabels[top1]}
+              <span style={{ color: typeColors[rawTop1], fontWeight: "bold" }}>
+                {typeLabels[rawTop1]}
               </span>{" "}
               ×{" "}
-              <span style={{ color: typeColors[top2], fontWeight: "bold" }}>
-                {typeLabels[top2]}
+              <span style={{ color: typeColors[rawTop2], fontWeight: "bold" }}>
+                {typeLabels[rawTop2]}
               </span>
             </h2>
             </div>
@@ -146,7 +146,7 @@ const ResultPage = () => {
       <section className="result-section">
         {ranking ? (
           <p>
-            あなたのタイプ「{typeLabels[top1]} × {typeLabels[top2]}」は
+            あなたのタイプ「{typeLabels[rawTop1]} × {typeLabels[rawTop2]}」は
             <strong> {ranking.rank}位 / 全{ranking.total}タイプ</strong> 中でした！
           </p>
         ) : (
