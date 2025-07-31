@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useLocation } from "react-router-dom";
 import { templates } from "../templates/template";
 import RadarChartComponent from "../components/RadarChartComponent";
 import SNSShareComponent from "../components/SNSShareComponent";
@@ -9,51 +9,68 @@ import axios from "axios";
 
 const ResultPage = () => {
   const { id } = useParams();
+  const location = useLocation();
   const [result, setResult] = useState(null);
+  const [template, setTemplate] = useState(null);
   const [ranking, setRanking] = useState(null);
 
-useEffect(() => {
-  if (!result?.top_type) return;
-  console.log("🎯 top_type:", result.top_type);
-  axios
-    .get(`${import.meta.env.VITE_API_BASE_URL}/ranking/${result.top_type}`)
-    .then((res) => {
-      console.log("✅ ランキング取得成功", res.data);
-      setRanking(res.data);
-    })
-    .catch((err) => console.error("❌ ランキング取得エラー", err));
-}, [result?.top_type]);
+  // ① クエリ取得
+  const queryParams = new URLSearchParams(location.search);
+  const top1 = queryParams.get("top1");
+  const top2 = queryParams.get("top2");
 
+  // ② 通常のIDありの診断取得
+  useEffect(() => {
+    if (!id) return;
 
-useEffect(() => {
-  if (!id) return;
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/diagnosis-results/${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        const normalizedScore = {
+          kyomei: (data.score.kyomei / 65.5) * 100,
+          hyougen: (data.score.hyougen / 65.5) * 100,
+          tankyu: (data.score.tankyu / 65.5) * 100,
+          chosen: (data.score.chosen / 65.5) * 100,
+          taiken: (data.score.taiken / 65.5) * 100,
+        };
+        setResult({ ...data, normalizedScore });
+        const tmpl = templates.find((t) => t.main === data.top_type);
+        setTemplate(tmpl);
+      })
+      .catch((err) => console.error("診断結果取得エラー", err));
+  }, [id]);
 
-  fetch(`${import.meta.env.VITE_API_BASE_URL}/diagnosis-results/${id}`)
-    .then((res) => res.json())
-    .then((data) => {
-      console.log("取得データ", data);
-      const normalizedScore = {
-        kyomei: (data.score.kyomei / 65.5) * 100,
-        hyougen: (data.score.hyougen / 65.5) * 100,
-        tankyu: (data.score.tankyu / 65.5) * 100,
-        chosen: (data.score.chosen / 65.5) * 100,
-        taiken: (data.score.taiken / 65.5) * 100,
-      };
-      setResult({ ...data, normalizedScore }); // ← ここがポイント
-    })
-    .catch((err) => console.error("診断結果取得エラー", err));
-}, [id]);
+  // ③ top1/top2指定時（URLクエリパラメータ）
+  useEffect(() => {
+    if (id || !top1 || !top2) return;
 
-  // 👇 resultが取得できてからtemplateを探す！
-  const template = result
-    ? templates.find((t) => t.main === result.top_type)
-    : null;
+    const key = `${top1}_${top2}`;
+    const tmpl = templates.find((t) => t.main === key);
+    if (tmpl) {
+      setResult({
+        top_type: key,
+        normalizedScore: null, // チャート無しでよければnullのまま
+      });
+      setTemplate(tmpl);
+    }
+  }, [id, top1, top2]);
 
+  // ④ ランキング取得
+  useEffect(() => {
+    if (!result?.top_type) return;
+    axios
+      .get(`${import.meta.env.VITE_API_BASE_URL}/ranking/${result.top_type}`)
+      .then((res) => setRanking(res.data))
+      .catch((err) => console.error("❌ ランキング取得エラー", err));
+  }, [result?.top_type]);
+
+  // ⑤ 表示処理
   if (!result || !template) {
     return <div>診断結果を読み込み中...</div>;
   }
 
-  const [top1, top2] = result.top_type.split("_");
+  const [main1, main2] = result.top_type.split("_");
+  
   return (
     <div className="result-page">
       <section className="result-header">

@@ -14,6 +14,7 @@ function App() {
         <Route path="/diagnosis" element={<DiagnosisPage />} />
         <Route path="/result/:id" element={<ResultPage />} />
         <Route path="/types" element={<TypeListPage />} />
+        <Route path="/result" element={<ResultPage />} />
       </Routes>
     </BrowserRouter>
   );
