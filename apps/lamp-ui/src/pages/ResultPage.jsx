@@ -70,12 +70,15 @@ const ResultPage = () => {
   }
 
   const [main1, main2] = result.top_type.split("_");
+
+  const rawTop1 = top1 || main1;
+  const rawTop2 = top2 || main2;
   
   return (
     <div className="result-page">
       <section className="result-header">
         <div className="header-image-container">
-        <img src={`${import.meta.env.VITE_ROUTER_BASENAME}/img/results/${top1}_${top2}.jpg`} />       
+        <img src={`${import.meta.env.BASE_URL}images/results/${rawTop1}_${rawTop2}.jpg`} />
           <div className="result-overlay-text">
             <div className="catch-copy">
               <p dangerouslySetInnerHTML={{ __html: template.catch }} />
