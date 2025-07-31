@@ -75,10 +75,7 @@ const ResultPage = () => {
     <div className="result-page">
       <section className="result-header">
         <div className="header-image-container">
-          <img
-            src={`../../img/results/${result.top_type}.jpg`}
-            alt="診断結果画像"
-          />
+        <img src={`${import.meta.env.VITE_ROUTER_BASENAME}/img/results/${top1}_${top2}.jpg`} />       
           <div className="result-overlay-text">
             <div className="catch-copy">
               <p dangerouslySetInnerHTML={{ __html: template.catch }} />

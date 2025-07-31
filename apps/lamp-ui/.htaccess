@@ -1,9 +1,8 @@
-# .htaccess
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /gs/genie-platform/apps/lamp-ui/
-  RewriteRule ^$ dist/index.html [L]
+  RewriteRule ^index\.html$ - [L]
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule ^(.*)$ dist/$1 [L]
+  RewriteRule . /gs/genie-platform/apps/lamp-ui/index.html [L]
 </IfModule>
