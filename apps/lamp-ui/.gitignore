@@ -12,6 +12,7 @@
 
 # production
 /build
+/public/build
 /dist
 
 # misc
