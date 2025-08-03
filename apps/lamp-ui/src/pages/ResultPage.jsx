@@ -6,6 +6,7 @@ import SNSShareComponent from "../components/SNSShareComponent";
 import "./../styles/diagnosis_result.css";
 import { typeLabels, typeColors } from "../constants/typeInfo";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const ResultPage = () => {
   const { id } = useParams();
@@ -13,6 +14,7 @@ const ResultPage = () => {
   const [result, setResult] = useState(null);
   const [template, setTemplate] = useState(null);
   const [ranking, setRanking] = useState(null);
+  const navigate = useNavigate();
 
   // ① クエリ取得
   const queryParams = new URLSearchParams(location.search);
@@ -26,12 +28,13 @@ const ResultPage = () => {
     fetch(`${import.meta.env.VITE_API_BASE_URL}/diagnosis-results/${id}`)
       .then((res) => res.json())
       .then((data) => {
+        const normalize = (val) => Math.round((Number(val) / 65.5) * 100); // ← ここで整数化
         const normalizedScore = {
-          kyomei: (data.score.kyomei / 65.5) * 100,
-          hyougen: (data.score.hyougen / 65.5) * 100,
-          tankyu: (data.score.tankyu / 65.5) * 100,
-          chosen: (data.score.chosen / 65.5) * 100,
-          taiken: (data.score.taiken / 65.5) * 100,
+          kyomei: normalize(data.score.kyomei),
+          hyougen: normalize(data.score.hyougen),
+          tankyu: normalize(data.score.tankyu),
+          chosen: normalize(data.score.chosen),
+          taiken: normalize(data.score.taiken),
         };
         setResult({ ...data, normalizedScore });
         const tmpl = templates.find((t) => t.main === data.top_type);
@@ -161,7 +164,7 @@ const ResultPage = () => {
       <section className="result-section">
         <h2>🔁 もう1度診断してみる？</h2>
         <div className="nav-buttons">
-          <button onClick={() => window.location.href = "/diagnosis"}>🔁 診断に戻る</button>
+          <button onClick={() => navigate("/diagnosis")}>🔁 診断に戻る</button>
         </div>
       </section>
     </div>

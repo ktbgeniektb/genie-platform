@@ -1,8 +1,6 @@
-// src/components/SNSShareComponent.jsx
-import React from "react";
-
 const SNSShareComponent = ({ id, topType }) => {
-  const shareUrl = `${window.location.origin}/result/${id}`;
+  const basePath = '/gs/genie-platform/apps/lamp-ui';
+  const shareUrl = `${window.location.origin}${basePath}/result/${id}`;
   const text = `私の診断タイプは「${topType}」でした！ #Lamp診断`;
 
   const openPopup = (url) => {
