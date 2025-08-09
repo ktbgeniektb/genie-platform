@@ -164,7 +164,7 @@ const ResultPage = () => {
       <section className="result-section">
         <h2>🔁 もう1度診断してみる？</h2>
         <div className="nav-buttons">
-          <button onClick={() => navigate("/diagnosis")}>🔁 診断に戻る</button>
+          <button onClick={() => navigate("/")}>🔁 診断に戻る</button>
         </div>
       </section>
     </div>
