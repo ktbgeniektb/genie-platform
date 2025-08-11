@@ -1,9 +1,10 @@
 export default function WhoSection() {
   return (
     <div>
-<section className="relative h-screen py-20 text-yellow-100 bg-gradient-to-b from-indigo-950 to-violet-900">
+        <section className="relative py-20 text-yellow-100 bg-gradient-to-b from-indigo-950 to-blue-900">
+
           {/* セクション上端の金ライン */}
-      <span className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-[#F6E05E] to-transparent opacity-70" />
+        <span className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-[#F6E05E] to-transparent" />
 
         {/* 上端の金ライン（セクション区切り） */}
         <div className="max-w-3xl mx-auto px-6">
