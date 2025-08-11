@@ -1,0 +1,33 @@
+{
+  "index.html": {
+    "file": "assets/index-CTpeRTvi.js",
+    "name": "index",
+    "src": "index.html",
+    "isEntry": true,
+    "css": [
+      "assets/index-C7FZw5Ah.css"
+    ],
+    "assets": [
+      "assets/layer1-_kNgy2rH.jpg",
+      "assets/layer2-BbriRfXI.jpg",
+      "assets/layer3-D5UzRZHx.jpg",
+      "assets/layer4-sK_AMt2K.jpg"
+    ]
+  },
+  "src/assets/images/layer1.jpg": {
+    "file": "assets/layer1-_kNgy2rH.jpg",
+    "src": "src/assets/images/layer1.jpg"
+  },
+  "src/assets/images/layer2.jpg": {
+    "file": "assets/layer2-BbriRfXI.jpg",
+    "src": "src/assets/images/layer2.jpg"
+  },
+  "src/assets/images/layer3.jpg": {
+    "file": "assets/layer3-D5UzRZHx.jpg",
+    "src": "src/assets/images/layer3.jpg"
+  },
+  "src/assets/images/layer4.jpg": {
+    "file": "assets/layer4-sK_AMt2K.jpg",
+    "src": "src/assets/images/layer4.jpg"
+  }
+}

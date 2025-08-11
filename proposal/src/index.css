@@ -9,12 +9,6 @@
   font-weight: normal;
   font-style: normal;
 }
-@font-face {
-  font-family: 'Aladdin';
-  src: url('/font/aladdin.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
 
 @font-face {
   font-family: 'Kiwi Maru';

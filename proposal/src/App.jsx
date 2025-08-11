@@ -3,13 +3,14 @@ import './index.css';
 
 // 各セクションのコンポーネントをインポート
 import Hero from "./components/Hero";
-// import WhoSection from "./components/WhoSection";
-// import WhatSection from "./components/WhatSection";
+import WhoSection from "./components/WhoSection";
+import WhatSection from "./components/WhatSection";
 // import WhySection from "./components/WhySection";
 // import HowSection from "./components/HowSection";
 // import FeaturesSection from "./components/FeaturesSection";
 // import CtaSection from "./components/CtaSection";
 // import Footer from "./components/Footer";
+import SelfIntroduction from "./components/SelfIntroduction";
 
 function App() {
   return (
@@ -18,15 +19,9 @@ function App() {
       <Hero />
 
       {/* 背景セクション */}
-      {/* <section id="who" className="py-16 bg-gray-50">
         <WhoSection />
-      </section>
-
-      <section id="what" className="py-16">
         <WhatSection />
-      </section>
-
-      <section id="why" className="py-16 bg-gray-50">
+      {/*<section id="why" className="py-16 bg-gray-50">
         <WhySection />
       </section>
 
@@ -43,6 +38,9 @@ function App() {
       {/* <section id="cta" className="py-20 bg-gradient-to-b from-blue-100 to-white">
         <CtaSection />
       </section> */}
+
+      {/* 開発者紹介セクション */}
+        <SelfIntroduction />
 
       {/* フッター */}
       {/* <Footer /> */}
