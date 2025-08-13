@@ -19,8 +19,7 @@ export default function WhatSection() {
     <TabGroup>
     {/* ← ラッパーで上下の余白を固定 */}
     <div className="space-y-0">
-        <TabList className="sticky top-0 z-20 -mx-4 px-4 py-3 bg-[#0b0f24]/70 backdrop-blur ring-1 ring-white/10 rounded-xl md:mx-0
-                            mb-0"> {/* ← mb-0 明示（後述の space-y が効く） */}
+        <TabList className="sticky top-0 z-20 -mx-4 px-4 py-3 bg-[#0b0f24]/70 backdrop-blur ring-1 ring-white/10 rounded-xl md:mx-0 mb-0"> {/* ← mb-0 明示（後述の space-y が効く） */}
         <div className="flex w-full justify-between gap-3">
             {['Lamp', 'Atlas', 'Carpet'].map((t) => (
             <Tab

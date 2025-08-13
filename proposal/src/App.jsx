@@ -4,7 +4,6 @@ import './index.css';
 // 各セクションのコンポーネントをインポート
 import Hero from "./components/Hero";
 import Background from "./components/Background";
-// import WhySection from "./components/WhySection";
 // import HowSection from "./components/HowSection";
 // import FeaturesSection from "./components/FeaturesSection";
 // import CtaSection from "./components/CtaSection";
