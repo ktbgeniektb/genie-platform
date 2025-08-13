@@ -2,11 +2,13 @@ import { Disclosure, DisclosureButton, DisclosurePanel, Transition } from "@head
 import { ChevronUpIcon } from "@heroicons/react/24/solid";
 import '../index.css';
 
+const base = import.meta.env.BASE_URL;
+
 const whyMeItems = [
   {
     title: "Lamp：自己理解支援ツール",
     color: "bg-yellow-500",
-    panelImg: "/img/lamp.jpg",
+        panelImg: `${base}img/lamp.jpg`,
     content: (
       <>
       <p>私は15年間ダンスを学び続けてきました。<br />
@@ -35,7 +37,7 @@ const whyMeItems = [
   {
     title: "Atlas：企業向け採用支援システム",
     color: "bg-blue-500",
-    panelImg: "/img/atlas.jpg",
+    panelImg: `${base}img/atlas.jpg`,
     content: (<>
     <p>私は、小さい頃からデータを見るのが好きでした。<br />
 数字という手段によって、人の思いや行動のパターンが見えてくること、そしてそれは、<span className="font-bold">自分の「好きの本質」</span>である<span className="font-bold">「人の心が動く瞬間」を可視化したもの</span>であるということを、本能的に理解していたのだと思います。<br />
@@ -66,7 +68,7 @@ USJでは、主要アトラクションの平日・休日の待ち時間をグ�
   {
     title: "Carpet：教育現場支援システム",
     color: "bg-purple-500",
-    panelImg: "/img/carpet.jpg",
+    panelImg: `${base}img/carpet.jpg`,
     content: (<>
     <p>私は小学生の頃、一時期「教員になりたい」と考えていました。<br />
 担任の先生方に恵まれ、最高に楽しいと思える小学校生活を送っていたからです。<br />

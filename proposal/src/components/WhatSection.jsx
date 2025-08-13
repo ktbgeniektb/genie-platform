@@ -5,8 +5,8 @@ export default function WhatSection() {
   return (
       <section
         className="bg-cover bg-center flex flex-col justify-center items-center text-center text-yellow-300 font-rounded px-4 py-24"
-        style={{ backgroundImage: "url('/img/genie_lp_about.jpg')" }}
-      >
+        style={{ backgroundImage: `url(${import.meta.env.BASE_URL}img/genie_lp_about.jpg)` }} // ← 修正
+    >
   {/* ▼ コンテンツ */}
   <div className="relative z-10 max-w-5xl mx-auto px-4">
         <h2 className="text-center font-aladdin text-5xl md:text-6xl text-[#F6E05E] drop-shadow mb-8">What</h2>

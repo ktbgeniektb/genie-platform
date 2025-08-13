@@ -3,7 +3,7 @@ export default function Hero() {
     <div>
       <section
         className="h-screen bg-cover bg-center flex flex-col justify-center items-center text-center text-yellow-300 px-4"
-        style={{ backgroundImage: "url('/img/genie_lp_bg.jpg')" }}
+        style={{ backgroundImage: `url(${import.meta.env.BASE_URL}img/genie_lp_bg.jpg)` }}
       >
           <h1 className="text-3xl md:text-5xl font-bold font-rounded drop-shadow-md">
             キャリア教育プラットフォーム<br /><br />
@@ -14,7 +14,7 @@ export default function Hero() {
       </section>
       <section
         className="bg-cover bg-center flex flex-col justify-center items-center text-center text-yellow-300 font-rounded px-4 py-24"
-        style={{ backgroundImage: "url('/img/star.jpg')" }}
+        style={{ backgroundImage: `url(${import.meta.env.BASE_URL}img/star.jpg)` }}
       >
         <div className="space-y-6 text-yellow-300">
           <h1 className="text-7xl font-aladdin">About</h1><br /><br />
