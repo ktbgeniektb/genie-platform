@@ -4,7 +4,7 @@ import '../index.css';
 
 const whyMeItems = [
   {
-    title: "🟢 Lamp：自己理解支援ツール",
+    title: "Lamp：自己理解支援ツール",
     color: "bg-yellow-500",
     panelImg: "/img/lamp.jpg",
     content: (
@@ -33,7 +33,7 @@ const whyMeItems = [
     )
   },
   {
-    title: "🔵 Atlas：企業向け採用支援システム",
+    title: "Atlas：企業向け採用支援システム",
     color: "bg-blue-500",
     panelImg: "/img/atlas.jpg",
     content: (<>
@@ -64,7 +64,7 @@ USJでは、主要アトラクションの平日・休日の待ち時間をグ�
     </>)
   },
   {
-    title: "🟣 Carpet：教育現場支援システム",
+    title: "Carpet：教育現場支援システム",
     color: "bg-purple-500",
     panelImg: "/img/carpet.jpg",
     content: (<>

@@ -4,7 +4,7 @@ import './index.css';
 // 各セクションのコンポーネントをインポート
 import Hero from "./components/Hero";
 import Background from "./components/Background";
-// import HowSection from "./components/HowSection";
+import HowSection from "./components/HowSection";
 // import FeaturesSection from "./components/FeaturesSection";
 // import CtaSection from "./components/CtaSection";
 // import Footer from "./components/Footer";
@@ -18,13 +18,8 @@ function App() {
 
       {/* 背景セクション */}
         <Background />
-      {/*<section id="why" className="py-16 bg-gray-50">
-        <WhySection />
-      </section>
 
-      <section id="how" className="py-16">
         <HowSection />
-      </section>
 
       {/* 特徴セクション */}
       {/* <section id="features" className="py-20 bg-blue-50">
