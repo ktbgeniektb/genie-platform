@@ -12,6 +12,10 @@ export default function Hero() {
             </span>
           </h1>
       </section>
+      <div className="relative">
+        {/* 金の線 */}
+        <span className="pointer-events-none absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-[#F6E05E] to-transparent opacity-80" />
+      </div>
       <section
         className="bg-cover bg-center flex flex-col justify-center items-center text-center text-yellow-300 font-rounded px-4 py-24"
         style={{ backgroundImage: `url(${import.meta.env.BASE_URL}img/star.jpg)` }}

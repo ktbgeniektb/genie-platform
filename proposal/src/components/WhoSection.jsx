@@ -3,7 +3,6 @@ export default function WhoSection({ onPick }) {
     <section className="relative py-20 text-yellow-100 bg-gradient-to-b from-black via-indigo-950 to-blue-950">
       {/* 上端の金ライン */}
       <span className="pointer-events-none absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-[#F6E05E] to-transparent opacity-80" />
-
       <div className="max-w-5xl mx-auto px-6">
         {/* 見出し */}
         <h2 className="text-center font-aladdin text-5xl md:text-6xl text-[#F6E05E] drop-shadow mb-4">

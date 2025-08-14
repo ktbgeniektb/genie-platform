@@ -20,31 +20,26 @@ const FrostedCard = styled(Card)(() => ({
 
 const ITEMS = [
   {
-    icon: "🧱",
     title: "Laravel",
     caption: "APIサーバー / 認証 / 集計",
     bullets: ["Sanctum/Passport で認証標準化", "バリデーション・ジョブで堅牢運用"]
   },
   {
-    icon: "⚛️",
     title: "React / Next.js",
     caption: "診断UI / 管理画面 / SPA",
     bullets: ["CSRで体験速度優先", "LP/SEOはNextのISRで最適化"]
   },
   {
-    icon: "🐳",
     title: "Docker",
     caption: "開発=本番の再現性",
     bullets: ["compose up で即環境", ".env分離で設定管理"]
   },
   {
-    icon: "🗄️",
     title: "MySQL",
     caption: "保存 / 検索最適化",
     bullets: ["卒年・イベント・タイプで複合索引", "定期バックアップ+復旧手順"]
   },
   {
-    icon: "🔗",
     title: "API連携",
     caption: "予約システム / LINEログイン",
     bullets: ["アダプタ層でベンダー差吸収", "Webhookで自動集計へ接続"]
@@ -110,15 +105,9 @@ export default function TechStackSection() {
 
       <Box sx={{ maxWidth: 1200, mx: "auto", px: { xs: 2, md: 4 } }}>
         <Stack spacing={1} sx={{ mb: 3 }}>
-          <Typography variant="overline" sx={{ color: "rgba(255,255,255,0.7)" }}>
-            想定使用技術
-          </Typography>
-          <Typography variant="h5" fontWeight={900} sx={{ color: "#F6E05E" }}>
-            実運用を見据えた “再現性 × 拡張性” の構成
-          </Typography>
-          <Typography variant="body2" sx={{ color: "rgba(255,255,255,0.8)" }}>
-            API主導で段階的に拡張。既存オペを崩さず連携し、開発=本番の再現性を担保します。
-          </Typography>
+          <h2 className="text-center font-aladdin text-5xl md:text-6xl text-[#F6E05E] drop-shadow py-16">
+            Technology selection
+          </h2>
         </Stack>
 
         {/* 3＋2のグリッド：xs=1列, sm=2列, md=3列 */}

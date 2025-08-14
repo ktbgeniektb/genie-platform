@@ -106,6 +106,7 @@ export default function HowSection() {
   ];
 
   return (
+    <div>
     <Box
       component="section"
       sx={{
@@ -126,6 +127,9 @@ export default function HowSection() {
           pointerEvents: "none"
         }}
       />
+      <h2 className="text-center font-aladdin text-5xl md:text-6xl text-[#F6E05E] drop-shadow mb-4">
+        How
+      </h2>
       <Box sx={{ maxWidth: 1200, mx: "auto", px: { xs: 2, md: 4 } }}>
         <Box
           sx={{
@@ -140,5 +144,6 @@ export default function HowSection() {
         </Box>
       </Box>
     </Box>
+    </div>
   );
 }

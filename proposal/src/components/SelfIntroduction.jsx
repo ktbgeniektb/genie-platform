@@ -1,7 +1,11 @@
 export default function SelfIntroduction() {
     return (
         <div>
-            <section className="bg-[#1a1a40] py-16 px-6 text-center text-gray-100">
+            <div className="relative">
+                {/* 金の線 */}
+                <span className="pointer-events-none absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-[#F6E05E] to-transparent opacity-80" />
+            </div>
+                  <section className="bg-[#1a1a40] py-16 px-6 text-center text-gray-100">
                 <h2 className="text-2xl md:text-3xl font-bold mb-4 text-[#F6E05E]">開発者紹介</h2>
                 <div className="max-w-4xl mx-auto space-y-4 text-lg leading-relaxed">
                     <p>はじめまして、水野 敬太です。</p>

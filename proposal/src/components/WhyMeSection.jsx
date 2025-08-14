@@ -99,73 +99,75 @@ USJでは、主要アトラクションの平日・休日の待ち時間をグ�
 export default function WhyMeAccordion() {
   return (
     <div>
-<section className="relative px-4 py-20
-  bg-[#0b1020] 
-  [background-image:radial-gradient(60%_40%_at_50%_0%,rgba(246,224,94,0.10),transparent_60%)]
-  ">
-  {/* 極薄ノイズ */}
-  <div className="pointer-events-none absolute inset-0 opacity-[0.06] mix-blend-overlay"
-       style={{backgroundImage:
-        `url("data:image/svg+xml;utf8,`+
-        encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.35'/></svg>`)
-        +`")`}} />
-  <div className="relative max-w-5xl mx-auto">
-      <h2 className="text-center font-aladdin text-5xl md:text-6xl text-[#F6E05E] drop-shadow py-16">
-        Why me
-      </h2>
+    <section
+      className="relative px-4 py-20 bg-[#0b1020]
+                [background-image:radial-gradient(60%_40%_at_50%_0%,rgba(246,224,94,0.10),transparent_60%)]">
+      {/* 金の線 */}
+      <span className="pointer-events-none absolute left-0 right-0 top-0 block h-[2px]
+                      bg-gradient-to-r from-transparent via-[#F6E05E] to-transparent opacity-80 z-20" />
 
-      {whyMeItems.map((item, index) => (
-        <Disclosure key={index}>
-          {({ open }) => (
-            <div className="overflow-hidden rounded-xl ring-1 ring-white/10">
-            <DisclosureButton
-              className={`flex items-center justify-between w-full px-4 py-3 text-base md:text-lg font-semibold focus:outline-none transition
-                ${open
-                  ? "bg-yellow-500 text-black shadow-[0_0_40px_rgba(234,179,8,0.25)]"
-                  : "border border-yellow-400/50 text-yellow-200 hover:bg-yellow-500/10"
-                }`}
-            >
-              <span className="drop-shadow">{item.title}</span>
-              <ChevronUpIcon
-                className={`w-5 h-5 transition-transform ${open ? "rotate-180" : ""}`}
-              />
-              </DisclosureButton>
+      {/* 極薄ノイズ */}
+      <div className="pointer-events-none absolute inset-0 opacity-[0.06] mix-blend-overlay"
+          style={{ backgroundImage: `url("data:image/svg+xml;utf8,${encodeURIComponent(
+            `<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.35'/></svg>`
+          )}")` }} />
+        <div className="relative max-w-5xl mx-auto">
+            <h2 className="text-center font-aladdin text-5xl md:text-6xl text-[#F6E05E] drop-shadow py-16">
+              Why me
+            </h2>
 
-              <Transition
-                show={open}
-                enter="transition duration-200 ease-out"
-                enterFrom="opacity-0 -translate-y-1"
-                enterTo="opacity-100 translate-y-0"
-                leave="transition duration-150 ease-in"
-                leaveFrom="opacity-100 translate-y-0"
-                leaveTo="opacity-0 -translate-y-1"
-              >
-                <div
-                  className="relative bg-cover bg-center"
-                  /* 画像はそのまま。上に薄い黒グラデーションを敷いて文字を読みやすく。 */
-                  style={{
-                    backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,.25), rgba(0,0,0,.35)), url(${item.panelImg})`,
-                  }}
-                >
-                  {/* 内側ボックスでさらに可読性UP */}
-                  <div className="px-4 pt-4 pb-5">
-                    <div className="max-w-5xl mx-auto text-rounded md:max-w-4xl bg-black/20 backdrop-blur-[2px] rounded-lg px-4 py-12">
-                      <div className="whitespace-pre-line leading-relaxed md:leading-loose text-xl text-rounded text-sm md:text-base text-yellow-200 drop-shadow">
-                        {item.content}
+            {whyMeItems.map((item, index) => (
+              <Disclosure key={index}>
+                {({ open }) => (
+                  <div className="overflow-hidden rounded-xl ring-1 ring-white/10">
+                  <DisclosureButton
+                    className={`flex items-center justify-between w-full px-4 py-3 text-base md:text-lg font-semibold focus:outline-none transition
+                      ${open
+                        ? "bg-yellow-500 text-black shadow-[0_0_40px_rgba(234,179,8,0.25)]"
+                        : "border border-yellow-400/50 text-yellow-200 hover:bg-yellow-500/10"
+                      }`}
+                  >
+                    <span className="drop-shadow">{item.title}</span>
+                    <ChevronUpIcon
+                      className={`w-5 h-5 transition-transform ${open ? "rotate-180" : ""}`}
+                    />
+                    </DisclosureButton>
+
+                    <Transition
+                      show={open}
+                      enter="transition duration-200 ease-out"
+                      enterFrom="opacity-0 -translate-y-1"
+                      enterTo="opacity-100 translate-y-0"
+                      leave="transition duration-150 ease-in"
+                      leaveFrom="opacity-100 translate-y-0"
+                      leaveTo="opacity-0 -translate-y-1"
+                    >
+                      <div
+                        className="relative bg-cover bg-center"
+                        /* 画像はそのまま。上に薄い黒グラデーションを敷いて文字を読みやすく。 */
+                        style={{
+                          backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,.25), rgba(0,0,0,.35)), url(${item.panelImg})`,
+                        }}
+                      >
+                        {/* 内側ボックスでさらに可読性UP */}
+                        <div className="px-4 pt-4 pb-5">
+                          <div className="max-w-5xl mx-auto text-rounded md:max-w-4xl bg-black/20 backdrop-blur-[2px] rounded-lg px-4 py-12">
+                            <div className="whitespace-pre-line leading-relaxed md:leading-loose text-xl text-rounded text-sm md:text-base text-yellow-200 drop-shadow">
+                              {item.content}
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                    </div>
+                    </Transition>
                   </div>
+                )}
+              </Disclosure>
+            ))}
                 </div>
-              </Transition>
-            </div>
-          )}
-        </Disclosure>
-      ))}
-          </div>
-          <div className="text-center text-lg md:text-xl leading-relaxed text-yellow-100/90 m-10">Lampで「好き」を見つけ、Carpetで「得意」を見つけ、Atlasで最大限活かせる「環境」を見つける。<br />
-          それが、私のやりたいキャリア教育支援です。
-          </div>
-      </section>
+                <div className="text-center text-lg md:text-xl leading-relaxed text-yellow-100/90 m-10">Lampで「好き」を見つけ、Carpetで「得意」を見つけ、Atlasで最大限活かせる「環境」を見つける。<br />
+                それが、私のやりたいキャリア教育支援です。
+                </div>
+            </section>
     </div>
   );
 }

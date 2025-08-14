@@ -3,12 +3,14 @@ import { TabGroup, TabList, Tab, TabPanels, TabPanel } from '@headlessui/react'
 export default function WhatSection() {
   const tabs = ['Lamp', 'Atlas', 'Carpet']
   return (
-      <section
-        className="bg-cover bg-center flex flex-col justify-center items-center text-center text-yellow-300 font-rounded px-4 py-24"
-        style={{ backgroundImage: `url(${import.meta.env.BASE_URL}img/genie_lp_about.jpg)` }} // ← 修正
+    <section
+    className="relative bg-cover bg-center flex flex-col justify-center items-center text-center text-yellow-300 font-rounded px-4 py-24"
+    style={{ backgroundImage: `url(${import.meta.env.BASE_URL}img/genie_lp_about.jpg)` }}
     >
-  {/* ▼ コンテンツ */}
-  <div className="relative z-10 max-w-5xl mx-auto px-4">
+    {/* 金の線 */}
+    <span className="pointer-events-none absolute left-0 right-0 top-0 block h-[3px] bg-gradient-to-r from-transparent via-[#F6E05E] to-transparent opacity-90" />
+    {/* ▼ コンテンツ */}
+    <div className="relative z-10 max-w-5xl mx-auto px-4">
         <h2 className="text-center font-aladdin text-5xl md:text-6xl text-[#F6E05E] drop-shadow mb-8">What</h2>
             <p className="text-center text-lg md:text-xl leading-relaxed text-yellow-100/90 mb-10">
             「“願い”をつなぐキャリア教育プラットフォーム」<br />
