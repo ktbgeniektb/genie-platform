@@ -165,7 +165,20 @@ export default function WhyMeAccordion() {
             ))}
                 </div>
                 <div className="text-center text-lg md:text-xl leading-relaxed text-yellow-100/90 m-10">Lampで「好き」を見つけ、Carpetで「得意」を見つけ、Atlasで最大限活かせる「環境」を見つける。<br />
-                それが、私のやりたいキャリア教育支援です。
+                それが、私のやりたいキャリア教育支援です。<br /><br /><br />
+
+                  <div className="max-w-5xl mx-auto rounded-2xl border border-white/10 bg-white/10 backdrop-blur p-6 space-y-4 text-center m-6">
+                  私は新規事業志望としてこのプロダクトを作成していこうと思っています。<br />
+                  私が<strong className="text-[#F6E05E]">新規事業</strong>を選んだのは、ただシステムをつくりたいからではありません。<br /><br /><br />
+
+                  - 会社が掲げる「個人ビジョン経営」を体現し、背中を示せる<br />
+                  - 採用に力を入れ、採用コンサルを行う土壌があるからこそ活かせる<br />
+                  - ベンチャーである今、エンジニアグループの成長がそのまま会社の成長に直結する<br />
+                  - 一人で案件を回すだけだったグループから「プラスを生み出すチーム」に進化させたい<br />
+
+                  そのすべてが重なった結果、起業や転職ではなく「新規事業」という形で、<br />
+                  Genie を育てていく道を選びました。
+                  </div>
                 </div>
             </section>
     </div>

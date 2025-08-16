@@ -24,13 +24,44 @@ export default function SelfIntroduction() {
                         この想いをテクノロジーで再現し、多くの人が自分の価値観や情熱に気づける環境を作るために、<br />
                         本プロジェクトを立ち上げました。<br /><br />
                     </p>
+
+                    <div className="mt-10 pt-8 border-t border-yellow-400/40">
+                    <h3 className="text-2xl md:text-3xl font-bold mb-4 text-[#F6E05E]">Genie の由来</h3>
+                    <p className="leading-relaxed space-y-4">
+                        <span>
+                        私にとって一番大きな目標は、
+                        <strong className="text-[#F6E05E]">「人の心を動かすこと」</strong>です。<br />
+                        その中で、最も人の心を動かすエンターテイナーは誰かと考えた時、
+                        それが<strong>ジーニー</strong>だと直感しました。<br /><br />
+                        </span>
+                        <span>
+                        彼がいれば、どんな場面でも人は笑顔になれるし、<br />
+                        どんな場面でも共感してくれる。<br />
+                        そんな存在を自分も目指したいと思ったのです。<br /><br />
+                        </span>
+                        <span>
+                        ただし、ジーニーは「夢を叶える」のが仕事ですが、<br />
+                        私は<strong className="text-[#F6E05E]">「夢を一緒に見つけ、叶えるための道をつくる」</strong>ことを、<br />
+                        このシステムと共に実現していきたいと思っています。
+                        </span>
+                        <span>
+                        将来的には、弊社の代表が構想している教育機関で、<br />
+                        エンジニア兼キャリアアドバイザー兼ダンス部顧問として、<br />
+                        学生と共に<strong>夢を創り、叶えるまで伴走できる存在</strong>を目指しています。<br /><br />
+                        </span>
+                    </p>
+                    </div>
+
+                    <div className="mt-10 pt-8 border-t border-yellow-400/40">
+                    </div>
+
                     <a href="http://ktbgenie.sakura.ne.jp/vision_sheet/visionsheet_20241011.pdf">
-                        ビジョンシートはこちら
+                        <strong>ビジョンシートはこちら</strong><br /><br />
                     </a>
 
                     {/* ここから追加部分 */}
                     <div className="mt-10 pt-8 border-t border-yellow-400/40">
-                        <h3 className="text-xl font-semibold mb-4 text-[#F6E05E]">一緒に動けたら嬉しいこと</h3>
+                        <h3 className="text-2xl md:text-3xl font-bold mb-4 text-[#F6E05E]">一緒に動けたら嬉しいこと</h3>
                         <p className="mb-4">
                             この企画で目指すゴールは、「Lampで見つけた“好き”を、<br />
                             Atlasで活かせる環境に結びつけるデモをGGAで実現する」ことです。<br />
@@ -42,7 +73,7 @@ export default function SelfIntroduction() {
                             <li>本番当日まで、ワクワクしながら伴走してくれる</li>
                         </ul>
                         <p className="mt-4">
-                            全力で取り組みますので、より良くするためのご意見やアドバイスをいただければ嬉しいです。
+                            GGA優勝を目指して全力で取り組みますので、<br />より良くするためのご意見やアドバイスをいただければ嬉しいです。
                         </p>
                     </div>
                 </div>

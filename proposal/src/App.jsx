@@ -20,14 +20,11 @@ function App() {
 
         <HowSection />
 
-      {/* 開発者紹介セクション */}
+      {/* 技術選定 */}
         <TechStackSection />
 
       {/* 開発者紹介セクション */}
         <SelfIntroduction />
-
-      {/* フッター */}
-      {/* <Footer /> */}
     </div>
   );
 }
