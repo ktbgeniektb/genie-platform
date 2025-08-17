@@ -23,13 +23,15 @@ services:
       context: ../../apps/atlas-ui
     container_name: genie-platform-atlas-ui
     ports:
-      - "3001:3000" # Reactアプリ用ポート
-    volumes:
-      - ../../apps/atlas-ui:/app
+      - "5173:5173"
     working_dir: /app
     environment:
       - CHOKIDAR_USEPOLLING=true
-    command: ["npm", "run", "dev"]
+    # ← 起動時に依存をクリーンインストールしてから dev 起動
+    command: sh -c "if [ -f package-lock.json ]; then npm ci; else npm install; fi && npm run dev -- --host --port 5173"
+    volumes:
+      - ../../apps/atlas-ui:/app # ソースはマウント
+      - /app/node_modules # ← ここが大事：ホスト側 node_modules を隠す（匿名ボリューム）
 
   lamp-app:
     build:
