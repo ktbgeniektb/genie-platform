@@ -21,7 +21,7 @@ export default function WhoSection({ onPick }) {
               <span className="font-semibold">就転職希望者</span>
             </div>
             <p className="text-yellow-100/90 text-sm md:text-base leading-relaxed">
-              「何が好きか／どうなりたいか」が言語化できず、意思決定が揺らぐ。
+              「自分が本当に大切にしたいこと」を言語化できず、結果として進路選択が揺らぎやすい。
             </p>
 
             {/* 任意：Whatのタブへ誘導したいときだけ onPick を渡す */}
@@ -41,10 +41,10 @@ export default function WhoSection({ onPick }) {
             <div className="flex items-center gap-2 text-[#F6E05E] mb-2">
               <span aria-hidden>✦</span>
               <span className="font-semibold">企業</span>
-            </div>
-            <p className="text-yellow-100/90 text-sm md:text-base leading-relaxed">
-              どんな学生とどんな未来を描くかが曖昧で、設計が属人化しやすい。
-            </p>
+              </div>
+              <p className="text-yellow-100/90 text-sm md:text-base leading-relaxed">
+                「どんな学生とどんな未来を描くか」が曖昧な採用で、データが分散しやすい。
+              </p>
 
             {onPick && (
               <button
