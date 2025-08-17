@@ -61,20 +61,22 @@ export default function SelfIntroduction() {
 
                     {/* ここから追加部分 */}
                     <div className="mt-10 pt-8 border-t border-yellow-400/40">
-                        <h3 className="text-2xl md:text-3xl font-bold mb-4 text-[#F6E05E]">一緒に動けたら嬉しいこと</h3>
-                        <p className="mb-4">
-                            この企画で目指すゴールは、「Lampで見つけた“好き”を、<br />
-                            Atlasで活かせる環境に結びつけるデモをGGAで実現する」ことです。<br />
-                            もしこんなスタンスで一緒に動いていただける方がいれば、とても心強いです。
-                        </p>
-                        <ul className="list-disc list-inside space-y-2 text-left max-w-xl mx-auto">
-                            <li>ゴールに向けて、面白がって試行錯誤できる</li>
-                            <li>新しい視点で「もっと良くなる」を一緒に考えられる</li>
-                            <li>本番当日まで、ワクワクしながら伴走してくれる</li>
-                        </ul>
-                        <p className="mt-4">
-                            GGA優勝を目指して全力で取り組みますので、<br />より良くするためのご意見やアドバイスをいただければ嬉しいです。
-                        </p>
+                    <h3 className="text-2xl md:text-3xl font-bold mb-4 text-[#F6E05E]">一緒に動けたら嬉しいこと</h3>
+                    <p className="mb-4">
+                        僕が本当に目指したいのは、<br />
+                        「Genieを通じて、“好き”を見つけ、それが進路や社会に活かされる文化を広げること」です。<br />
+                        GGAでのデモや挑戦は、その未来を形にするための通過点だと考えています。
+                    </p>
+                    <ul className="list-disc list-inside space-y-2 text-left max-w-xl mx-auto">
+                        <li>ゴールに向けて、面白がって試行錯誤できる</li>
+                        <li>新しい視点で「もっと良くなる」を一緒に考えられる</li>
+                        <li>本番当日まで、ワクワクしながら伴走してくれる</li>
+                    </ul>
+                    <p className="mt-4">
+                        まずはGGA優勝を目指して全力で取り組みますが、<br />
+                        その先の「好きで溢れる社会」づくりに共鳴してくださる方からの<br />
+                        ご意見やアドバイスをいただければ、とても心強いです。
+                    </p>
                     </div>
                 </div>
             </section>
