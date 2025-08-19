@@ -1,9 +1,0 @@
-{
-  "dependencies": {
-    "@refinedev/antd": "^5.46.3",
-    "@refinedev/core": "^4.57.11",
-    "@refinedev/nextjs-router": "^6.2.3",
-    "antd": "^5.27.0",
-    "axios": "^1.11.0"
-  }
-}
