@@ -28,7 +28,7 @@ services:
     environment:
       - CHOKIDAR_USEPOLLING=true
     # ← 起動時に依存をクリーンインストールしてから dev 起動
-    command: sh -c "if [ -f package-lock.json ]; then npm ci; else npm install; fi && npm run dev -- --host --port 5173"
+    command: sh -c "npm ci && npm run dev -- --host --port 5173"
     volumes:
       - ../../apps/atlas-ui:/app # ソースはマウント
       - /app/node_modules # ← ここが大事：ホスト側 node_modules を隠す（匿名ボリューム）
