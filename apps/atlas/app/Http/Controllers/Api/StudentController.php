@@ -38,8 +38,6 @@ class StudentController extends Controller
             "email" => "required|email|unique:students,email," . $student->id,
             "graduation_year" => "required|integer"
         ]);
-
-        // ★ ここをインスタンスメソッドに
         $student->update($validated);
 
         return response()->json($student, 200);
