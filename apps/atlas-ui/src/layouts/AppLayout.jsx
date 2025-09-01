@@ -1,12 +1,23 @@
 import React from "react";
 import { Outlet, Link, NavLink } from "react-router-dom";
+import CosmicBg from "../components/CosmicBg";
+import StudentsKPI from "../components/StudentsKPI";
 
 export default function AppLayout() {
   return (
-    <div style={{minHeight:"100vh", display:"flex", flexDirection:"column"}}>
+    <div style={{minHeight:"100vh",minWeight:"100vw", display:"flex", flexDirection:"column"}}>
       <header style={{padding:"10px 16px", borderBottom:"1px solid #eee", fontWeight:600}}>
         Atlas
       </header>
+      <CosmicBg />
+      <StudentsKPI
+        items={[
+          { label: "本日ES提出", value: 12, hint: "+3" },
+          { label: "説明会予約", value: 28, hint: "-2" },
+          { label: "累計内定", value: 7 },
+          { label: "着席率", value: "64%" },
+        ]}
+      />
 
       <div style={{
         flex:1,
