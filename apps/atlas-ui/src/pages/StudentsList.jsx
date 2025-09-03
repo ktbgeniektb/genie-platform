@@ -19,9 +19,12 @@ export default function StudentsList() {
   const rows = Array.isArray(data) ? data : [];
 
   const columns = [
-    { accessorKey: "name", header: "氏名" },
-    { accessorKey: "email", header: "メールアドレス" },
-    { accessorKey: "graduation_year", header: "卒業年" },
+    { accessorKey: "name", header: "氏名",
+      cell: (info) => <strong>{info.getValue()}</strong> },
+    { accessorKey: "email", header: "メールアドレス",
+      cell: (info) => <span className="cell-email">{info.getValue()}</span> },
+    { accessorKey: "graduation_year", header: "卒業年",
+      cell: (info) => <span>{info.getValue()}卒</span> },
   ];
 
   // useReactTable も無条件に呼ぶ（データは rows を渡す）
@@ -29,8 +32,6 @@ export default function StudentsList() {
     data: rows,
     columns,
     getCoreRowModel: getCoreRowModel(),
-    getSortedRowModel: getSortedRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
   });
 
   // 2) ロード中
@@ -41,15 +42,17 @@ export default function StudentsList() {
   if (!data || data.length === 0) return <p>学生がいません</p>;
 
   // 5) 正常表示
-  return (
-    <div>
-      <h1>学生一覧</h1>
-      <table className="min-w-full border">
+return (
+  <div className="list-card">
+    <h1 className="list-title">学生一覧</h1>
+
+    <div className="table-wrap">
+      <table className="list-table">
         <thead>
-          {table.getHeaderGroups().map(hg => (
+          {table.getHeaderGroups().map((hg) => (
             <tr key={hg.id}>
-              {hg.headers.map(h => (
-                <th key={h.id} className="border px-2 py-1">
+              {hg.headers.map((h) => (
+                <th key={h.id}>
                   {flexRender(h.column.columnDef.header, h.getContext())}
                 </th>
               ))}
@@ -57,10 +60,10 @@ export default function StudentsList() {
           ))}
         </thead>
         <tbody>
-          {table.getRowModel().rows.map(row => (
+          {table.getRowModel().rows.map((row) => (
             <tr key={row.id}>
-              {row.getVisibleCells().map(cell => (
-                <td key={cell.id} className="border px-2 py-1">
+              {row.getVisibleCells().map((cell) => (
+                <td key={cell.id}>
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
                 </td>
               ))}
@@ -69,5 +72,21 @@ export default function StudentsList() {
         </tbody>
       </table>
     </div>
-  );
+    
+    <style>{`
+      /* Genieっぽいダーク基調 */
+      .list-card{background:#0b0f1a;border:1px solid #1e293b;border-radius:12px;padding:16px;color:#f1f5f9}
+      .list-title{font-size:18px;margin:0 0 12px;font-weight:600;color:#60a5fa}
+
+      .table-wrap{overflow:auto;border:1px solid #1e293b;border-radius:10px}
+      .list-table{width:100%;border-collapse:separate;border-spacing:0;color:#e2e8f0}
+
+      .list-table thead th{background:#1e293b;color:#93c5fd;text-align:left;font-weight:600;padding:10px 12px;border-bottom:1px solid #334155;position:sticky;top:0}
+      .list-table td{padding:10px 12px;border-bottom:1px solid #1e293b;vertical-align:middle}
+
+      .list-table tbody tr:nth-child(odd){background:rgba(255,255,255,.02)}
+      .list-table tbody tr:hover{background:rgba(96,165,250,.1)}
+    `}</style>
+  </div>
+);
 }
