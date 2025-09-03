@@ -2,6 +2,7 @@ import React from "react";
 import { Outlet, Link, NavLink } from "react-router-dom";
 import CosmicBg from "../components/CosmicBg";
 import StudentsKPI from "../components/StudentsKPI";
+import { SimpleGrid } from "@mantine/core";
 
 export default function AppLayout() {
   return (
@@ -12,10 +13,14 @@ export default function AppLayout() {
       <CosmicBg />
       <StudentsKPI
         items={[
-          { label: "本日ES提出", value: 12, hint: "+3" },
-          { label: "説明会予約", value: 28, hint: "-2" },
-          { label: "累計内定", value: 7 },
-          { label: "着席率", value: "64%" },
+          { label: "26卒内定出し", value: "68/70", hint: "+3" },
+          { label: "26卒内定承諾", value: "31/35", hint: "+3" },
+          { label: "26卒説明会着席数（年次）", value: "4,557/5,000", hint: "+12" },
+          { label: "26卒説明会着席数（月次）", value: "30/20", hint: "+12" },
+          { label: "27卒内定出し", value: "0/70" },
+          { label: "27卒内定承諾", value: "0/35" },
+          { label: "27卒説明会着席数（年次）", value: "2,624/7,500", hint: "+8" },
+          { label: "27卒説明会着席数（月次）", value: "185/365", hint: "+10" }
         ]}
       />
 
