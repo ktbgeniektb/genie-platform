@@ -8,9 +8,25 @@ use App\Models\Student;
 
 class StudentController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $students = Student::all();
+        $q    = $request->query('q');
+        $year = $request->query('year');
+        $per  = $request->query('per', 20); // デフォルト20件
+
+        $query = Student::query()
+            ->when($q, function ($query, $q) {
+                $like = "%".str_replace(['%','_'], ['\\%','\\_'], $q)."%";
+                $query->where(function ($qq) use ($like) {
+                    $qq->where('name', 'like', $like)
+                    ->orWhere('email', 'like', $like);
+                });
+            })
+            ->when($year, fn($query) => $query->where('graduation_year', $year))
+            ->orderByDesc('id');
+
+        $students = $query->paginate($per);
+
         return response()->json($students);
     }
     
