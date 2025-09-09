@@ -38,6 +38,7 @@ export default function StudentDetail() {
     return <div>取得に失敗：{String(error?.message ?? '')}</div>;
   }
 
+<<<<<<< HEAD
 // 返却の直前で
 const s = data;
 
@@ -70,6 +71,38 @@ return (
         <button className="btn danger" onClick={onDelete}>削除</button>
         <Link to="/students" className="btn ghost">一覧へ</Link>
       </div>
+=======
+  const s = data;
+  console.log(s);
+
+  return (
+    <div>
+      <p><Link to="/students">← 一覧へ</Link></p>
+      <h1>学生詳細</h1>
+      <p>ID: {s.id}</p>
+      <p>名前: {s.name}</p>
+      <p>ふりがな: {s.furigana || "-"}</p>
+      <p>メール: {s.email}</p>
+      <p>携帯: {s.phone}</p>
+      <p>卒業年度: {s.graduation_year != null ? `${s.graduation_year}卒` : "-"}</p>
+      <p>住所: {[s.address_prefecture, s.address_line1].filter(Boolean).join(" ") || "-"}</p>
+      <p>最終学歴（予定）: {s.education || "-"}</p>
+
+      <p>エントリーシート:{" "}
+        {s.es_pdf_url ? (
+          <a
+            href={s.es_pdf_url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="es-link"
+          >
+            PDFを開く
+          </a>
+        ) : (
+          <span style={{opacity:.6}}>-</span>
+        )}
+      </p>
+>>>>>>> 6a94624 (add:詳細画面に要素追加)
     </div>
 
     {/* 概要 */}
