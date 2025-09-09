@@ -4,12 +4,10 @@ import api from '../lib/api';
 
 async function fetchStudent(id) {
   const res = await api.get(`/students/${id}`, { toast: false });
-  return res.data?.data ?? res.data;
+  return res.data;                 // axiosはここにJSON本体
 }
 
 export default function StudentDetail() {
-  const navigate = useNavigate();
-  const queryClient = useQueryClient();
   const { id } = useParams();
   const {data, isLoading, isError, error} = useQuery({
     queryKey: ["student", id],
@@ -20,25 +18,9 @@ export default function StudentDetail() {
     select: (raw) => raw?.data ?? raw,
   })
 
-  const {
-    mutate: deleteStudent,
-    isPending: isDeleting,
-    error: deleteError,
-  } = useMutation({
-    mutationFn: async () => {
-      await api.delete(`/students/${id}`);
-    },
-    onSuccess: async() => {
-      await queryClient.invalidateQueries({ queryKey: ['students'] });
-      navigate('/students', { replace: true, state: { flash: '学生を削除しました。' } });
-    },
-  });
-
   function onDelete() {
     if (isDeleting) return;
-    if (window.confirm('この学生を削除しますか？この操作は取り消せません。')) {
-      deleteStudent();
-    }
+    if (confirm("この学生を削除しますか？"));
   }
 
   if (!id) return <div>URLが不正です</div>;
@@ -87,7 +69,6 @@ return (
         )}
         <button className="btn danger" onClick={onDelete}>削除</button>
         <Link to="/students" className="btn ghost">一覧へ</Link>
-        <Link to={`/students/${id}/edit`} className="btn ghost">更新</Link>
       </div>
     </div>
 
