@@ -1,7 +1,6 @@
 import React from "react";
 import { Outlet, NavLink } from "react-router-dom";
 import CosmicBg from "../components/CosmicBg";
-import StudentsKPI from "../components/StudentsKPI";
 
 export default function AppLayout() {
   return (
@@ -26,19 +25,6 @@ export default function AppLayout() {
       </header>
 
       <CosmicBg />
-
-      <StudentsKPI
-        items={[
-          { label: "26卒内定出し", value: "68/70", hint: "+3" },
-          { label: "26卒内定承諾", value: "31/35", hint: "+3" },
-          { label: "26卒説明会着席数（年次）", value: "4,557/5,000", hint: "+12" },
-          { label: "26卒説明会着席数（月次）", value: "30/20", hint: "+12" },
-          { label: "27卒内定出し", value: "0/70" },
-          { label: "27卒内定承諾", value: "0/35" },
-          { label: "27卒説明会着席数（年次）", value: "2,624/7,500", hint: "+8" },
-          { label: "27卒説明会着席数（月次）", value: "185/365", hint: "+10" },
-        ]}
-      />
 
       <div
         style={{

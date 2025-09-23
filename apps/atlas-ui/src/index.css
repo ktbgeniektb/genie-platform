@@ -61,3 +61,117 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+/* ==== Button overrides (place at the END of index.css) ==== */
+
+/* Brand & tokens */
+:root {
+  --brand-500: #f59f00;
+  /* yellow */
+  --brand-600: #f08c00;
+  --danger-600: #e03131;
+}
+
+/* Mantineは <html> に data-mantine-color-scheme を付ける */
+[data-mantine-color-scheme='dark'] {
+  --btn-fg: #ffffff;
+  --btn-bg: #2c2e33;
+  --btn-border: #3b3f46;
+
+  --btn-fg-ghost: #e6e6e6;
+  --btn-border-ghost: #5c5f66;
+}
+
+[data-mantine-color-scheme='light'] {
+  --btn-fg: #111827;
+  --btn-bg: #ffffff;
+  --btn-border: #d0d5dd;
+
+  --btn-fg-ghost: #111827;
+  --btn-border-ghost: #d0d5dd;
+}
+
+/* Base */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 0.9rem;
+  border-radius: 10px;
+  font-weight: 600;
+  line-height: 1;
+  border: 1px solid var(--btn-border);
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  /* ← これで文字が白固定を上書き */
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform .02s ease, background-color .15s ease, border-color .15s ease, color .15s ease;
+}
+
+a.btn,
+a.btn:visited {
+  color: var(--btn-fg);
+}
+
+/* aタグでも文字色維持 */
+
+.btn:hover {
+  transform: translateY(-0.5px);
+}
+
+/* Variants */
+.btn.primary {
+  background: var(--brand-600);
+  border-color: var(--brand-600);
+  color: #fff;
+}
+
+.btn.primary:hover {
+  filter: brightness(1.02);
+}
+
+.btn.danger {
+  background: var(--danger-600);
+  border-color: var(--danger-600);
+  color: #fff;
+}
+
+.btn.danger:hover {
+  filter: brightness(1.02);
+}
+
+.btn.ghost {
+  background: transparent;
+  border-color: var(--btn-border-ghost);
+  color: var(--btn-fg-ghost);
+}
+
+.btn.ghost:hover {
+  border-color: var(--btn-fg-ghost);
+}
+
+.btn.subtle {
+  background: transparent;
+  border-color: transparent;
+  color: var(--brand-500);
+}
+
+/* Disabled / loading */
+.btn:disabled,
+.btn[disabled] {
+  opacity: .55;
+  cursor: not-allowed;
+}
+
+/* Focus ring（アクセシビリティ） */
+.btn:focus-visible {
+  outline: 2px solid color-mix(in oklab, var(--brand-600) 70%, white);
+  outline-offset: 2px;
+}
+
+/* If something elsewhere forces white text with !important, kill it here */
+.btn,
+.btn * {
+  text-shadow: none;
+}
