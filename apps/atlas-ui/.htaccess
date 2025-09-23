@@ -1,18 +1,24 @@
 <IfModule mod_rewrite.c>
   RewriteEngine On
   Options -MultiViews
-
-  # 公開ベースパス（実際の公開URLに合わせる）
   RewriteBase /gs/genie-platform/apps/atlas-ui/
 
-  # 既存ファイル/ディレクトリはそのまま返す
   RewriteCond %{REQUEST_FILENAME} -f [OR]
   RewriteCond %{REQUEST_FILENAME} -d
   RewriteRule ^ - [L]
 
-  # アセット類は素通し（任意強化、なくても動くがログが綺麗）
+  # アセットは素通し
   RewriteRule ^(assets/|.*\.(js|css|png|jpg|jpeg|svg|gif|ico|txt|json|webmanifest)) - [L]
 
-  # それ以外は常に SPA の index.html へ
+  # それ以外は必ず index.html
   RewriteRule . /gs/genie-platform/apps/atlas-ui/index.html [L]
+</IfModule>
+
+# index.html だけはキャッシュ禁止（更新反映を確実に）
+<IfModule mod_headers.c>
+  <FilesMatch "^index\.html$">
+    Header set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
+    Header set Pragma "no-cache"
+    Header set Expires "0"
+  </FilesMatch>
 </IfModule>

@@ -19,7 +19,7 @@ createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <MantineProvider theme={theme} defaultColorScheme="dark">
-        <BrowserRouter  basename={import.meta.env.VITE_BASE_PATH}>
+        <BrowserRouter basename={import.meta.env.VITE_BASE_PATH}>
           <Routes>
             <Route element={<AppLayout />}>
               <Route index element={<Navigate to="students" replace />} />
