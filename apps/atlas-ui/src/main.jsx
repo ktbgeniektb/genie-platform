@@ -22,12 +22,12 @@ createRoot(document.getElementById("root")).render(
         <BrowserRouter  basename={import.meta.env.VITE_BASE_PATH}>
           <Routes>
             <Route element={<AppLayout />}>
-              <Route index element={<Navigate to="/students" replace />} />
-              <Route path="/students" element={<StudentsList />} />
-              <Route path="/students/new" element={<StudentForm mode="create" />} />
-              <Route path="/students/:id" element={<StudentDetail />} />
-              <Route path="/students/:id/edit" element={<StudentForm mode="edit" />} />
-              <Route path="/students/:id/delete" element={<StudentForm mode="delete" />} />
+              <Route index element={<Navigate to="students" replace />} />
+              <Route path="students" element={<StudentsList />} />
+              <Route path="students/new" element={<StudentForm mode="create" />} />
+              <Route path="students/:id" element={<StudentDetail />} />
+              <Route path="students/:id/edit" element={<StudentForm mode="edit" />} />
+              <Route path="students/:id/delete" element={<StudentForm mode="delete" />} />
             </Route>
               <Route path="*" element={<div>Not Found</div>} />
           </Routes>
