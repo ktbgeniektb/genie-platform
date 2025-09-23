@@ -1,7 +1,18 @@
 <IfModule mod_rewrite.c>
   RewriteEngine On
+  Options -MultiViews
+
+  # 公開ベースパス（実際の公開URLに合わせる）
   RewriteBase /gs/genie-platform/apps/atlas-ui/
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule ^ index.html [L]
+
+  # 既存ファイル/ディレクトリはそのまま返す
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # アセット類は素通し（任意強化、なくても動くがログが綺麗）
+  RewriteRule ^(assets/|.*\.(js|css|png|jpg|jpeg|svg|gif|ico|txt|json|webmanifest)) - [L]
+
+  # それ以外は常に SPA の index.html へ
+  RewriteRule . /gs/genie-platform/apps/atlas-ui/index.html [L]
 </IfModule>
