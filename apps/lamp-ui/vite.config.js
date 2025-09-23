@@ -2,14 +2,12 @@ import { defineConfig, loadEnv } from 'vite'
 import react from '@vitejs/plugin-react'
 
 export default defineConfig(({ mode }) => {
-  const env = loadEnv(mode, process.cwd())
-
+  const env = loadEnv(mode, process.cwd(), '')
+  const rawBase = env.VITE_BASE_PATH || '/gs/genie-platform/apps/lamp-ui'
+  const base = (rawBase.replace(/\/+$/, '') || '') + '/'
   return {
-    base: '/gs/genie-platform/apps/lamp-ui/', // ← 本番URLのルートに一致
+    base,
     plugins: [react()],
-    build: {
-      outDir: 'dist',
-      manifest: true,
-    },
+    build: { outDir: 'dist', manifest: true },
   }
 })

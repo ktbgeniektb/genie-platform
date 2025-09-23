@@ -4,8 +4,10 @@ import DiagnosisPage from "./pages/DiagnosisPage";
 import ResultPage from "./pages/ResultPage";
 import TypeListPage from "./pages/TypeListPage";
 
-const basename = import.meta.env.VITE_ROUTER_BASENAME || '/';
-console.log("API BASE URL:", import.meta.env.VITE_API_BASE_URL)
+const raw = import.meta.env.VITE_ROUTER_BASENAME || "";
+const basename = raw.replace(/\/+$/, ""); // 末尾スラッシュ除去
+
+console.log("API BASE URL:", import.meta.env.VITE_API_BASE_URL);
 
 function App() {
   return (
