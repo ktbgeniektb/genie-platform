@@ -15,22 +15,12 @@ return [
     |
     */
 
-    'paths' => ['api/*', 'sanctum/csrf-cookie', 'login', 'logout', '/', 'user'],
-
+    'paths' => ['api/*'],           // 必要最小限に
     'allowed_methods' => ['*'],
-
     'allowed_origins' => explode(',', env('FRONTEND_URLS', 'http://localhost:5173')),
-
     'allowed_origins_patterns' => [],
-
     'allowed_headers' => ['*'],
-
     'exposed_headers' => [],
-
     'max_age' => 0,
-
-    'supports_credentials' => true,
-
-    'credentials' => true
-
+    'supports_credentials' => false,   // ← CookieやSanctum使わないので false
 ];
