@@ -7,8 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\LogStoreRequest;
 use App\Models\Log;
 use Illuminate\Http\Request;
-use App\Http\Requests\Lamp\StoreLogRequest;
-use App\Http\Requests\Lamp\UpdateLogRequest;
+use App\Http\Requests\StoreLogRequest;
+use App\Http\Requests\UpdateLogRequest;
 
 class LogController extends Controller
 {
