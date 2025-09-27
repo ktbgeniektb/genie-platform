@@ -29,6 +29,8 @@ Route::prefix('lamp')->group(function () {
         Route::get('/logs', [LogController::class, 'index']);
         Route::post('/logs', [LogController::class, 'store']);
         Route::get('/logs/{log}', [LogController::class, 'show']);
+        Route::put('/logs/{log}',    [LogController::class, 'update']);
+        Route::delete('/logs/{log}', [LogController::class, 'destroy']);
     });
 });
 
