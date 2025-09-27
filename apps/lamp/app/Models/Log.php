@@ -17,4 +17,5 @@ class Log extends Model
     ];
 
     public function user() { return $this->belongsTo(User::class); }
+    public function scopeMine($q, $userId){ return $q->where('user_id', $userId); }
 }

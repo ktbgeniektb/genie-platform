@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\LogStoreRequest;
 use App\Models\Log;
 use Illuminate\Http\Request;
+use App\Http\Requests\Lamp\StoreLogRequest;
+use App\Http\Requests\Lamp\UpdateLogRequest;
 
 class LogController extends Controller
 {
@@ -15,28 +17,46 @@ class LogController extends Controller
     {
         $limit = min((int)$req->query('limit', 10), 50);
         $logs = Log::where('user_id', $req->user()->id)
-            ->latest()->paginate($limit);
+            ->latest('id')
+            ->paginate($limit);
+
         return response()->json($logs);
     }
 
     // POST /api/lamp/logs
-    public function store(LogStoreRequest $req)
+    public function store(StoreLogRequest $req)
     {
-        $log = Log::create([
-            'user_id' => $req->user()->id,
-            'industry'=> $req->input('industry'),
-            'text'    => $req->input('text'),
-            'emotions'=> $req->input('emotions', []),
-            // 将来：変化検出はここで計算して detection に入れる
-            // 'detection' => $this->detectChange($req->user()->id, $req->input('text')),
-        ]);
+        $payload = $req->validated();
+        $payload['user_id'] = $req->user()->id;
+
+        $log = Log::create($payload);
         return response()->json($log, 201);
     }
 
     // GET /api/lamp/logs/{id}
-    public function show(Log $log)
+    public function show(Request $req, Log $log)
     {
-        $this->authorize('view', $log);
+        $this->assertOwner($req, $log);
         return response()->json($log);
     }
+
+        public function update(UpdateLogRequest $req, Log $log)
+    {
+        $this->assertOwner($req, $log);
+        $log->fill($req->validated())->save();
+        return response()->json($log);
+    }
+
+        public function destroy(Request $req, Log $log)
+    {
+        $this->assertOwner($req, $log);
+        $log->delete();
+        return response()->json(['message' => 'deleted']);
+    }
+
+    private function assertOwner(Request $req, Log $log): void
+    {
+        abort_if($log->user_id !== $req->user()->id, 403, 'Forbidden');
+    }
+
 }

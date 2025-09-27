@@ -1,6 +1,12 @@
 // src/api/client.js
 const BASE = import.meta.env.VITE_API_BASE_URL || "";
 
+export const token = {
+  get: () => localStorage.getItem("lamp_token") || "",
+  set: (t) => localStorage.setItem("lamp_token", t),
+  clear: () => localStorage.removeItem("lamp_token"),
+};
+
 async function request(path, { method = "GET", headers = {}, body } = {}) {
   const token = localStorage.getItem("lamp_token");
   const res = await fetch(`${BASE}${path}`, {

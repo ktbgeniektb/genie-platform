@@ -7,6 +7,10 @@ import TypeListPage from "./pages/TypeListPage";
 import ProtectedRoute from "./components/ProtectedRoute";
 import LoginPage from "./pages/LoginPage";
 import UserMenu from "./components/UserMenu";
+import LogCreatePage from "./pages/LogCreatePage";
+import LogListPage from "./pages/LogListPage";
+import LogDetailPage from "./pages/LogDetailPage";
+import LogEditPage from "./pages/LogEditPage";
 
 const raw = import.meta.env.VITE_ROUTER_BASENAME || "";
 const basename = raw.replace(/\/+$/, ""); // 末尾スラッシュ除去
@@ -25,6 +29,12 @@ function App() {
         <Route path="/result" element={<ResultPage />} />
 
         <Route path="/menu" element={<ProtectedRoute><UserMenu /></ProtectedRoute>} />
+        <Route path="/logs" element={<ProtectedRoute><LogListPage /></ProtectedRoute>} />
+        <Route path="/logs/new" element={<ProtectedRoute><LogCreatePage /></ProtectedRoute>} />
+        <Route path="/logs/:id" element={<ProtectedRoute><LogDetailPage /></ProtectedRoute>} />
+        <Route path="/logs/:id/edit" element={<ProtectedRoute><LogEditPage /></ProtectedRoute>} />
+
+        <Route path="*" element={<Navigate to="/login" replace />} />
 
       </Routes>
     </BrowserRouter>
