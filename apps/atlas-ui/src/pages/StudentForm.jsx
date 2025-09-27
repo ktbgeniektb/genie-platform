@@ -6,11 +6,7 @@ import api from "../lib/api";
 // ====== 取得関数 ======
 async function fetchStudent(id) {
   const res = await api.get(`/students/${id}`);
-<<<<<<< HEAD
   return res.data; // (HINT) APIの形に合わせて
-=======
-  return res.data._____ || res.data; // (HINT) APIの形に合わせて
->>>>>>> 8bfe037 (add:削除機能の追加)
 }
 
 export default function StudentForm({ mode }) {
@@ -60,37 +56,23 @@ useEffect(() => {
       qc.invalidateQueries({ queryKey: ["students"] });
       navigate("/students");
     },
-<<<<<<< HEAD
     onError: (err) => console.error(err.response?.data || err),
-=======
->>>>>>> 8bfe037 (add:削除機能の追加)
   });
 
   // ====== Update ======
   const updateMut = useMutation({
-<<<<<<< HEAD
     mutationFn: (payload) => api.put(`/students/${id}`, payload),
-=======
-    mutationFn: (payload) => api._____("_____/_____", payload), // (HINT) method/path + id
->>>>>>> 8bfe037 (add:削除機能の追加)
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["students"] });
       qc.invalidateQueries({ queryKey: ["student", id] });
       navigate(`/students/${id}`);
     },
-<<<<<<< HEAD
     onError: (err) => console.error(err.response?.data || err),
-=======
->>>>>>> 8bfe037 (add:削除機能の追加)
   });
 
   // ====== Delete ======
   const deleteMut = useMutation({
-<<<<<<< HEAD
     mutationFn: () => api.delete(`/students/${id}`),
-=======
-    mutationFn: () => api._____("_____/_____"), // (HINT) method/path + id
->>>>>>> 8bfe037 (add:削除機能の追加)
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["students"] });
       navigate("/students");
@@ -105,11 +87,8 @@ useEffect(() => {
       graduation_year: form.graduation_year ? Number(form.graduation_year) : null,
     };
 
-<<<<<<< HEAD
     console.log('POST payload', payload);
 
-=======
->>>>>>> 8bfe037 (add:削除機能の追加)
     if (mode === "create") {
       await createMut.mutateAsync(payload);
     } else if (mode === "edit") {
@@ -161,10 +140,7 @@ useEffect(() => {
           value={form.email}
           onChange={(e) => setForm({ ...form, email: e.target.value })}
           placeholder="taro@example.com"
-<<<<<<< HEAD
           required
-=======
->>>>>>> 8bfe037 (add:削除機能の追加)
         />
       </label>
 
@@ -179,7 +155,6 @@ useEffect(() => {
         />
       </label>
 
-<<<<<<< HEAD
       <label className="f">
         <span>ふりがな</span>
         <input
@@ -211,8 +186,6 @@ useEffect(() => {
       </label>
 
 
-=======
->>>>>>> 8bfe037 (add:削除機能の追加)
       <div className="row gap">
         <button className="btn primary" type="submit" disabled={createMut.isPending || updateMut.isPending}>
           {mode === "create" ? (createMut.isPending ? "作成中..." : "作成") : (updateMut.isPending ? "更新中..." : "更新")}
