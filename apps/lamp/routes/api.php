@@ -26,6 +26,9 @@ Route::prefix('lamp')->group(function () {
     Route::middleware('auth:sanctum')->group(function () {
         Route::get('/me', [AuthController::class, 'me']);
         Route::post('/logout', [AuthController::class, 'logout']);
+        Route::get('/logs', [LogController::class, 'index']);
+        Route::post('/logs', [LogController::class, 'store']);
+        Route::get('/logs/{log}', [LogController::class, 'show']);
     });
 });
 
