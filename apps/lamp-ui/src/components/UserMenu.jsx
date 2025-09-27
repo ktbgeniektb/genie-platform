@@ -1,5 +1,5 @@
 // src/pages/MenuPage.jsx
-import { useEffect, useState } from "react";
+import { useEffect, useState, Link } from "react";
 import { me as apiMe, logout as apiLogout } from "../api/auth";
 import { fetchRecentLogs } from "../api/logs";
 import { Navigate, useNavigate } from "react-router-dom";
@@ -66,7 +66,7 @@ export default function MenuPage() {
       <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "grid", gap: 12 }}>
         {logs.map((log) => (
           <li key={log.id}>
-            <a href={`/logs/${log.id}`} style={{ textDecoration: "none", color: "inherit" }}>
+            <Link to={`/logs/${log.id}`} style={{ textDecoration: "none", color: "inherit" }}>
               <div style={{
                 background: "#1e1e2f",
                 color: "#f5f5f5",
@@ -86,13 +86,13 @@ export default function MenuPage() {
                   {new Date(log.created_at ?? Date.now()).toLocaleString()}
                 </div>
               </div>
-            </a>
+            </Link>
           </li>
         ))}
       </ul>
         )}
         <div style={{ marginTop: 12 }}>
-          <a href="/logs" style={{ textDecoration: "underline" }}>すべてのログを見る</a>
+          <Link to="/logs" style={{ textDecoration: "underline" }}>すべてのログを見る</Link>
         </div>
       </section>
 
