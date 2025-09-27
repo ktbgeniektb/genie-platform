@@ -1,8 +1,8 @@
 // src/pages/MenuPage.jsx
-import { useEffect, useState, Link } from "react";
+import { useEffect, useState } from "react";
 import { me as apiMe, logout as apiLogout } from "../api/auth";
 import { fetchRecentLogs } from "../api/logs";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate, useNavigate, Link } from "react-router-dom";
 
 export default function MenuPage() {
   const [user, setUser] = useState(null);
