@@ -9,13 +9,16 @@ async function fetchStudent(id) {
 
 export default function StudentDetail() {
   const { id } = useParams();
-  const {data, isLoading, isError, error} = useQuery({
+  const { data, isLoading, isError, error } = useQuery({
     queryKey: ["student", id],
     queryFn: () => fetchStudent(id),
     enabled: !!id,
     retry: false,
     refetchOnWindowFocus: false,
-    select: (raw) => raw?.data ?? raw,
+    select: (raw) => ({
+      ...raw.student,
+      lamp_events: raw.lamp_events ?? []
+    }),
   })
 
   function onDelete() {
@@ -114,6 +117,41 @@ return (
         <pre className="note">{s.application_reason}</pre>
       ) : (
         <div className="empty">未入力</div>
+      )}
+    </div>
+
+        {/* Lamp診断イベント */}
+    <div className="section">
+      <h2 className="section-title">Lamp 診断イベント</h2>
+      { s.lamp_events && s.lamp_events.length > 0 ? (
+        s.lamp_events.map((ev, i) => (
+          <div key={i}>
+            <div className="field-label">種類</div>
+            <div className="field-value">{ev.event_type}</div>
+
+            <div className="field-label">日時</div>
+            <div className="field-value mono">{ev.occurred_at}</div>
+
+            <div className="field-label">スコア</div>
+            <div className="field-value mono">
+              {(() => {
+                let payload;
+                try { payload = typeof ev.payload === "string" ? JSON.parse(ev.payload) : ev.payload; }
+                catch { payload = ev.payload; }
+
+                return payload?.score
+                  ? Object.entries(payload.score).map(([k,v]) => (
+                      <span key={k} style={{marginRight:8}}>
+                        {k}: {v}
+                      </span>
+                    ))
+                  : JSON.stringify(payload);
+              })()}
+            </div>
+          </div>
+        ))
+      ) : (
+        <div className="empty">診断イベントなし</div>
       )}
     </div>
 

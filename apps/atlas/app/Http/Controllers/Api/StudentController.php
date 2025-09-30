@@ -30,12 +30,18 @@ class StudentController extends Controller
         return response()->json($students);
     }
     
-    public function show($id)
+    public function show(Student $student)
     {
-        $student = Student::findOrFail($id);
-        return response()->json($student);
-    }
+        $lampEvents = \DB::table('lamp_events')
+            ->where('external_user_ref', $student->name) // ← 紐付け基準（メール or user_id）
+            ->orderBy('occurred_at', 'desc')
+            ->get();
 
+        return response()->json([
+            'student' => $student,
+            'lamp_events' => $lampEvents,
+        ]);
+    }
     public function store(Request $request)
     {
         $request->validate([
