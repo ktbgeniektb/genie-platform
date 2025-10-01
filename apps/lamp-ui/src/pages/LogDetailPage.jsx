@@ -44,7 +44,7 @@ export default function LogDetailPage(){
             </div>
             <div><b>業種:</b> {item.industry}</div>
             <div><b>感情:</b> {Array.isArray(item.emotions)? item.emotions.join(" / "): "-"}</div>
-            <p style={{whiteSpace:"pre-wrap"}}>{item.text}</p>
+            <p style={{whiteSpace:"pre-wrap"}}>{item.content}</p>
           </div>
         </>
       )}

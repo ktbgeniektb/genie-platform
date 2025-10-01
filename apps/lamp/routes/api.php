@@ -36,10 +36,8 @@ Route::prefix('lamp')->group(function () {
 
 // 認証必須
 Route::middleware('auth:sanctum')->prefix('lamp')->group(function () {
-    Route::get('/home', [HomeController::class, 'show']);         // TODO
-    Route::post('/logs', [LogController::class, 'store']);        // TODO
-    Route::get('/logs', [LogController::class, 'index']);         // TODO
-    Route::get('/changes', [ChangeController::class, 'index']);   // TODO
-    Route::get('/notifications', [NotificationController::class, 'index']); // TODO
-    Route::post('/notifications/toggle', [NotificationController::class, 'toggle']); // TODO
+    Route::get('/home', [HomeController::class, 'show']);         
+    Route::get('/changes', [ChangeController::class, 'index']);   
+    Route::get('/notifications', [NotificationController::class, 'index']);
+    Route::post('/notifications/toggle', [NotificationController::class, 'toggle']);
 });

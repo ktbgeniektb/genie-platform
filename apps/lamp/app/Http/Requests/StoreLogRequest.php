@@ -13,7 +13,7 @@ class StoreLogRequest extends FormRequest
     public function rules(): array {
         return [
             'industry'  => ['required','string','max:255'],
-            'text'      => ['required','string','min:50'],
+            'text'      => ['required','string'],
             'emotions'  => ['nullable','array'],
             'emotions.*'=> ['string','max:50'],
         ];

@@ -9,6 +9,7 @@ use App\Models\Log;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreLogRequest;
 use App\Http\Requests\UpdateLogRequest;
+use App\Services\AtlasWebhook;
 
 class LogController extends Controller
 {
@@ -26,11 +27,38 @@ class LogController extends Controller
     // POST /api/lamp/logs
     public function store(StoreLogRequest $req)
     {
+        // 入力を検証して user_id を追加
         $payload = $req->validated();
         $payload['user_id'] = $req->user()->id;
 
+        // ログ保存
         $log = Log::create($payload);
-        return response()->json($log, 201);
+
+        // 変化検出
+        $detector = app(\App\Services\ChangeDetector::class);
+        $events   = $detector->detectAndStore($req->user()->id, $log);
+
+        // NEW_THEME だけ Atlas に通知
+        foreach ($events as $event) {
+            if ($event['type'] === 'NEW_THEME') {
+                \App\Services\AtlasWebhook::push(
+                    'NEW_THEME',
+                    $req->user()->id, // ここは external_user_ref に置き換えてもOK
+                    [
+                        'theme'   => $event['theme'],
+                        'details' => $event['details'],
+                        'log_id'  => $log->id,
+                        'content' => $log->text,
+                    ]
+                );
+            }
+        }
+
+        // レスポンスにログとイベント一覧を返す
+        return response()->json([
+            'log'    => $log,
+            'events' => $events,
+        ], 201);
     }
 
     // GET /api/lamp/logs/{id}
