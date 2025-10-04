@@ -6,6 +6,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import LogList from "./pages/LogList";
+import LogDetail from "./pages/LogDetail";
+import LogEdit from "./pages/LogEdit";
+import LogCreateHome from "./pages/LogCreateHome";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -20,6 +23,9 @@ const App = () => (
           <Route path="/" element={<Login />} />
           <Route path="/home" element={<Home />} />
           <Route path="/logs" element={<LogList />} />
+          <Route path="/logs/:id" element={<LogDetail />} />
+          <Route path="/logs/:id/edit" element={<LogEdit />} />
+          <Route path="/logs/new" element={<LogCreateHome />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

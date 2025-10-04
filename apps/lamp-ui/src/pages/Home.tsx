@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { MenuCard } from "@/components/MenuCard";
-import { BookOpen, Target, TrendingUp, Settings, Lightbulb } from "lucide-react";
+import { BookOpen, Target, TrendingUp, Settings, Lightbulb, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -55,6 +56,24 @@ const Home = () => {
             Sign Out
           </Button>
         </header>
+
+        {/* Featured Action Card */}
+        <Card 
+          className="hover-lift cursor-pointer mb-6 bg-gradient-to-br from-primary/10 to-accent/10 border-primary/20 transition-all"
+          onClick={() => navigate("/logs/new")}
+        >
+          <CardHeader className="text-center pb-4">
+            <div className="mx-auto mb-4 h-16 w-16 rounded-full bg-primary/20 flex items-center justify-center">
+              <Plus className="h-8 w-8 text-primary" />
+            </div>
+            <CardTitle className="text-xl">New Reflection</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <CardDescription className="text-center">
+              Start writing a new reflection on your journey
+            </CardDescription>
+          </CardContent>
+        </Card>
 
         {/* Menu Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
