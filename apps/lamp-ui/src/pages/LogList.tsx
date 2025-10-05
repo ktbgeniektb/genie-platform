@@ -85,7 +85,7 @@ export default function LogList() {
       .finally(() => setLoading(false));
   }, [navigate]);
 
-  const handleAddLog = () => toast.success("新しいログ作成 Coming soon!");
+  const handleAddLog = () => navigate("/logs/new");
   const handleLogClick = (logId: number) => navigate(`/logs/${logId}`);
 
   return (
