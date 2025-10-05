@@ -13,13 +13,14 @@ import StudentForm from "./pages/StudentForm";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
+const base = import.meta.env.VITE_ROUTER_BASENAME || "/";
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
+      <BrowserRouter basename={import.meta.env.VITE_BASE_PATH}>
         <Routes>
           <Route path="/" element={<Login />} />
           <Route element={<DashboardLayout />}>
