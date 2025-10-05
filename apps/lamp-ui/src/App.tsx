@@ -19,6 +19,7 @@ import Index from "./pages/__Index"; // ← 追加（Lampのトップページ�
 
 // React Query クライアント設定
 const queryClient = new QueryClient();
+const base = import.meta.env.VITE_ROUTER_BASENAME || "/";
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
