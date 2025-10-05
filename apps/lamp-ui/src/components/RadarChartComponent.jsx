@@ -1,88 +1,45 @@
-// src/components/RadarChartComponent.jsx
 import React from "react";
 import {
-  Chart as ChartJS,
-  RadialLinearScale,
-  PointElement,
-  LineElement,
-  Filler,
-  Tooltip,
-  Legend,
-  Title,
-} from "chart.js";
-import { Radar } from "react-chartjs-2";
-import ChartDataLabels from "chartjs-plugin-datalabels";
-
-// Chart.jsに必要なパーツを登録
-ChartJS.register(
-  RadialLinearScale,
-  PointElement,
-  LineElement,
-  Filler,
-  Tooltip,
-  Legend,
-  Title,
-  ChartDataLabels
-);
+  Radar,
+  RadarChart,
+  PolarGrid,
+  PolarAngleAxis,
+  ResponsiveContainer,
+} from "recharts";
+import { motion } from "framer-motion";
 
 const RadarChartComponent = ({ score }) => {
   if (!score) return null;
 
-  // スコアを正規化（/65.5*100）
-  const normalize = (val) => (val / 65.5) * 100;
-
-  const normalizedScore = {
-    kyomei: normalize(score.kyomei),
-    hyougen: normalize(score.hyougen),
-    tankyu: normalize(score.tankyu),
-    chosen: normalize(score.chosen),
-    taiken: normalize(score.taiken),
-  };
-
-  const chartData = {
-    labels: ["共鳴", "表現", "探求", "挑戦", "体験"],
-    datasets: [
-      {
-        label: {display: false,},
-        data: [
-          score.kyomei,
-          score.hyougen,
-          score.tankyu,
-          score.chosen,
-          score.taiken,
-        ],
-        backgroundColor: "rgba(75, 192, 192, 0.2)",
-        borderColor: "rgba(75, 192, 192, 1)",
-        borderWidth: 1,
-      },
-    ],
-  };
-
-  const chartOptions = {
-    responsive: true,
-    scales: {
-      r: {
-        suggestedMin: 0,
-        suggestedMax: 100,
-        pointLabels: { font: { size: 14 } },
-        ticks: { stepSize: 20, display: false },
-      },
-    },
-    plugins: {
-        legend: {
-          display: false,
-        },
-      datalabels: {
-        color: "#fff",
-        font: { weight: "bold" },
-      },
-    },
-  };
+  const data = Object.entries(score).map(([key, value]) => ({
+    subject: key,
+    value: Number(value),
+  }));
 
   return (
-    <section className="chart">
-      <Radar data={chartData} options={chartOptions} />
-    </section>
+    <motion.div
+      className="h-64 w-full max-w-md mx-auto"
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+    >
+      <ResponsiveContainer width="100%" height="100%">
+        <RadarChart data={data}>
+          <PolarGrid stroke="#d1d5db" />
+          <PolarAngleAxis
+            dataKey="subject"
+            tick={{ fill: "#6b7280", fontSize: 12 }}
+          />
+          <Radar
+            name="Score"
+            dataKey="value"
+            stroke="#3b82f6"
+            fill="#3b82f6"
+            fillOpacity={0.4}
+          />
+        </RadarChart>
+      </ResponsiveContainer>
+    </motion.div>
   );
 };
 

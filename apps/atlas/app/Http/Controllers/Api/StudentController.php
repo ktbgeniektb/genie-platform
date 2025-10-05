@@ -33,7 +33,7 @@ class StudentController extends Controller
     public function show(Student $student)
     {
         $lampEvents = \DB::table('lamp_events')
-            ->where('external_user_ref', $student->name) // ← 紐付け基準（メール or user_id）
+            ->where('external_user_ref', $student->email) // ← メールで一致
             ->orderBy('occurred_at', 'desc')
             ->get();
 
@@ -42,14 +42,20 @@ class StudentController extends Controller
             'lamp_events' => $lampEvents,
         ]);
     }
+
     public function store(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             "name" => "required|string",
+            "furigana" => "nullable|string",
             "email" => "required|email|unique:students,email",
-            "graduation_year" => "required|integer"
+            "phone" => "nullable|string",
+            "education" => "nullable|string",
+            "graduation_year" => "required|integer",
         ]);
-        $student = Student::create($request->only(['name','email','graduation_year']));
+
+        $student = Student::create($validated);
+
         return response()->json($student, 201);
     }
 

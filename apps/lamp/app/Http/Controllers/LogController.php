@@ -43,7 +43,7 @@ class LogController extends Controller
             if ($event['type'] === 'NEW_THEME') {
                 \App\Services\AtlasWebhook::push(
                     'NEW_THEME',
-                    $req->user()->id, // ここは external_user_ref に置き換えてもOK
+                    $req->user()->email, // ← これ！
                     [
                         'theme'   => $event['theme'],
                         'details' => $event['details'],

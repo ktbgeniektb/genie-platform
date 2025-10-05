@@ -6,25 +6,22 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
-    public function up() {
-        Schema::create('lamp_events', function (Blueprint $t) {
-        $t->id();
-        $t->string('external_user_ref'); // 例: email
-        $t->string('event_type');        // 例: HIGH_SCORE
-        $t->json('payload');             // 中身は丸ごと   
-        $t->timestamp('occurred_at')->nullable();
-        $t->timestamps();
+    public function up(): void
+    {
+        Schema::table('lamp_events', function (Blueprint $table) {
+            $table->foreignId('student_id')
+                  ->nullable()
+                  ->constrained()
+                  ->onDelete('cascade')
+                  ->after('id'); // 任意：idの後に追加
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
-        Schema::dropIfExists('lamp_events');
+        Schema::table('lamp_events', function (Blueprint $table) {
+            $table->dropForeign(['student_id']);
+            $table->dropColumn('student_id');
+        });
     }
 };

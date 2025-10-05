@@ -1,6 +1,7 @@
 // src/pages/StudentDetail.tsx
-import { useQuery } from "@tanstack/react-query";
+import { useQuery,useMutation, useQueryClient } from "@tanstack/react-query";
 import { useParams, Link, useNavigate } from "react-router-dom";
+import { Pencil } from "lucide-react";
 import api from "@/lib/api";
 import {
   Card,
@@ -32,6 +33,15 @@ async function fetchStudent(id: string) {
 export default function StudentDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const qc = useQueryClient();
+
+  const deleteMut = useMutation({
+    mutationFn: () => api.delete(`/students/${id}`),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ["students"] });
+      navigate("/students");
+    },
+  });
 
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ["student", id],
@@ -92,13 +102,26 @@ export default function StudentDetail() {
               </a>
             </Button>
           )}
+
+          <Button asChild variant="outline" className="gap-1">
+            <Link to={`/students/${id}/edit`} state={{ student: s }}>
+              <Pencil className="w-4 h-4" />
+              編集
+            </Link>
+          </Button>
+
           <Button
             variant="destructive"
             className="gap-1"
-            onClick={() => confirm("この学生を削除しますか？")}
+            onClick={() => {
+              if (confirm("この学生を削除しますか？")) {
+                deleteMut.mutate();
+              }
+            }}
+            disabled={deleteMut.isPending}
           >
             <Trash2 className="w-4 h-4" />
-            削除
+            {deleteMut.isPending ? "削除中…" : "削除"}
           </Button>
           <Button asChild variant="ghost" className="gap-1">
             <Link to="/students">

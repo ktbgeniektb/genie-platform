@@ -30,4 +30,9 @@ class Student extends Model
         if (!$this->es_pdf_path) return null;
         return Storage::disk('public')->url($this->es_pdf_path);
     }
+
+    public function lampEvents()
+    {
+        return $this->hasMany(LampEvent::class);
+    }
 }

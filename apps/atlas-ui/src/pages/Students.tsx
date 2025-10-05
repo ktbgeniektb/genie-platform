@@ -4,10 +4,11 @@ import React, { useState, useEffect, useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useDebouncedValue } from "@mantine/hooks";
 import { useReactTable, getCoreRowModel, flexRender } from "@tanstack/react-table";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import api from "@/lib/api";
 
 export default function Students() {
+  const navigate = useNavigate();
   const [page, setPage] = useState(1);
   const [per, setPer] = useState(20);
   const [year, setYear] = useState("");
@@ -153,7 +154,10 @@ export default function Students() {
       <div className="bg-card border border-border rounded-xl shadow-sm p-6">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-xl font-semibold text-foreground">学生一覧</h3>
-          <button className="bg-primary text-primary-foreground px-4 py-2 rounded-md text-sm hover:bg-primary/90 transition">
+          <button
+            onClick={() => navigate("/students/create")}
+            className="bg-primary text-primary-foreground px-4 py-2 rounded-md text-sm hover:bg-primary/90 transition"
+          >
             + 新規登録
           </button>
         </div>

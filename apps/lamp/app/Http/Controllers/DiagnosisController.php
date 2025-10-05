@@ -25,7 +25,7 @@ class DiagnosisController extends Controller
         // ★ Atlas にWebhook送信
         AtlasWebhook::push(
             'DIAGNOSIS_SAVED',
-            $diagnosis->name ?? 'anonymous',
+            $request->input('email') ?? 'anonymous',
             [
                 'top_type' => $diagnosis->top_type,
                 'score'    => $diagnosis->score,

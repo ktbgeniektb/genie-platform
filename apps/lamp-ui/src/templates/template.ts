@@ -1,4 +1,16 @@
-export const templates = [
+// Template data structure for diagnosis results
+export interface Template {
+  main: string;
+  label: string;
+  catch: string;
+  description: string;
+  features: string[];
+  moments: string[];
+  tips: string[];
+  sub: string;
+}
+
+export const templates: Template[] = [
         {
         main: "kyomei_tankyu",
         label: "共鳴型 × 探求型",

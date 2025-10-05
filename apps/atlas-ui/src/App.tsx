@@ -25,7 +25,7 @@ const App = () => (
           <Route element={<DashboardLayout />}>
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/students" element={<Students />} />
-            <Route path="students/new" element={<StudentForm mode="create" />} />
+            <Route path="/students/create" element={<StudentForm mode="create" />} />
             <Route path="students/:id" element={<StudentDetail />} />
             <Route path="students/:id/edit" element={<StudentForm mode="edit" />} />
             <Route path="students/:id/delete" element={<StudentForm mode="delete" />} />

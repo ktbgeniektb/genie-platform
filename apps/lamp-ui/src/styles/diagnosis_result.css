@@ -527,3 +527,33 @@ body {
             background-color: #555;
         }
     }
+
+/* 既存のスタイルがあるならその下に追記でOK */
+
+.result-overlay-text {
+    position: absolute;
+    bottom: 22%;
+    /* ← ここで位置を調整（中央よりやや下） */
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    color: #fff;
+    z-index: 3;
+    width: 90%;
+    max-width: 900px;
+    padding: 0 1rem;
+}
+
+.catch-copy p {
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    line-height: 1.7;
+    font-weight: 400;
+    color: #f9f9f9;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8);
+}
+
+.main-type-wrapper h2 {
+    margin-top: 1.2rem;
+    font-size: clamp(1.6rem, 3vw, 2.5rem);
+    font-weight: 500;
+}

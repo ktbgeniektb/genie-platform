@@ -17,4 +17,9 @@ class LampEvent extends Model
         'payload' => 'array',
         'occurred_at' => 'datetime',
     ];
+
+    public function student()
+    {
+        return $this->belongsTo(Student::class);
+    }
 }
