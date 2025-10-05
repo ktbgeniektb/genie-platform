@@ -26,7 +26,7 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
+      <BrowserRouter basename={base}>
         <Routes>
           {/* Lamp系 */}
           <Route path="/" element={<Index />} /> {/* ← トップページ */}
