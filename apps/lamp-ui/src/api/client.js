@@ -18,6 +18,7 @@ async function request(path, { method = "GET", headers = {}, body } = {}) {
       ...headers,
     },
     body: body ? JSON.stringify(body) : undefined,
+    credentials: "include",
   });
 
   const text = await res.text();
