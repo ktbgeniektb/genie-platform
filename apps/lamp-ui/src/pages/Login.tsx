@@ -5,16 +5,35 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Lightbulb } from "lucide-react";
+import { api, token } from "@/api/client";
 
 const Login = () => {
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("admin@example.com");
+  const [password, setPassword] = useState("password123");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Simple frontend-only navigation
-    navigate("/home");
+    setError("");
+    setLoading(true);
+
+    try {
+      const res = await api.post("/lamp/login", { email, password });
+      console.log("✅ Login success:", res);
+      if (res.token) {
+        token.set(res.token); // ← localStorage 保存
+        navigate("/home");
+      } else {
+        setError("トークンを受け取れませんでした。");
+      }
+    } catch (err) {
+      console.error("❌ Login failed:", err);
+      setError("ログインに失敗しました。");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -53,16 +72,21 @@ const Login = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
+                autoComplete="current-password"
               />
             </div>
-            <Button type="submit" className="w-full" size="lg">
-              Sign In
+
+            {error && <p className="text-red-500 text-sm text-center">{error}</p>}
+
+            <Button type="submit" className="w-full" size="lg" disabled={loading}>
+              {loading ? "Signing in..." : "Sign In"}
             </Button>
           </form>
+
           <div className="mt-6 text-center">
             <p className="text-sm text-muted-foreground">
               Don't have an account?{" "}
-              <button className="text-primary hover:underline font-medium">
+              <button className="text-primary hover:underline font-medium" type="button">
                 Sign up
               </button>
             </p>

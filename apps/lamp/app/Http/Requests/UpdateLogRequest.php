@@ -13,7 +13,7 @@ class UpdateLogRequest extends FormRequest
     public function rules(): array {
         return [
             'industry'  => ['sometimes','required','string','max:255'],
-            'text'      => ['sometimes','required','string','min:50'],
+            'text'      => ['sometimes','required','string'],
             'emotions'  => ['nullable','array'],
             'emotions.*'=> ['string','max:50'],
         ];

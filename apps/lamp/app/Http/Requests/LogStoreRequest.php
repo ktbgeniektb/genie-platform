@@ -9,7 +9,7 @@ class LogStoreRequest extends FormRequest {
     public function rules(): array {
         return [
             'industry' => ['required','string','max:100'],
-            'text'     => ['required','string','min:50','max:2000'], // 目安
+            'text'     => ['required','string','max:2000'], // 目安
             'emotions' => ['nullable','array'],
             'emotions.*' => ['string','max:20'],
         ];
