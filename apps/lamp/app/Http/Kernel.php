@@ -7,14 +7,20 @@ use Illuminate\Foundation\Http\Kernel as HttpKernel;
 class Kernel extends HttpKernel
 {
     /**
-     * The application's global HTTP middleware stack.
-     *
-     * @var array<int, class-string|string>
+     * アプリ全体のミドルウェア
      */
     protected $middleware = [
-        // ここにCORSを追加する
+        // CORSを有効化
         \Illuminate\Http\Middleware\HandleCors::class,
     ];
 
-    // 他の $middlewareGroups や $routeMiddleware が続く
+    /**
+     * ルートごとのミドルウェア設定
+     */
+    protected $routeMiddleware = [
+        'auth' => \App\Http\Middleware\Authenticate::class,
+        'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
+        'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
+        'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+    ];
 }
