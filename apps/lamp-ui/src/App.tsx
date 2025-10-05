@@ -15,7 +15,7 @@ import LogCreateHome from "./pages/LogCreateHome";
 import NotFound from "./pages/NotFound";
 import NameInputPage from "./pages/NameInputPage";
 import ResultPage from "./pages/ResultPage";
-import Index from "./pages/__Index"; // ← 追加（Lampのトップページ）
+import Index from "./pages/Index"; // ← 追加（Lampのトップページ）
 
 // React Query クライアント設定
 const queryClient = new QueryClient();
