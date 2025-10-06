@@ -76,8 +76,12 @@ export default function SelfIntroduction() {
                         まずはGGA優勝を目指して全力で取り組みますが、<br />
                         その先の「好きで溢れる社会」づくりに共鳴してくださる方からの<br />
                         ご意見やアドバイスをいただければ、とても心強いです。
-                    </p>
+                    </p><br /><br />
                     </div>
+
+                    <a href="https://ktbgenie.sakura.ne.jp/gs/specification/Genie_Platform_How_To_Use.pdf">
+                        <strong>卒業制作　仕様書はこちら</strong><br /><br />
+                    </a>
                 </div>
             </section>
         </div>
